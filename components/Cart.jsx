@@ -8,7 +8,7 @@ import ExtraItems from './Cart-subcomponents/ExtraItems';
 import OrdersManagementBox from './Cart-subcomponents/OrdersManagementBox';
 import { itemsActions } from '@/store/cartItems';
 import { useSelector } from 'react-redux';
-import CustomToast from './customToast';
+// import CustomToast from './customToast';
 
 
 const Cart = ({ isOpen }) => {
