@@ -1,0 +1,268 @@
+@import url("https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /* font-family: Arial,"Roboto","Segoe UI", sans-serif;
+  font-weight: 200; */
+  /* color: #707070; */
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.input-heading {
+  font-family: "Syncopate", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.3rem;
+}
+
+.payment-main {
+  width: 710px;
+  border-right: 1px solid #dedede;
+}
+
+.payment-insde {
+  max-width: 660px;
+}
+
+.checkout-main {
+  width: 604px;
+}
+
+.checkout-inside {
+  position: sticky;
+  top: 0;
+  right: auto;
+  left: auto;
+  bottom: 0;
+  max-width: 520px;
+}
+
+.dont-miss {
+  border: 1px solid #dfdfdf;
+  background-color: #f6f6f6;
+}
+
+.circle {
+  vector-effect: non-scaling-stroke;
+  stroke-width: 1.4px;
+}
+
+.discount-input {
+  font-size: 0.9rem;
+  font-weight: 300;
+  background-color: #ffffff;
+  padding: 15px 10px !important;
+}
+
+.or-sec {
+  position: relative;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  /* Ensure text alignment in the center */
+}
+
+.link {
+  color: #868686 !important;
+  text-decoration: underline;
+}
+
+.link:focus {
+  color: #868686;
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: #868686;
+  text-decoration: underline;
+}
+
+.buy-img-div {
+  position: relative;
+}
+
+.img-border {
+  border: 1px solid #e2e2e2;
+}
+
+.num-circle {
+  position: absolute;
+  top: -10%;
+  right: -10%;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #0000007c;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.num-circle span {
+  color: white;
+  font-size: 12px;
+}
+
+.apply-btn {
+  font-family: "Syncopate", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.3rem;
+  color: #868686;
+  border: 1px solid #dfdfdf !important;
+  background-color: #f6f6f6;
+}
+
+input:focus,
+input:active,
+input:focus-visible,
+select:focus,
+select:active,
+select:focus-visible {
+  outline: 1px solid #868686 !important;
+}
+
+.drop-down-div {
+  position: relative;
+}
+
+.select-tag {
+  padding: 21px 30px 6px 11px;
+}
+
+.country-span {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+}
+
+.in-p {
+  padding: 15px 10px !important;
+}
+
+.in-p::placeholder {
+  color: rgb(55, 55, 55);
+}
+
+.paypal-btn {
+  background-color: #0070ba;
+}
+
+.paypalWhite {
+  width: 80px;
+}
+
+.text-red {
+  color: red;
+}
+
+.mobile-phone-div {
+  background-color: #f4f4f4;
+  position: relative;
+  border-top: 1px solid #dedede;
+}
+
+.mobile-phone-input {
+  padding-left: 35px !important;
+  background-color: #f4f4f4;
+}
+
+.mobile-phone-input:focus,
+.mobile-phone-input:active,
+.mobile-phone-input:focus-visible {
+  border: 1px solid red;
+}
+
+.phoneImage {
+  position: absolute;
+  top: 35px;
+  left: 28px;
+  user-select: none;
+  -webkit-user-drag: none;
+  user-drag: none;
+}
+
+.review-order-btn {
+  color: white;
+  background-color: black;
+  font-family: "Syncopate", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+}
+
+/* .hover-div {
+  position: relative;
+} */
+.four-plus {
+  border: 1px solid #dedede;
+}
+
+.four-plus-div {
+  display: none !important;
+  position: absolute;
+  width: 150px;
+  height: 80px;
+  top: -80px;
+  background-color: #131313;
+  right: -40px;
+  z-index: 10;
+  border-radius: 4px;
+}
+
+.hover-div:hover .four-plus-div {
+  display: flex !important;
+  cursor: pointer;
+}
+
+.four-plus {
+  cursor: pointer;
+  position: relative;
+}
+
+.rounded-md1 {
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+  border: 1px solid #e2e8f0;
+}
+
+.or-sec::before,
+.or-sec::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border-top: 1px solid #dedede;
+  /* Line style */
+  width: 43%;
+  /* Line width */
+}
+
+.or-sec::before {
+  left: 0px;
+  right: 50%;
+  /* Adjust to create space */
+  margin-right: 10px;
+  /* Space between line and text */
+}
+
+.or-sec::after {
+  left: 53%;
+  /* Adjust to create space */
+  right: 0;
+  margin-left: 10px;
+  /* Space between line and text */
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

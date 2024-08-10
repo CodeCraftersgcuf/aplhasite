@@ -1,0 +1,757 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap");
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --fullGrid: 1 / 1 / -1 / -1;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-family: Inter, Helvetica, sans-serif !important;
+  color: #868484;
+  background-color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+.added-toast {
+  /* background: white;
+  color: black;
+  font-size: 20px;
+  width: 34vw;
+  padding: 30px 20px; */
+  z-index: 150;
+}
+
+.separator {
+  width: 90%;
+  margin: 0 auto;
+  height: 1px;
+  background-color: #3f3f3f;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.mySwiper2 {
+  margin: 30px 0 30px 5%;
+  width: 95%;
+}
+
+.mySwiper {
+  width: 100%;
+  position: relative;
+  overflow: visible;
+
+  > .swiper-button-prev {
+    top: 50% !important;
+  }
+}
+
+.img-container {
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.vertical-container {
+  width: 50%;
+}
+
+.swiper-v2 {
+  display: flex !important;
+  flex-direction: row !important;
+}
+
+.swiper-v {
+  width: 50% !important;
+  margin-top: 20%;
+}
+
+.mySwiper4 {
+  width: 90%;
+  margin: 60px auto;
+  height: 115vh;
+  overflow: hidden;
+  display: flex;
+  cursor: grab;
+
+  .shopLook {
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 30px;
+
+    > div {
+      position: relative;
+    }
+
+    img {
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .points {
+      position: absolute;
+      height: 11px;
+      width: 11px;
+      background-color: rgb(255, 255, 255);
+      outline: 11px solid rgba(255, 255, 255, 0.4);
+      border-radius: 5px;
+      z-index: 10;
+      transition: outline 0.5s;
+      cursor: pointer;
+
+      &:hover {
+        height: 12px;
+        width: 12px;
+        outline: 15px solid rgba(255, 255, 255, 0.4);
+        transition: outline 0.5s;
+      }
+    }
+
+    .point1 {
+      top: 48%;
+      left: 20%;
+    }
+
+    .point2 {
+      top: 60%;
+      left: 33%;
+    }
+
+    .point3 {
+      top: 55%;
+      left: 80%;
+    }
+
+    .point4 {
+      top: 76%;
+      left: 88%;
+    }
+
+    .point5 {
+      top: 48%;
+      left: 29%;
+    }
+
+    .point6 {
+      top: 34%;
+      left: 45%;
+    }
+
+    .point7 {
+      top: 55%;
+      left: 60%;
+    }
+
+    .point8 {
+      top: 32%;
+      left: 83%;
+    }
+
+    .point9 {
+      top: 55%;
+      left: 85%;
+    }
+  }
+}
+
+/* .mySwiper5 {
+  width: 90%;
+  margin: 60px auto;
+  height: fit-content;
+  overflow: scroll;
+  display: flex;
+  cursor: grab;
+
+  .swiper-slide {
+    color: #f3f3f3;
+    height: calc(100% / 3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+} */
+
+.swiper-slide {
+  color: #f3f3f3;
+  height: calc(100% / 3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: #000000; */
+}
+
+.swiper-part {
+  margin-left: calc(35% - 40px);
+}
+.swiper-wrapper {
+  padding-left: 50px;
+}
+.swiper-button-next,
+.swiper-button-prev {
+  background-color: rgba(31, 31, 31, 0.5);
+  color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 40;
+}
+
+.swiper-button-prev2 {
+  width: 40px !important;
+  height: 40px !important;
+  top: 50% !important;
+}
+
+.swiper-button-prev {
+  position: absolute;
+  left: 60px;
+  top: 50%;
+
+  > svg {
+    margin-left: 10px;
+    font-size: 18px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 19px;
+    left: 16px;
+    height: 2px;
+    width: 0px;
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+    transition: width 0.5s;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 1);
+    transition: all 0.5s;
+    transform: scale(1.1);
+
+    > svg {
+      margin-left: 8px;
+      transition: margin-left 0.5s;
+    }
+
+    &::after {
+      width: 8px;
+      transition: width 0.5s;
+    }
+  }
+}
+
+.swiper-button-next {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+
+  > svg {
+    margin-left: 11px;
+    font-size: 18px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 19px;
+    right: 17px;
+    height: 2px;
+    width: 0px;
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+    transition: width 0.5s;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 1);
+    transition: all 0.5s;
+    transform: scale(1.1);
+
+    > svg {
+      margin-left: 13px;
+      transition: margin-left 0.5s;
+    }
+
+    &::after {
+      width: 8px;
+      transition: width 0.5s;
+    }
+  }
+}
+
+.imageSwiper {
+  position: relative;
+
+  .button-overlay {
+    position: absolute;
+    top: calc(78% - 1px);
+    z-index: 100;
+    pointer-events: none;
+    height: 4px;
+    width: 4px;
+  }
+}
+
+.prev-button-overlay {
+  left: -50px;
+}
+
+.next-button-overlay {
+  right: -50px;
+}
+
+.imageSwiper:hover .prev-button-overlay {
+  left: 27px !important;
+  transition: all 0.5s;
+}
+
+.imageSwiper:hover .next-button-overlay {
+  right: 35px !important;
+  transition: all 0.5s;
+}
+
+.imageSwiper:hover {
+  .swiper-button-next {
+    right: 20px;
+    transition: all 0.5s;
+  }
+
+  .swiper-button-prev {
+    left: 20px;
+    transition: all 0.5s;
+  }
+}
+
+.imageSwiper .swiper-button-next,
+.swiper-button-prev {
+  transition: all 0.5s;
+  height: 30px;
+  width: 30px;
+  top: 75%;
+}
+
+.imageSwiper .swiper-button-next {
+  right: -50px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 10px;
+    height: 2px;
+    width: 0px;
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+    transition: width 0.5s;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 1);
+    transition: all 0.5s;
+    transform: scale(1.1);
+
+    > svg {
+      margin-left: 8px;
+      transition: margin-left 0.5s;
+    }
+
+    &::after {
+      width: 8px;
+      transition: width 0.5s;
+    }
+  }
+
+  /* &::after{
+    content: '<';
+    position: absolute;
+    top: 4px;
+    left: 0px;
+    height: 2px;
+    width: 0px;
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+    transition: width 0.5s;
+  } */
+}
+.bgCover {
+  border: 1px solid rgb(77, 77, 77);
+  display: flex;
+  justify-content: center;
+  height: 200px;
+  position: absolute;
+  z-index: -100;
+  /* bottom: 0; */
+}
+.footer-main {
+  position: relative;
+}
+.imageSwiper .swiper-button-prev {
+  left: -50px;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 13px;
+    height: 2px;
+    width: 0px;
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+    transition: width 0.5s;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 1);
+    transition: all 0.5s;
+    transform: scale(1.1);
+
+    > svg {
+      margin-left: 8px;
+      transition: margin-left 0.5s;
+    }
+
+    &::after {
+      width: 8px;
+      transition: width 0.5s;
+    }
+  }
+
+  /* &::after{
+    content: '<';
+    position: absolute;
+    top: 4px;
+    left: 0px;
+    height: 2px;
+    width: 0px;
+    background-color: rgb(255, 255, 255);
+    z-index: 100;
+    transition: width 0.5s;
+  } */
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, and Opera */
+}
+
+@media screen and (max-width: 1100px) {
+  .mySwiper4 {
+    height: 100vh;
+  }
+}
+
+@media screen and (max-width: 880px) {
+  .shop1 {
+    margin-left: 5% !important;
+  }
+
+  .mySwiper4 {
+    height: 80vh;
+  }
+
+  .swiper-v {
+    display: none !important;
+  }
+}
+.links div a {
+  font-weight: 400 !important;
+  font-size: 12px;
+  display: block;
+  line-height: 24px;
+  text-decoration: none;
+  color: hsl(0deg 0% 96% / 80%);
+  position: relative;
+  max-width: fit-content; /* Ensure positioning context for ::after */
+}
+
+.links div a::after {
+  content: ""; /* Creates an empty pseudo-element */
+  position: absolute;
+  left: 0;
+  bottom: 0; /* Position the line at the bottom of the <a> tag */
+  width: 0; /* Initial width is 0, so it's hidden */
+  height: 2px; /* Thickness of the underline */
+  background-color: white; /* Color of the underline */
+  transition: width 0.3s ease; /* Animation duration and easing */
+}
+.form-heading {
+  font-family: "Syncopate", sans-serif !important;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 1.3rem;
+}
+.input-form {
+  background-color: transparent;
+  padding: 15px 5px;
+  color: #707070;
+  border: none;
+  border-bottom: 1px solid white;
+  border-radius: none;
+  margin-bottom: 20px;
+}
+
+.links div a:hover::after {
+  color: white;
+  width: 100%;
+}
+.copyRight .footer-last ul {
+  list-style: disc;
+  margin-left: 20px;
+}
+.copyRight .footer-last ul li {
+  font-size: 8px;
+  font-weight: normal;
+  margin-left: 10px;
+}
+/* Footer Css */
+#footer {
+  width: 100%;
+  margin: auto;
+  /* padding-top: 30px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  background-color: #131212;
+  z-index: 10;
+  font-weight: 500;
+  /* padding-left: 70px;
+  padding-right: 70px; */
+
+  > div {
+    width: 60%;
+    min-width: 200px;
+    min-height: 250px;
+
+    h4 {
+      padding: 15px 0;
+      color: #fff;
+    }
+    a {
+      font-weight: 400 !important;
+      font-size: 11px;
+      display: block;
+      text-decoration: none;
+      color: hsl(0deg 0% 96% / 80%);
+      position: relative;
+      max-width: fit-content; /* Ensure positioning context for ::after */
+    }
+
+    a::after {
+      content: ""; /* Creates an empty pseudo-element */
+      position: absolute;
+      left: 0;
+      bottom: 0; /* Position the line at the bottom of the <a> tag */
+      width: 0; /* Initial width is 0, so it's hidden */
+      height: 2px; /* Thickness of the underline */
+      background-color: white; /* Color of the underline */
+      transition: width 0.3s ease; /* Animation duration and easing */
+    }
+
+    a:hover::after {
+      color: white;
+      width: 100%;
+      /* Expands the width of the underline to full width on hover */
+    }
+
+    &:last-of-type {
+      width: 45%;
+      max-width: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+
+      .sub-input {
+        display: flex;
+      }
+
+      input {
+        margin-top: 10px;
+        width: 250px;
+        background-color: transparent;
+        padding: 10px;
+        border: 2px solid gray;
+        outline: none;
+        height: 40px;
+        font-weight: 500;
+        font-size: 12px;
+        border-radius: 10px;
+        transition: all 0.3s;
+
+        &:focus {
+          border: 2px solid #fff;
+          transition: all 0.3s;
+        }
+      }
+
+      button {
+        margin-left: 10px;
+        width: 130px;
+      }
+    }
+  }
+}
+
+.copyRight {
+  height: 100px;
+  background-color: #131212;
+  color: #fff;
+  margin-top: 20px;
+  font-size: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+
+  span > p {
+    display: inline-block;
+    cursor: pointer;
+    color: #707070;
+  }
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  /* width: 400px; */
+  justify-content: start;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.footerIcon {
+  display: inline-block;
+  margin: 5px 2px;
+  padding: 10px;
+  font-size: 40px;
+  background-color: transparent;
+  color: #ffffff;
+  border-radius: 50%;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #707070;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  #footer {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+
+    > div {
+      width: 70%;
+      margin: 15px auto;
+      border: 2px solid #575656;
+      padding: 15px 25px;
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &:last-of-type {
+        width: 100%;
+        align-items: center;
+        border: none;
+
+        .sub-input {
+          flex-direction: column;
+        }
+
+        input {
+          width: 100%;
+        }
+
+        button {
+          width: 100%;
+          margin: 10px 0 0 0;
+        }
+      }
+    }
+
+    .icons {
+      justify-content: center;
+    }
+  }
+}
+@media screen and (max-width: 570px) {
+  .footer-last {
+    gap: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* // flex-direction: column;  */
+  }
+  .copyRight {
+    padding-bottom: 100px;
+  }
+}
+@media screen and (max-width: 426px) {
+  .preFooter > div {
+    left: 25% !important;
+  }
+  #footer > div h4 {
+    padding-left: 25px;
+  }
+  .footer-div-h4 {
+    padding-left: 0px !important;
+  }
+  .swiper-slide {
+    /* Ensure Swiper slide has appropriate styling */
+    display: flex !important;
+    justify-content: center !important;
+  }
+}
+@media screen and (max-width: 320px) {
+  .product-page-det-card {
+    right: 10px !important;
+    width: 280px;
+  }
+}
+.footer-last ul {
+  display: flex;
+  gap: 15px;
+  color: #575656;
+  flex-wrap: wrap;
+  transition: 0.2s ease;
+}
+
+.footer-last ul li:hover {
+  color: #ffffff;
+}
+@media (min-width: 860px) and (max-width: 1140px) {
+  #footer {
+    justify-content: center;
+  }
+}
