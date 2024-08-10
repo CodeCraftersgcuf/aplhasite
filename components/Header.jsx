@@ -15,7 +15,7 @@ import { itemsActions } from "@/store/cartItems";
 import { useDispatch } from "react-redux";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import CustomToast from "./customToast";
+// import CustomToast from "./customToast";
 
 
 
