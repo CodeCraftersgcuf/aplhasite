@@ -426,12 +426,11 @@ const HomePage = () => {
 
           <Swiper
             classame="newClass "
-            slidesPerView={12}
             grid={{
               rows: 2,
               fill: "row",
             }}
-            spaceBetween={15}
+            spaceBetween={12}
             onBeforeInit={(swiper) => {
               swiperRef2.current = swiper;
             }}
@@ -453,7 +452,7 @@ const HomePage = () => {
                 slidesPerView: 3,
               },
               767: {
-                sliderPerView: 4,
+                slidesPerView: 4,
               },
               808: {
                 slidesPerView: 5,
@@ -462,13 +461,25 @@ const HomePage = () => {
                 slidesPerView: 6,
               },
               1200: {
-                slidesPerView: 9,
+                slidesPerView: 7,
+              },
+              1366: {
+                slidesPerView: 7,
               },
               1400: {
-                sliderPerView: 10,
+                slidesPerView: 8,
+              },
+              1450: {
+                slidesPerView: 7,
+              },
+              1500: {
+                slidesPerView: 9,
               },
               1600: {
-                sliderPerView: 11,
+                slidesPerView: 10,
+              },
+              1700: {
+                slidesPerView: 11,
               },
             }}
           >
