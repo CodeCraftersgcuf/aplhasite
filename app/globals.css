@@ -203,6 +203,9 @@ body {
 }
 .swiper-wrapper {
   padding-left: 18px;
+  /* height: 400px !important; */
+}
+.swiper-cus{
   height: 400px !important;
 }
 
