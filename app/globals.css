@@ -191,7 +191,8 @@ body {
 
 .swiper-slide {
   color: #f3f3f3;
-  height: calc(100% / 3);
+  /* height: calc(100% / 3); */
+  /* height: 100%; */
   display: flex;
   justify-content: start;
   align-items: center;
