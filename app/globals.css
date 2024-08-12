@@ -193,7 +193,7 @@ body {
   color: #f3f3f3;
   height: calc(100% / 3);
   display: flex;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   /* background-color: #000000; */
 }
