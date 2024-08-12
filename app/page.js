@@ -397,7 +397,7 @@ const HomePage = () => {
             </span>
           </div>
 
-          <Swiper
+          <Swiper classame="newClass"
             slidesPerView={7.5}
             grid={{
               rows: 3,

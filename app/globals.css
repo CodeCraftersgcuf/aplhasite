@@ -206,6 +206,9 @@ body {
 .swiper-wrapper {
   padding-left: 18px;
 }
+.test{
+height: unset!important;
+}
 .swiper-button-next,
 .swiper-button-prev {
   background-color: rgba(31, 31, 31, 0.5);
