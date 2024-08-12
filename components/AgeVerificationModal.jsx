@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import logo from '@assets/Pang3aBlack.png'
+import Image from 'next/image';
 
 const AgeVerificationModal = () => {
     const [isOpen, setIsOpen] = useState(true);
@@ -25,12 +27,14 @@ const AgeVerificationModal = () => {
                             x
                         </button>
                         <div className="px-6 py-4">
-                            <div className="flex justify-center">
-                                <h1 className="text-4xl font-bold">
+                            <div className="flex justify-center h-10 w-full">
+                                        <Image src = {logo} width = {170} height = {200} alt = "logo"/>
+                                {/* <h1 className="text-4xl font-bold">
+
                                     <span className="text-black">Pang</span>
                                     <span className="text-yellow-500">3</span>
                                     <span className="text-black">a</span>
-                                </h1>
+                                </h1> */}
                             </div>
                             <h2 className="text-3xl text-black font-bold text-center mt-6">Welcome to our site</h2>
                             <p className="text-gray-600 text-center mt-4">Please, verify your age to enter</p>

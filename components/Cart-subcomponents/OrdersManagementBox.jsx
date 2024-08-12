@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useRef, forwardRef} from 'react'
 import { FaPlus, FaMinus } from 'react-icons/fa6';
 import { MdDelete, MdModeEdit } from "react-icons/md";
 import { motion } from 'framer-motion';
@@ -6,9 +6,10 @@ import { totalPrice } from '@/helpers/totalPrice';
 import { useRouter } from 'next/navigation';
 
 
+
 const cartPricingOverflow = [1, 2, 3, 4, 5]
 
-const OrdersManagementBox = ({ addedItems, removeItem, onDecrement, onIncrement }) => {
+const OrdersManagementBox = forwardRef(({ addedItems, removeItem, onDecrement, onIncrement}, ref) => {
     const router = useRouter()
     const handleSubmit = () => {
         //submit order to backend
@@ -70,6 +71,7 @@ const OrdersManagementBox = ({ addedItems, removeItem, onDecrement, onIncrement 
                                 </button>
                             </div>
                         </div>
+                        <div ref = {ref}/>
                     </div>
                 ))}
 
@@ -99,6 +101,6 @@ const OrdersManagementBox = ({ addedItems, removeItem, onDecrement, onIncrement 
             </div>
         </div>
     )
-}
+})
 
 export default OrdersManagementBox

@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 
 
 const Cart = ({ isOpen }) => {
+    const scrollRef = useRef(null)
     const addedItems = useSelector((state) => state.itemsFn.items)
     const stateMessage = useSelector((state) => state.itemsFn.message)
     const dispatch = useDispatch()
@@ -42,9 +43,13 @@ const Cart = ({ isOpen }) => {
         dispatch(itemsActions.increment(item))
     }
 
+const hanldescrolling = () => {
+    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}    
 
-    const handleAddItem = ({ product, size }) => {
+const handleAddItem = ({ product, size }) => {
         dispatch(itemsActions.addItem({ product, size, quantity: 1 }))
+        hanldescrolling()
     };
 
     return (
@@ -60,6 +65,8 @@ const Cart = ({ isOpen }) => {
             <div className='main-card-res w-screen h-[90vh]  md:flex-row flex justify-between bg-white text-black '>
                 <ExtraItems addItem={handleAddItem} />
                 <OrdersManagementBox
+                ref={scrollRef}
+                hanldescroll = {hanldescrolling}  // Reference to scrollable div
                     addedItems={addedItems}
                     removeItem={handleRemoveItem}
                     onDecrement={handleDecrement}

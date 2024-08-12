@@ -428,13 +428,13 @@ const HomePage = () => {
                 slidesPerView: 6,
               },
               1200: {
-                slidesPerView: 8,
+                slidesPerView: 9,
               },
               1400:{
-                sliderPerView: 9,
+                sliderPerView: 10,
               },
               1600:{
-                sliderPerView: 10,
+                sliderPerView: 11,
             }
           }
         }

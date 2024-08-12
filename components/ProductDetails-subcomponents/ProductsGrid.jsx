@@ -7,6 +7,9 @@ import { Navigation } from 'swiper/modules';
 import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 import { FaPlus, FaMinus } from 'react-icons/fa6';
 import '@/app/styles/main.scss';
+import { itemsActions } from '@/store/cartItems';
+import { useDispatch } from 'react-redux';
+import { DUMMY_ITEMS } from '@/utils';
 
 const slides2 = [1, 2, 3, 4, 5, 6, 7, 8]
 const cartPricingOverflow = [1, 2, 3, 4, 5]
@@ -18,7 +21,12 @@ const slideimages = {
 };
 
 const ProductsGrid = () => {
+    const dispatch = useDispatch()
     const [women, setWomen] = useState(true)
+    const addItem = ({ product, size }) => {
+        dispatch(itemsActions.addItem({ product, size, quantity: 1 }))
+    };
+
     return (
         <div className='w-full h-1/2 bg-white py-6 mt-20 lg:mt-0'>
             <div className='w-full flex flex-col overflow-x-auto scrollbar-hide'>
@@ -39,7 +47,7 @@ const ProductsGrid = () => {
                     </div>
 
                     <div className='grid p-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5  lg:grid-cols-3 gap-6'>
-                        {slides2.map((slide, index) => (
+                        {DUMMY_ITEMS.map((product, index) => (
                             <SwiperSlide key={index}>
                                 <div
                                     className="slider-items"
@@ -62,7 +70,7 @@ const ProductsGrid = () => {
                                                 <div className="button-overlay prev-button-overlay">
                                                     <GrFormPrevious />
                                                 </div>
-                                                {slideimages.images.map((image, imgIndex) => (
+                                                {product.image.map((image, imgIndex) => (
                                                     <SwiperSlide className="imageSlide" key={imgIndex}>
                                                         <img
                                                             className="item-image"
@@ -92,19 +100,19 @@ const ProductsGrid = () => {
                                                 <div>
                                                     <p className='text-[10px]'>QUICK ADD</p>
                                                     <FaPlus
-                                                        onClick={() => handleAddItem(index)}
+                                                        // onClick={() => handleAddItem(index)}
                                                         className="plus"
                                                     />
                                                 </div>
                                                 <div className="separator"></div>
                                                 <div className="item-sizes">
-                                                    <p>XXS</p>
-                                                    <p>XS</p>
-                                                    <p>S</p>
-                                                    <p>M</p>
-                                                    <p>L</p>
-                                                    <p>XL</p>
-                                                    <p>XXL</p>
+                                                <p onClick={() => addItem({ product: product, size: 'XXS' })}>XXS</p>
+                                                <p onClick={() => addItem({ product: product, size: 'XS' })}>XS</p>
+                                                <p onClick={() => addItem({ product: product, size: 'S' })}>S</p>
+                                                <p onClick={() => addItem({ product: product, size: 'M' })}>M</p>
+                                                <p onClick={() => addItem({ product: product, size: 'L' })}>L</p>
+                                                <p onClick={() => addItem({ product: product, size: 'XL' })}>XL</p>
+                                                <p onClick={() => addItem({ product: product, size: 'XXL' })}>XXL</p>
                                                 </div>
                                             </div>
                                             {/* <div className="item-images">
