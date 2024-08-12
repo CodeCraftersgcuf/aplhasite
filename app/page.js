@@ -403,7 +403,7 @@ const HomePage = () => {
               rows: 3,
               fill: 'row',
             }}
-            spaceBetween={30}
+            spaceBetween={15}
             onBeforeInit={(swiper) => {
               swiperRef2.current = swiper;
             }}
