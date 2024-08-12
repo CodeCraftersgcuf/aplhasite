@@ -191,6 +191,9 @@ body {
 .home{
   overflow-x: hidden;
 }
+.apni-class{
+  overflow-x: hidden!important;
+}
 .swiper-slide {
   color: #f3f3f3;
   /* height: calc(100% / 3); */
