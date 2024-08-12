@@ -398,7 +398,7 @@ const HomePage = () => {
           </div>
 
           <Swiper classame="newClass"
-            slidesPerView={7.5}
+            slidesPerView={9}
             grid={{
               rows: 3,
               fill: 'row',
@@ -428,13 +428,13 @@ const HomePage = () => {
                 slidesPerView: 6,
               },
               1200: {
-                slidesPerView: 7,
+                slidesPerView: 8,
               },
               1400:{
-                sliderPerView: 8,
+                sliderPerView: 9,
               },
               1600:{
-                sliderPerView: 9,
+                sliderPerView: 10,
             }
           }
         }
