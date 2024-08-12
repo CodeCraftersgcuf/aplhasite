@@ -20,7 +20,7 @@ const payment = () => {
   return (
     <NoHeaderWrapper>
       <div className="bg-white h-full w-full">
-        <div className="flex xl:flex-nowrap flex-wrap justify-start ms-9 me-9 lg:ms-24">
+        <div className="flex xl:flex-nowrap flex-wrap justify-start ms-4 sm:me-9 lg:ms-24 ">
           <PaymentDetails onSubmit={hanldeSubmit} />
           <OrderCheckout onApply={hanldeApply} />
         </div>

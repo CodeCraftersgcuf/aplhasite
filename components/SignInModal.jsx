@@ -65,7 +65,7 @@ const SignInModal = () => {
                             </div>
                             <div className='w-full h-[1px] bg-gray-300'></div>
                             <div>
-                                <label htmlFor="phone" className="block text-gray-700 font-bold mb-2">
+                                <label htmlFor="phone" className="block text-gray-700 font-bold mb-2 ">
                                     Phone Number
                                 </label>
                                 <input
