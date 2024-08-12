@@ -74,7 +74,7 @@ body {
   padding-left: 40px !important;
 }
 .item-image-box {
-  margin-right: 50px;
+  /* margin-right: 50px; */
   height: 312px;
   width: 100%;
   background-color: rgb(255, 255, 255);
