@@ -9,12 +9,12 @@ import { FreeMode, Pagination } from 'swiper/modules';
 const DetailsSwiper = ({ productImages }) => {
   return (
     <Swiper
-      slidesPerView={1}  // Default for small screens
+      slidesPerView={1} // Default for small screens
       spaceBetween={0}
       freeMode={true}
+      loop={true}
       modules={[FreeMode, Pagination]}
       className="mySwiper apni-class"
-    
       breakpoints={{
         // when window width is >= 640px
         640: {
@@ -30,17 +30,18 @@ const DetailsSwiper = ({ productImages }) => {
         },
       }}
     >
-      {productImages && productImages.map((image, index) => (
-        <SwiperSlide key={index}>
-          <img
-            src={image}
-            alt="product"
-            className="w-full h-full object-cover"
-          />
-        </SwiperSlide>
-      ))}
+      {productImages &&
+        productImages.map((image, index) => (
+          <SwiperSlide key={index}>
+            <img
+              src={image}
+              alt="product"
+              className="w-full h-full object-cover"
+            />
+          </SwiperSlide>
+        ))}
     </Swiper>
-  )
+  );
 }
 
 export default DetailsSwiper

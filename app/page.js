@@ -1,29 +1,31 @@
-'use client';
+"use client";
 // import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 // import { useGSAP } from '@gsap/react';
-import './styles/main.scss';
-import { useRouter } from 'next/navigation';
-import { FaPlus } from 'react-icons/fa6';
-import React, { useRef, useState, useEffect } from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import 'swiper/css/grid';
-import 'swiper/css/pagination';
-import { FreeMode, Grid, Navigation, Pagination } from 'swiper/modules';
-import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
-import Cart from '@/components/Cart';
-import SignInModal from '@/components/SignInModal';
-import AgeVerificationModal from '@/components/AgeVerificationModal';
-import { useSelector } from 'react-redux';
-import { CURRENT_STATES } from '@/store/currentState';
-import WithHeaderWrapper from '@/components/WithHeaderWrapper';
-import { AnimatePresence } from 'framer-motion';
-import { DUMMY_ITEMS } from '@/utils';
-import { itemsActions } from '@/store/cartItems';
-import { useDispatch } from 'react-redux';
+import "./styles/main.scss";
+import { useRouter } from "next/navigation";
+import { FaPlus } from "react-icons/fa6";
+import React, { useRef, useState, useEffect } from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/grid";
+import "swiper/css/pagination";
+import { FreeMode, Grid, Navigation, Pagination } from "swiper/modules";
+import { GrFormPrevious, GrFormNext } from "react-icons/gr";
+import Cart from "@/components/Cart";
+import SignInModal from "@/components/SignInModal";
+import AgeVerificationModal from "@/components/AgeVerificationModal";
+import { useSelector } from "react-redux";
+import { CURRENT_STATES } from "@/store/currentState";
+import WithHeaderWrapper from "@/components/WithHeaderWrapper";
+import { AnimatePresence } from "framer-motion";
+import { DUMMY_ITEMS } from "@/utils";
+import { itemsActions } from "@/store/cartItems";
+import { useDispatch } from "react-redux";
+import hero from "../assets/hero.jpg";
+import Image from "next/image";
 
 const slides = Array.from({ length: 40 }, (_, index) => index + 1);
-const buttonSizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
+const buttonSizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL"];
 // const womenSlides = Array.from({ length: 8 }, (_, index) => index + 1);
 // const menSlides = Array.from({ length: 8 }, (_, index) => index + 1);
 
@@ -43,13 +45,13 @@ const HomePage = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const images = [
-    'https://cdn.shopify.com/s/files/1/1752/8007/products/TrilogyCropHoodieCelestialBlue4_400x.jpg',
-    'https://alphalete.uk/cdn/shop/files/4U8A0538.jpg?crop=center&v=1714233619&width=1400',
+    "https://cdn.shopify.com/s/files/1/1752/8007/products/TrilogyCropHoodieCelestialBlue4_400x.jpg",
+    "https://alphalete.uk/cdn/shop/files/4U8A0538.jpg?crop=center&v=1714233619&width=1400",
   ];
 
   const hanldeNavigateDetails = (product) => {
     //first add slide data with every mapping product and then fetch it from here
-    return router.push('/product-details?id=' + product.id);
+    return router.push("/product-details?id=" + product.id);
   };
 
   const onAddItem = ({ product, size }) => {
@@ -96,8 +98,7 @@ const HomePage = () => {
       <main className="home">
         {ageVerification && <AgeVerificationModal />}
         {state === CURRENT_STATES.LOGOUT && <SignInModal />}
-
-        <div className="topPage">
+        {/* <div className="topPage">
           <aside className="video-background">
             <video className="video-overlay min-w-[100%]" autoPlay muted loop>
               <source
@@ -113,8 +114,34 @@ const HomePage = () => {
             <button className="button">Shop Women</button>
             <button className="button">Shop Men</button>
           </div>
+        </div> */}
+        <div className="bg-img"></div>
+        <div className="max-h-[944px] z-50 top-[760px] absolute p-8 ">
+          <div className="w-fit max-w-full min-w-[20rem] line-clamp-3 pb-4 leading-[100%] font-secondary font-w-500 uppercase text-[30px] text-white">
+            <p className="uppercase">Your Journy,</p>
+            <p className="uppercase">Our mission</p>
+          </div>
+          <div className="w-fit mb-[5px] leading-tight font-w-500 text-[13px] pb-4 text-white">
+            <p>Crafted with every detail in mind. </p>
+          </div>
+          <div className="w-fit text-[13px] till-desktop:text-[13px] flex gap-[1rem] ">
+            <a
+              className="whitespace-nowrap text-center leading-[100%] max-w-full truncate font-w-600 px-[1.5rem] py-[1rem] till-desktop:py-[12px] rounded-full transition-all bg-white border border-secondary/20 text-black hover:opacity-80"
+              href="/collections/womens-new-arrivals"
+              // style="background-color: #ffffff; color: #000000"
+            >
+              {" "}
+              Shop Women's{" "}
+            </a>
+            <a
+              className="whitespace-nowrap text-center leading-[100%] max-w-full truncate font-w-600 px-[1.5rem] py-[1rem] till-desktop:py-[12px] rounded-full transition-all bg-white border border-secondary/20 text-black hover:opacity-80"
+              href="/collections/mens-new-arrivals-1"
+              // style="background-color: #ffffff; color: #000000"
+            >
+              Shop Men's
+            </a>
+          </div>
         </div>
-
         {/* Upper new arrivals */}
         <div className="slider-heading">
           <h2>
@@ -126,13 +153,13 @@ const HomePage = () => {
           <div className="slider-buttons">
             <span
               onClick={() => setWomen(true)}
-              className={women ? 'bg-gray' : ''}
+              className={women ? "bg-gray" : ""}
             >
               {`Women's`}
             </span>
             <span
               onClick={() => setWomen(false)}
-              className={!women ? 'bg-gray' : ''}
+              className={!women ? "bg-gray" : ""}
             >
               {`Men's`}
             </span>
@@ -162,10 +189,10 @@ const HomePage = () => {
               1200: {
                 slidesPerView: 4.5,
               },
-              1400:{
+              1400: {
                 slidesPerView: 5.5,
               },
-              1600:{
+              1600: {
                 slidesPerView: 7.5,
               },
             }}
@@ -180,10 +207,10 @@ const HomePage = () => {
               DUMMY_ITEMS.map((item, index) => (
                 <SwiperSlide key={index}>
                   <div
-             className="slider-items lg:ps-12 md:ps-8 sm:ps-4 ps-0"
-             // style={
-             //       index === 0 ? { paddingLeft: "50px", zIndex: '100' } : {}
-             //     }
+                    className="slider-items lg:ps-12 md:ps-8 sm:ps-4 ps-0"
+                    // style={
+                    //       index === 0 ? { paddingLeft: "50px", zIndex: '100' } : {}
+                    //     }
                   >
                     <div className="slider-item">
                       <div className="item-image-box">
@@ -256,7 +283,7 @@ const HomePage = () => {
                   <div
                     className="slider-items lg:ps-10 sm:ps-4"
                     style={
-                      index === 0 ? { margin: '30px 20px', zIndex: '100' } : {}
+                      index === 0 ? { margin: "30px 20px", zIndex: "100" } : {}
                     }
                   >
                     <div className="slider-item">
@@ -338,7 +365,7 @@ const HomePage = () => {
               class="item1"
               style={{
                 backgroundImage: `url(https://alphalete.uk/cdn/shop/files/4U8A0538.jpg?crop=center&v=1714233619&width=1400)`,
-                backgroundSize: 'cover',
+                backgroundSize: "cover",
               }}
             >
               <div className="banner-info">
@@ -352,7 +379,7 @@ const HomePage = () => {
               class="item2"
               style={{
                 backgroundImage: `url(https://alphalete.uk/cdn/shop/files/web_2mensshorts-graphic.jpg?crop=center&v=1714233659&width=1400)`,
-                backgroundSize: 'cover',
+                backgroundSize: "cover",
               }}
             >
               <div className="banner-info">
@@ -366,7 +393,7 @@ const HomePage = () => {
               class="item3"
               style={{
                 backgroundImage: `url(https://alphalete.uk/cdn/shop/files/DSC06397.jpg?crop=center&v=1714233714&width=1400)`,
-                backgroundSize: 'cover',
+                backgroundSize: "cover",
               }}
             >
               <div className="banner-info">
@@ -386,22 +413,23 @@ const HomePage = () => {
           </div>
 
           <div className="slider-buttons">
-            <span onClick={() => setMen(true)} className={men ? 'bg-gray' : ''}>
+            <span onClick={() => setMen(true)} className={men ? "bg-gray" : ""}>
               {`Women's`}
             </span>
             <span
               onClick={() => setMen(false)}
-              className={!men ? 'bg-gray' : ''}
+              className={!men ? "bg-gray" : ""}
             >
               {`Men's`}
             </span>
           </div>
 
-          <Swiper classame="newClass"
-            slidesPerView={9}
+          <Swiper
+            classame="newClass "
+            slidesPerView={12}
             grid={{
-              rows: 3,
-              fill: 'row',
+              rows: 2,
+              fill: "row",
             }}
             spaceBetween={15}
             onBeforeInit={(swiper) => {
@@ -412,6 +440,9 @@ const HomePage = () => {
             modules={[Grid, Navigation, FreeMode]}
             className="mySwiper2"
             breakpoints={{
+              220: {
+                slidesPerView: 1,
+              },
               320: {
                 slidesPerView: 1,
               },
@@ -420,6 +451,9 @@ const HomePage = () => {
               },
               520: {
                 slidesPerView: 3,
+              },
+              767: {
+                sliderPerView: 4,
               },
               808: {
                 slidesPerView: 5,
@@ -430,14 +464,13 @@ const HomePage = () => {
               1200: {
                 slidesPerView: 9,
               },
-              1400:{
+              1400: {
                 sliderPerView: 10,
               },
-              1600:{
+              1600: {
                 sliderPerView: 11,
-            }
-          }
-        }
+              },
+            }}
           >
             <button
               onClick={() => swiperRef2.current?.slidePrev()}
@@ -449,7 +482,7 @@ const HomePage = () => {
               <SwiperSlide key={index}>
                 <div
                   className="item-image-box"
-                  style={{ width: '150px', height: '190px' }}
+                  style={{ width: "150px", height: "190px" }}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={handleMouseLeave}
                 >
@@ -477,7 +510,7 @@ const HomePage = () => {
               class="item1"
               style={{
                 backgroundImage: `url(https://alphalete.uk/cdn/shop/files/aa24-apr27-36.jpg?crop=center&v=1714233923&width=1400)`,
-                backgroundSize: 'cover',
+                backgroundSize: "cover",
               }}
             >
               <div className="banner-info">
@@ -491,7 +524,7 @@ const HomePage = () => {
               class="item2"
               style={{
                 backgroundImage: `url(https://alphalete.uk/cdn/shop/files/aa24-apr27-34.jpg?crop=center&v=1714233984&width=1400)`,
-                backgroundSize: 'cover',
+                backgroundSize: "cover",
               }}
             >
               <div className="banner-info">
@@ -520,7 +553,7 @@ const HomePage = () => {
             </div>
           </div>
 
-          <Swiper
+          {/* <Swiper
             className="mySwiper4 swiper-h"
             spaceBetween={50}
             pagination={{
@@ -541,7 +574,7 @@ const HomePage = () => {
                   <div className="point4 points"></div>
                 </div>
               </div>
-              {/* <div className='vertical-container'> */}
+              <div className='vertical-container'> 
               <Swiper
                 className="swiper-v"
                 direction={'vertical'}
@@ -924,11 +957,11 @@ const HomePage = () => {
                 </SwiperSlide>
               </Swiper>
             </SwiperSlide>
-          </Swiper>
+          </Swiper> */}
 
           <div className="preFooter">
             <aside className="video-background">
-              <video autoPlay muted loop className="min-h-[100vh min-w-[100%]"> 
+              <video autoPlay muted loop className="min-h-[100vh min-w-[100%]">
                 <source
                   src="https://cdn.shopify.com/s/files/1/1752/8007/files/alphaland-drone-loop-land.mp4?v=1654961662"
                   type="video/webm"

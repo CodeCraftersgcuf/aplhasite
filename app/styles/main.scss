@@ -5,19 +5,22 @@
 }
 .button {
   display: block;
-  background-color: #ffffff80;
-  color: white;
+  background-color: #fff;
+  color: rgb(0, 0, 0);
   padding: 7px 20px;
-  font-size: 15px;
+  font-size: 11px;
+  // font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+  //   Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   letter-spacing: 1px;
   border-radius: 25px;
   text-transform: uppercase;
   margin: 10px 0;
   height: 40px;
   transition: all 0.2s ease;
+  text-transform: capitalize;
 
   &:hover {
-    background-color: #ffffff;
+    background-color: #c7c7c7;
     color: rgb(0, 0, 0);
   }
 }
@@ -53,6 +56,7 @@ h1 {
   overflow: hidden;
   width: 100%;
   height: 100%;
+  // border-radius: 16px;
 }
 
 .video-background2 {
@@ -105,7 +109,7 @@ h1 {
   flex-direction: row;
   border-radius: 20px;
   justify-content: space-between;
-  margin-left: 5.7%;
+  margin-left: 4.7%;
   margin-right: 4%;
   h2 {
     margin-top: 5px;
@@ -245,6 +249,7 @@ h1 {
           &:hover {
             background-color: rgb(73, 72, 72);
             color: rgb(163, 161, 161);
+            border-radius: 50%;
           }
         }
       }
@@ -278,23 +283,25 @@ h1 {
 }
 
 .container {
+  min-width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 50% 50%;
   height: 120vh;
   grid-gap: 30px;
-  width: 90%;
-  margin: auto;
   margin-top: 20px;
+  margin: 50px 50px;
 
   > div {
     position: relative;
-    border: 1px solid black;
+    // border: 1px solid black;
     display: flex;
-    background-color: gray;
+    // background-color: gray;
     align-items: center;
     justify-content: center;
-    border-radius: 30px;
+    // border-radius: 16px;
+    background-position: 0px -134px;
+    background-repeat: no-repeat;
   }
 
   .item1 {
@@ -328,8 +335,8 @@ h1 {
   height: 120vh;
   grid-gap: 30px;
   margin-top: 20px;
-  width: 90%;
-  margin: auto;
+  // width: 90%;
+  margin: 50px 50px;
 
   > div {
     position: relative;
@@ -338,7 +345,7 @@ h1 {
     background-color: gray;
     align-items: center;
     justify-content: center;
-    border-radius: 30px;
+    // border-radius: 16px;
   }
 
   .item1 {
@@ -378,19 +385,20 @@ h1 {
   color: black !important;
 }
 .preFooter {
-  width: 84%;
-  margin: auto;
-  height: 95vh;
   position: relative;
-  border-radius: 20px;
+  height: 95vh;
   margin-top: 50px;
   background-color: rgb(128, 129, 129);
-  overflow: hidden;
+  margin: 50px 50px;
+  // border-radius: 16px;
+  // width: 84%;
+  // margin: auto;
+  // overflow: hidden;
 
   > div {
     position: absolute;
     top: 50%;
-    left: 50%!important;
+    left: 50% !important;
     transform: translate(-50%, -50%);
     p {
       color: white;
@@ -438,42 +446,40 @@ h1 {
 }
 
 @media screen and (max-width: 600px) {
-    .main-card-res {
-      display: flex;
-      flex-direction: column-reverse;
-      overflow: scroll !important;
-    }
-    .main-card-res-none {
-      display: none;
-    }
+  .main-card-res {
+    display: flex;
+    flex-direction: column-reverse;
+    overflow: scroll !important;
   }
-  @media (min-width: 320px) and (max-width: 500px) {
-    .topPage{
-      height: 47vh;
-    }
-  
+  .main-card-res-none {
+    display: none;
   }
-  @media (max-width: 319px) {
-    .topPage{
-      height: 37vh;
-    }
+}
+@media (min-width: 320px) and (max-width: 500px) {
+  .topPage {
+    height: 47vh;
   }
-  @media (min-width: 767px) and (max-width: 1130px) {
-    .preFooter{
-      height: 64vh;
-    }
-  
+}
+@media (max-width: 319px) {
+  .topPage {
+    height: 37vh;
   }
-  @media (min-width: 500px) and (max-width: 760px) {
-    .preFooter{
-      height: 75vh;
-    }
+}
+@media (min-width: 767px) and (max-width: 1130px) {
+  .preFooter {
+    height: 64vh;
   }
-  @media (min-width: 320px) and (max-width: 500px) {
-    .preFooter{
-      height: 48vh;  
-    }
-    .preFooter >div{
-      display: none;
-    }
+}
+@media (min-width: 500px) and (max-width: 760px) {
+  .preFooter {
+    height: 75vh;
   }
+}
+@media (min-width: 320px) and (max-width: 500px) {
+  .preFooter {
+    height: 48vh;
+  }
+  .preFooter > div {
+    display: none;
+  }
+}

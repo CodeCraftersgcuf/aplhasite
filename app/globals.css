@@ -5,8 +5,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap");
 
 @font-face {
-  font-family: 'GT America Extended Bold';
-  src: url('../public/fonts/GT-America-Extended-Bold-Trial.woff2') format('woff2');
+  font-family: "GT America Extended Bold";
+  src: url("../public/fonts/GT-America-Extended-Bold-Trial.woff2")
+    format("woff2");
   font-weight: bold; /* Adjust based on your font’s weight if needed */
   font-style: normal; /* Adjust if the font style is italic or oblique */
 }
@@ -27,11 +28,20 @@
 body {
   /* font-family: Helvetica Neue, Helvetica, Arial, sans-serif; */
   /* font-family: Inter, Helvetica, sans-serif !important; */
-  font-family: 'GT America Extended Bold', sans-serif !important;
+  font-family: "GT America Extended Bold", sans-serif !important;
   color: #868484;
-  background-color: #000000;
+  background-color: #0d0d0d;
   margin: 0;
   padding: 0;
+}
+.header-nav {
+  transition: background-color 0.3s ease;
+  &.transparent {
+    background-color: transparent;
+  }
+  &.scrolled {
+    background-color: #0d0d0d;
+  }
 }
 
 .added-toast {
@@ -54,10 +64,23 @@ body {
   width: 100%;
   height: 100%;
 }
-
+.cart-num{
+  line-height: unset;
+  padding: 5px;
+}
 .mySwiper2 {
-  margin: 30px 0 30px 5%;
-  width: 95%;
+  margin: 30px 0 30px 10px;
+  width: 100%;
+  padding-left: 40px !important;
+}
+.item-image-box {
+  margin-right: 50px;
+  height: 312px;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+  position: relative;
+  border-radius: 12px !important;
+  overflow: hidden;
 }
 
 .mySwiper {
@@ -178,7 +201,12 @@ body {
     }
   }
 }
-
+.swiper-button-disabled{
+  display: none !important;
+}
+/* .newClass {
+  padding-left: 40px!important;
+} */
 /* .mySwiper5 {
   width: 90%;
   margin: 60px auto;
@@ -195,11 +223,11 @@ body {
     align-items: center;
   }
 } */
-.home{
+.home {
   overflow-x: hidden;
 }
-.apni-class{
-  overflow-x: hidden!important;
+.apni-class {
+  overflow-x: hidden !important;
 }
 .swiper-slide {
   color: #f3f3f3;
@@ -219,8 +247,8 @@ body {
 .swiper-wrapper {
   padding-left: 18px;
 }
-.test{
-height: unset!important;
+.test {
+  height: unset !important;
 }
 .swiper-button-next,
 .swiper-button-prev {
@@ -412,13 +440,14 @@ height: unset!important;
   } */
 }
 .bgCover {
+  background: url("../assets/alphalete_white.svg");
   border: 1px solid rgb(77, 77, 77);
-  display: flex;
-  justify-content: center;
+  /* display: flex; */
+  /* justify-content: center; */
   height: 200px;
-  position: absolute;
-  z-index: -100;
-  /* bottom: 0; */
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: contain;
 }
 .footer-main {
   position: relative;
@@ -520,10 +549,11 @@ height: unset!important;
   transition: width 0.3s ease; /* Animation duration and easing */
 }
 .form-heading {
-  /* font-family: "Syncopate", sans-serif !important; */
+  font-family: "Syncopate", sans-serif !important;
   font-weight: 700;
   font-style: normal;
   font-size: 1.3rem;
+  color: ;
 }
 .input-form {
   background-color: transparent;
@@ -541,12 +571,23 @@ height: unset!important;
 }
 .copyRight .footer-last ul {
   list-style: disc;
-  margin-left: 20px;
+  /* margin-left: 20px; */
 }
 .copyRight .footer-last ul li {
   font-size: 8px;
   font-weight: normal;
   margin-left: 10px;
+}
+.bg-img {
+  background-image: url("../assets/hero.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: 944px;
+  width: 100%;
+  /* z-index: -100; */
+  top: -50px;
+  position: relative;
 }
 /* Footer Css */
 #footer {
@@ -639,15 +680,12 @@ height: unset!important;
 }
 
 .copyRight {
-  height: 100px;
-  background-color: #131212;
   color: #fff;
-  margin-top: 20px;
   font-size: 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 20px;
+  gap: 15px;
 
   span > p {
     display: inline-block;
@@ -660,19 +698,18 @@ height: unset!important;
   display: flex;
   align-items: center;
   /* width: 400px; */
-  justify-content: start;
+  /* justify-content: start; */
   gap: 10px;
   margin-top: 10px;
 }
 
 .footerIcon {
   display: inline-block;
-  margin: 5px 2px;
   padding: 10px;
   font-size: 40px;
   background-color: transparent;
   color: #ffffff;
-  border-radius: 50%;
+  border-radius: 18px;
   cursor: pointer;
 
   &:hover {
@@ -722,17 +759,10 @@ height: unset!important;
     }
   }
 }
-@media screen and (max-width: 570px) {
-  .footer-last {
-    gap: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    /* // flex-direction: column;  */
-  }
-  .copyRight {
-    padding-bottom: 100px;
+
+@media screen and (max-width: 550px) {
+  .container > div {
+    background-position: center center !important;
   }
 }
 @media screen and (max-width: 426px) {
@@ -751,25 +781,35 @@ height: unset!important;
     justify-content: center !important;
   }
 }
-@media screen and (max-width: 320px) {
+@media screen and (min-width: 320px) and (max-width: 420px) {
   .product-page-det-card {
     right: 10px !important;
     width: 280px;
   }
 }
+
+
 .footer-last ul {
   display: flex;
   gap: 15px;
-  color: #575656;
   flex-wrap: wrap;
-  transition: 0.2s ease;
 }
-
+.footer-last ul li {
+  transition-duration: 0.15s;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0.7;
+}
 .footer-last ul li:hover {
-  color: #ffffff;
+  opacity: 1;
 }
 @media (min-width: 860px) and (max-width: 1140px) {
   #footer {
     justify-content: center;
+  }
+}
+@media (max-width: 420px){
+  .example05  {
+    display:none;
   }
 }

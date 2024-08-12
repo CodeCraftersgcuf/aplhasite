@@ -9,7 +9,7 @@ const payment = () => {
     const inputs = Object.fromEntries(formData.entries());
     const options = formData.getAll('options');
     const data = { inputs, options };
-    console.log(data);
+
   };
 
   const hanldeApply = (formData) => {
