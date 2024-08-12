@@ -13,7 +13,8 @@ const DetailsSwiper = ({ productImages }) => {
       spaceBetween={0}
       freeMode={true}
       modules={[FreeMode, Pagination]}
-      className="mySwiper"
+      className="mySwiper overflow-x-hidden"
+    
       breakpoints={{
         // when window width is >= 640px
         640: {
