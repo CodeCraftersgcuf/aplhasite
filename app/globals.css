@@ -37,7 +37,7 @@ body {
 }
 
 .separator {
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
   height: 1px;
   background-color: #3f3f3f;
@@ -202,7 +202,7 @@ body {
   margin-left: calc(35% - 40px);
 }
 .swiper-wrapper {
-  padding-left: 50px;
+  padding-left: 18px;
 }
 .swiper-button-next,
 .swiper-button-prev {
