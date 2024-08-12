@@ -141,7 +141,7 @@ const HomePage = () => {
           <Swiper
             freeMode={true}
             modules={[FreeMode]}
-            className="mySwiper ms-[30px]"
+            className="mySwiper test ms-[30px]"
             onBeforeInit={(swiper) => {
               swiperRef.current = swiper;
             }}

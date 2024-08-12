@@ -69,8 +69,8 @@ const Header = () => {
               </SwiperSlide>
             </Swiper> */}
             <div class="mySwiper">
-              <div class="swiper-wrapper">
-                <div class="swiper-slide">
+            <div class="swiper-wrapper">
+            <div class="swiper-slide">
                   <p>Free Domestic Shipping over £120 and 30 Day Returns</p>
                 </div>
               </div>
