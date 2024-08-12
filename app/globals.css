@@ -188,7 +188,9 @@ body {
     align-items: center;
   }
 } */
-
+.home{
+  overflow-x: hidden;
+}
 .swiper-slide {
   color: #f3f3f3;
   /* height: calc(100% / 3); */
