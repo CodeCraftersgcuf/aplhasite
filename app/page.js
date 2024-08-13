@@ -116,7 +116,7 @@ const HomePage = () => {
           </div>
         </div> */}
         <div className="bg-img"></div>
-        <div className="max-h-[944px] z-50 top-[760px] absolute p-8 ">
+        <div className="max-h-[95vh] z-50 top-[69vh] absolute p-8 ">
           <div className="w-fit max-w-full min-w-[20rem] line-clamp-3 pb-4 leading-[100%] font-secondary font-w-500 uppercase text-[30px] text-white">
             <p className="uppercase">Your Journy,</p>
             <p className="uppercase">Our mission</p>

@@ -553,7 +553,7 @@ body {
   font-weight: 700;
   font-style: normal;
   font-size: 1.3rem;
-  color: ;
+  /* color: ; */
 }
 .input-form {
   background-color: transparent;
@@ -576,14 +576,14 @@ body {
 .copyRight .footer-last ul li {
   font-size: 8px;
   font-weight: normal;
-  margin-left: 10px;
+  /* margin-left: 10px; */
 }
 .bg-img {
   background-image: url("../assets/hero.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  height: 944px;
+  height: 95vh;
   width: 100%;
   /* z-index: -100; */
   top: -50px;
@@ -792,7 +792,7 @@ body {
 .footer-last ul {
   display: flex;
   gap: 15px;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
 }
 .footer-last ul li {
   transition-duration: 0.15s;

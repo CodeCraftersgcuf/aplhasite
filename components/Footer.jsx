@@ -47,17 +47,19 @@ const Footer = () => {
             <div className="privacyLinks  p-6 lg:max-w-[600px] max-w-full border-e border-[#3b3b3b] ">
               <aside className="copyRight">
                 <span class="footer-last">
-                  <ul>
+                  <ul className="flex flex-wrap lg:flex-nowrap">
                     <li>PRIVACY POLICY</li>
                     <li>TERMS OF SERVICE</li>
                     <li>SITEMAP</li>
-                    <li>DO NOT SELL OR SHARE MY PERSONAL INFORMATION</li>
+                    <li style={{ marginLeft: 0 }}>
+                      DO NOT SELL OR SHARE MY PERSONAL INFORMATION
+                    </li>{" "}
                   </ul>
 
                   {/* <p>PRIVACY POLICY</p> <p>TERMS OF SERVICE</p> <p>SITEMAP</p>{" "}
             <p>DO NOT SELL OR SHARE MY PERSONAL INFORMATION</p> */}
                 </span>
-                <h6 className="text-[12px]">
+                <h6 className="text-[10px]">
                   © 2024 &#x2022; Alphalete Athletics LLC | All Rights Reserved
                 </h6>
               </aside>
@@ -66,7 +68,7 @@ const Footer = () => {
               <p className="text-[13px] text-white font-semibold ">
                 Premium Workout Clothes & Athleisure
               </p>
-              <span className="text-[12px] pt-2">
+              <span className="text-[10px] pt-2">
                 Experience the next level of comfort, style, and functionality
                 with our premium athleisure collections designed for those who
                 demand the best. Shop now!
