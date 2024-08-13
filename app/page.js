@@ -205,13 +205,13 @@ const HomePage = () => {
                 slidesPerView: 3.5,
               },
               1200: {
-                slidesPerView: 4,
+                slidesPerView: 4.5,
               },
               1400: {
-                slidesPerView: 5,
+                slidesPerView: 5.5,
               },
               1600: {
-                slidesPerView: 6,
+                slidesPerView: 7.5,
               },
             }}
           >
