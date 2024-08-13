@@ -21,14 +21,24 @@ const AgeVerificationModal = () => {
                 >
                     <div className="relative bg-white rounded-lg shadow-md w-full max-w-lg mx-4 sm:mx-0 p-8">
                         <button
-                            className='absolute top-2 right-3 text-gray-600 text-lg'
+                            className='absolute top-4 right-4 text-gray-600 text-lg'
                             onClick={handleClose}
                         >
-                            x
+                            <svg
+                                className="h-6 w-6"
+                                fill="none"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                viewBox="0 0 24 24"
+                                stroke="currentColor"
+                            >
+                                <path d="M6 18L18 6M6 6l12 12" />
+                            </svg>
                         </button>
                         <div className="px-6 py-4">
                             <div className="flex justify-center h-10 w-full">
-                                        <Image src = {logo} width = {170} height = {200} alt = "logo"/>
+                                <Image src={logo} width={170} height={200} alt="logo" />
                                 {/* <h1 className="text-4xl font-bold">
 
                                     <span className="text-black">Pang</span>

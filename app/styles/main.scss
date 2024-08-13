@@ -233,15 +233,21 @@ h1 {
       }
       .item-sizes {
         opacity: 1;
-        height: 40px;
-        // border: 1px solid gray;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        // border: 1px solid gray ;
         border-radius: 8px;
         width: 100%;
-        padding: 5px;
+        padding:0 5px;
         transition: all 0.3s;
         p {
-          display: inline-block;
-          font-size: 10px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 13px;
           border-radius: 4px;
           padding: 6px;
           margin: 0 4px;
@@ -251,6 +257,16 @@ h1 {
             color: rgb(163, 161, 161);
             border-radius: 50%;
           }
+        }
+        div {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 13px;
+          border-radius: 4px;
+          padding: 6px;
+          margin: 0 4px;
+          margin-top: 3px;
         }
       }
       .item-images {
@@ -342,7 +358,7 @@ h1 {
     position: relative;
     border: 1px solid black;
     display: flex;
-    background-color: gray;
+    // background-color: gray;
     align-items: center;
     justify-content: center;
     // border-radius: 16px;

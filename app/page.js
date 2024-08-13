@@ -1,9 +1,10 @@
 'use client';
 // import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
 // import { useGSAP } from '@gsap/react';
 import './styles/main.scss';
 import { useRouter } from 'next/navigation';
-import { FaPlus } from 'react-icons/fa6';
+import { FaPlus, FaMinus } from 'react-icons/fa6';
 import React, { useRef, useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
@@ -25,6 +26,7 @@ import hero from '../assets/hero.jpg';
 import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
 import CustomToast from '@/components/CustomToast';
+import HomeProductSlide from '@/components/HomeProductSlide';
 
 const slides = Array.from({ length: 40 }, (_, index) => index + 1);
 const buttonSizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
@@ -55,12 +57,12 @@ const HomePage = () => {
     //first add slide data with every mapping product and then fetch it from here
     return router.push('/product-details?id=' + product.id);
   };
-  const notify = ({ product, size, adding, removing }) => {
+  const notify = ({ product, quantity, adding, removing }) => {
     toast.custom(
       (t) => (
         <CustomToast
           product={product}
-          size={size}
+          quantity={quantity}
           adding={adding}
           removing={removing}
         />
@@ -70,9 +72,9 @@ const HomePage = () => {
       }
     );
   };
-  const onAddItem = ({ product, size }) => {
-    dispatch(itemsActions.addItem({ product, size, quantity: 1 }));
-    notify({ product, size, adding: true, removing: false });
+  const onAddItem = ({ product, quantity = 1 }) => {
+    dispatch(itemsActions.addItem({ product, quantity }));
+    notify({ product, quantity, adding: true, removing: false });
   };
 
   const handleMouseEnter = (index) => {
@@ -134,7 +136,7 @@ const HomePage = () => {
           </div>
         </div> */}
         <div className="bg-img"></div>
-        <div className="max-h-[95vh] z-50 top-[69vh] absolute p-8 ">
+        <div className="max-h-[95vh] z-50 top-[69vh] absolute p-8 hero-btn-res">
           <div className="w-fit max-w-full min-w-[20rem] line-clamp-3 pb-4 leading-[100%] font-secondary font-w-500 uppercase text-[30px] text-white">
             <p className="uppercase">Your Journy,</p>
             <p className="uppercase">Our mission</p>
@@ -184,13 +186,13 @@ const HomePage = () => {
           </div>
 
           <Swiper
-freeMode={true}
-modules={[FreeMode]}
-className="mySwiper test ms-[30px]"
-spaceBetween={20}
-onBeforeInit={(swiper) => {
-  swiperRef.current = swiper;
-}}
+            freeMode={true}
+            direction="horizontal"
+            modules={[FreeMode]}
+            className="mySwiper test ms-[30px]"
+            onBeforeInit={(swiper) => {
+              swiperRef.current = swiper;
+            }}
             breakpoints={{
               500: {
                 slidesPerView: 1,
@@ -222,81 +224,26 @@ onBeforeInit={(swiper) => {
             >
               <GrFormPrevious />
             </button>
-            {women &&
-              DUMMY_ITEMS.map((item, index) => (
-                <SwiperSlide key={index}>
-                  <div
-                    className="slider-items lg:ps-12 md:ps-8 sm:ps-4 ps-0"
-                    // style={
-                    //       index === 0 ? { paddingLeft: "50px", zIndex: '100' } : {}
-                    //     }
-                  >
-                    <div className="slider-item">
-                      <div className="item-image-box">
-                        <Swiper
-                          className="imageSwiper"
-                          cssMode={true}
-                          slidesPerView={1}
-                          navigation={true}
-                          modules={[Navigation]}
-                        >
-                          <div className="button-overlay prev-button-overlay">
-                            <GrFormPrevious />
-                          </div>
-                          {item.image.map((image, imgIndex) => (
-                            <SwiperSlide className="imageSlide" key={imgIndex}>
-                              <img
-                                onClick={() => hanldeNavigateDetails(item)}
-                                className="item-image hover:cursor-pointer"
-                                src={image}
-                                alt={image.alt}
-                              />
-                            </SwiperSlide>
-                          ))}
-                          <div className="button-overlay next-button-overlay">
-                            <GrFormNext />
-                          </div>
-                        </Swiper>
-                        <p className="new">NEW</p>
-                        <p className="plus">
-                          <FaPlus />
-                        </p>
-                      </div>
-                      <div className="item-info">
-                        <h5 className="hide">{item.name}</h5>
-                        <p className="hide">
-                          Gliese <span> 4 colors</span>
-                        </p>
-                        <p className="hide">{`£${item.price.toFixed(2)}`}</p>
-                        <div className="item-sizes-box">
-                          <div>
-                            <p>QUICK ADD</p>
-                            <FaPlus className="plus" />
-                          </div>
-                          <div className="separator"></div>
-                          <div className="item-sizes">
-                            {buttonSizes.map((size, index) => (
-                              <p
-                                onClick={() =>
-                                  onAddItem({ product: item, size })
-                                }
-                              >
-                                {size}
-                              </p>
-                            ))}
-                          </div>
-                        </div>
-                        <div className="item-images">
-                          {item.image.map((image, imgIndex) => (
-                            <img key={imgIndex} src={image} alt="image" />
-                          ))}
-                        </div>
-                      </div>
-                    </div>
+            {DUMMY_ITEMS.map((item, index) => (
+              <SwiperSlide key={index}>
+                <div
+                  className="slider-items lg:ps-12 md:ps-8 sm:ps-4 ps-0"
+                  // style={
+                  //       index === 0 ? { paddingLeft: "50px", zIndex: '100' } : {}
+                  //     }
+                >
+                  <div className="slider-item">
+                    <HomeProductSlide
+                      key={index}
+                      product={item}
+                      onAddItem={onAddItem}
+                      handleNavigateDetails={hanldeNavigateDetails}
+                    />
                   </div>
-                </SwiperSlide>
-              ))}
-            {!women &&
+                </div>
+              </SwiperSlide>
+            ))}
+            {/* {!women &&
               DUMMY_ITEMS.map((item, index) => (
                 <SwiperSlide key={index}>
                   <div
@@ -370,7 +317,7 @@ onBeforeInit={(swiper) => {
                     </div>
                   </div>
                 </SwiperSlide>
-              ))}
+              ))} */}
             <button
               onClick={() => swiperRef.current?.slideNext()}
               className="swiper-button-next"

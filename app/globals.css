@@ -818,8 +818,10 @@ body {
     height: 130vh;
   }
   }
-  @media (min-width: 320px) and (max-width: 425px){
+  @media (min-width: 320px) and (max-width: 440px){
     .banner-info{
-display: none;   
+  display: none; 
+ }.hero-btn-res{    
+  top: 57vh!important;
  }
     }

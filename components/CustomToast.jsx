@@ -3,7 +3,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { IoIosCloseCircle } from "react-icons/io";
 import Image from 'next/image'; // Assuming you are using Next.js; otherwise, use <img />
 
-const CustomToast = ({ product, size, adding, removing }) => (
+const CustomToast = ({ product, quantity, adding, removing }) => (
     <div className="flex items-center bg-white p-4 border border-gray-300 rounded shadow">
         {/* Image on the left */}
         <div className="flex-shrink-0 mr-3">
@@ -15,7 +15,7 @@ const CustomToast = ({ product, size, adding, removing }) => (
         {/* Text in the middle */}
         <div className="flex-grow">
             <p className="font-bold text-black">{adding ? 'Added to Bag' : 'Removed from Bag'}</p>
-            <p className="font-normal text-gray-400 text-sm">{`${product.name}-${product.color}-${size}`}</p>
+            <p className="font-normal text-gray-400 text-sm">{`${quantity ? quantity : ''} ${product.name}-${product.color}`}</p>
         </div>
 
         {/* Check icon on the right */}

@@ -15,14 +15,13 @@ export const itemsSlice = createSlice({
       state.message = null;
     },
     addItem(state, action) {
-      const { product, size, quantity } = action.payload;
+      const { product, quantity } = action.payload;
       // console.log(product);
       state.message = null;
 
       const itemExists = state.items.some(
-        (item) => item.product.id === product.id && item.size === size
+        (item) => item.product.id === product.id
       );
-      // console.log(itemExists);
 
       if (itemExists) {
         state.message = 'itemExists';

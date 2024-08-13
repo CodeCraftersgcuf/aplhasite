@@ -10,6 +10,7 @@ import { itemsActions } from '@/store/cartItems';
 import { useSelector } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
 import CustomToast from './CustomToast';
+import { useRouter } from 'next/navigation';
 
 
 const Cart = ({ isOpen }) => {
@@ -22,11 +23,12 @@ const Cart = ({ isOpen }) => {
             dispatch(modalActions.closeModal())
         }
     };
-    const notify = ({ product, size, adding, removing }) => {
+    const notify = ({ product, quantity, adding, removing }) => {
         toast.custom((t) => (
             <CustomToast
                 product={product}
-                size={size}
+                // size={size}
+                quantity={quantity}
                 adding={adding}
                 removing={removing}
             />
@@ -38,7 +40,7 @@ const Cart = ({ isOpen }) => {
     };
     const handleRemoveItem = (item) => {
         dispatch(itemsActions.removeItem(item))
-        notify({ product: item.product, size: item.size, adding: false, removing: true })
+        notify({ product: item.product, adding: false, removing: true })
     }
     const handleDecrement = (item) => {
         if (item.quantity === 1) {
@@ -51,9 +53,9 @@ const Cart = ({ isOpen }) => {
         dispatch(itemsActions.increment(item))
     }
 
-    const handleAddItem = ({ product, size }) => {
-        dispatch(itemsActions.addItem({ product, size, quantity: 1 }))
-        notify({ product, size, adding: true, removing: false })
+    const handleAddItem = ({ product, quantity = 1 }) => {
+        dispatch(itemsActions.addItem({ product, quantity }))
+        notify({ product, quantity, adding: true, removing: false })
     };
 
     return (
@@ -67,7 +69,9 @@ const Cart = ({ isOpen }) => {
             onClick={closeDiv}
         >
             <div className='main-card-res w-screen h-[90vh]  md:flex-row flex justify-between bg-white text-black '>
-                <ExtraItems addItem={handleAddItem} />
+                <ExtraItems
+                    addItem={handleAddItem}
+                />
                 <OrdersManagementBox
                     addedItems={addedItems}
                     removeItem={handleRemoveItem}

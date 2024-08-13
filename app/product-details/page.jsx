@@ -16,17 +16,19 @@ export default function DetailsPage() {
     const swiperRef = useRef(null);
     const [product, setProduct] = useState(null)
 
-    const handleAddItem = ({ product, size }) => {
+
+
+    const handleAddItem = ({ product, quantity = 1 }) => {
         const item = DUMMY_ITEMS.find((item) => item.id === product.id)
-        dispatch(itemsActions.addItem({ product, size, quantity: 1 }))
-        notify({ product: item, size, adding: true, removing: false })
+        dispatch(itemsActions.addItem({ product: item, quantity }))
+        notify({ product: item, quantity, adding: true, removing: false })
     };
 
-    const notify = ({ product, size, adding, removing }) => {
+    const notify = ({ product, quantity, adding, removing }) => {
         toast.custom((t) => (
             <CustomToast
                 product={product}
-                size={size}
+                quantity={quantity}
                 adding={adding}
                 removing={removing}
             />
