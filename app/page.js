@@ -184,12 +184,13 @@ const HomePage = () => {
           </div>
 
           <Swiper
-            freeMode={true}
-            modules={[FreeMode]}
-            className="mySwiper test ms-[30px]"
-            onBeforeInit={(swiper) => {
-              swiperRef.current = swiper;
-            }}
+freeMode={true}
+modules={[FreeMode]}
+className="mySwiper test ms-[30px]"
+spaceBetween={20}
+onBeforeInit={(swiper) => {
+  swiperRef.current = swiper;
+}}
             breakpoints={{
               500: {
                 slidesPerView: 1,
@@ -211,7 +212,7 @@ const HomePage = () => {
                 slidesPerView: 5.5,
               },
               1600: {
-                slidesPerView: 7.5,
+                slidesPerView: 6.5,
               },
             }}
           >

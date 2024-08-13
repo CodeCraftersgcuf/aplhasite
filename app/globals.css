@@ -818,3 +818,8 @@ body {
     height: 130vh;
   }
   }
+  @media (min-width: 320px) and (max-width: 425px){
+    .banner-info{
+display: none;   
+ }
+    }
