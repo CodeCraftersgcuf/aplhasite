@@ -7,25 +7,12 @@ import { Navigation } from 'swiper/modules';
 import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 import { FaPlus, FaMinus } from 'react-icons/fa6';
 import '@/app/styles/main.scss';
-import { itemsActions } from '@/store/cartItems';
-import { useDispatch } from 'react-redux';
 import { DUMMY_ITEMS } from '@/utils';
 
-const slides2 = [1, 2, 3, 4, 5, 6, 7, 8]
-const cartPricingOverflow = [1, 2, 3, 4, 5]
-const slideimages = {
-    images: [
-        'https://alphalete.uk/cdn/shop/files/4U8A0538.jpg?crop=center&v=1714233619&width=1400',
-        'https://alphalete.uk/cdn/shop/files/web_2mensshorts-graphic.jpg?crop=center&v=1714233659&width=1400',
-    ],
-};
 
-const ProductsGrid = () => {
-    const dispatch = useDispatch()
+
+const ProductsGrid = ({ addItem }) => {
     const [women, setWomen] = useState(true)
-    const addItem = ({ product, size }) => {
-        dispatch(itemsActions.addItem({ product, size, quantity: 1 }))
-    };
 
     return (
         <div className='w-full h-1/2 bg-white py-6 mt-20 lg:mt-0'>
@@ -106,13 +93,13 @@ const ProductsGrid = () => {
                                                 </div>
                                                 <div className="separator"></div>
                                                 <div className="item-sizes">
-                                                <p onClick={() => addItem({ product: product, size: 'XXS' })}>XXS</p>
-                                                <p onClick={() => addItem({ product: product, size: 'XS' })}>XS</p>
-                                                <p onClick={() => addItem({ product: product, size: 'S' })}>S</p>
-                                                <p onClick={() => addItem({ product: product, size: 'M' })}>M</p>
-                                                <p onClick={() => addItem({ product: product, size: 'L' })}>L</p>
-                                                <p onClick={() => addItem({ product: product, size: 'XL' })}>XL</p>
-                                                <p onClick={() => addItem({ product: product, size: 'XXL' })}>XXL</p>
+                                                    <p onClick={() => addItem({ product: product, size: 'XXS' })}>XXS</p>
+                                                    <p onClick={() => addItem({ product: product, size: 'XS' })}>XS</p>
+                                                    <p onClick={() => addItem({ product: product, size: 'S' })}>S</p>
+                                                    <p onClick={() => addItem({ product: product, size: 'M' })}>M</p>
+                                                    <p onClick={() => addItem({ product: product, size: 'L' })}>L</p>
+                                                    <p onClick={() => addItem({ product: product, size: 'XL' })}>XL</p>
+                                                    <p onClick={() => addItem({ product: product, size: 'XXL' })}>XXL</p>
                                                 </div>
                                             </div>
                                             {/* <div className="item-images">

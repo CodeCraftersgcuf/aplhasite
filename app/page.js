@@ -1,31 +1,33 @@
-"use client";
+'use client';
 // import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 // import { useGSAP } from '@gsap/react';
-import "./styles/main.scss";
-import { useRouter } from "next/navigation";
-import { FaPlus } from "react-icons/fa6";
-import React, { useRef, useState, useEffect } from "react";
-import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/grid";
-import "swiper/css/pagination";
-import { FreeMode, Grid, Navigation, Pagination } from "swiper/modules";
-import { GrFormPrevious, GrFormNext } from "react-icons/gr";
-import Cart from "@/components/Cart";
-import SignInModal from "@/components/SignInModal";
-import AgeVerificationModal from "@/components/AgeVerificationModal";
-import { useSelector } from "react-redux";
-import { CURRENT_STATES } from "@/store/currentState";
-import WithHeaderWrapper from "@/components/WithHeaderWrapper";
-import { AnimatePresence } from "framer-motion";
-import { DUMMY_ITEMS } from "@/utils";
-import { itemsActions } from "@/store/cartItems";
-import { useDispatch } from "react-redux";
-import hero from "../assets/hero.jpg";
-import Image from "next/image";
+import './styles/main.scss';
+import { useRouter } from 'next/navigation';
+import { FaPlus } from 'react-icons/fa6';
+import React, { useRef, useState, useEffect } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/grid';
+import 'swiper/css/pagination';
+import { FreeMode, Grid, Navigation, Pagination } from 'swiper/modules';
+import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
+import Cart from '@/components/Cart';
+import SignInModal from '@/components/SignInModal';
+import AgeVerificationModal from '@/components/AgeVerificationModal';
+import { useSelector } from 'react-redux';
+import { CURRENT_STATES } from '@/store/currentState';
+import WithHeaderWrapper from '@/components/WithHeaderWrapper';
+import { AnimatePresence } from 'framer-motion';
+import { DUMMY_ITEMS } from '@/utils';
+import { itemsActions } from '@/store/cartItems';
+import { useDispatch } from 'react-redux';
+import hero from '../assets/hero.jpg';
+import Image from 'next/image';
+import toast, { Toaster } from 'react-hot-toast';
+import CustomToast from '@/components/CustomToast';
 
 const slides = Array.from({ length: 40 }, (_, index) => index + 1);
-const buttonSizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL"];
+const buttonSizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
 // const womenSlides = Array.from({ length: 8 }, (_, index) => index + 1);
 // const menSlides = Array.from({ length: 8 }, (_, index) => index + 1);
 
@@ -45,17 +47,32 @@ const HomePage = () => {
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   const images = [
-    "https://cdn.shopify.com/s/files/1/1752/8007/products/TrilogyCropHoodieCelestialBlue4_400x.jpg",
-    "https://alphalete.uk/cdn/shop/files/4U8A0538.jpg?crop=center&v=1714233619&width=1400",
+    'https://cdn.shopify.com/s/files/1/1752/8007/products/TrilogyCropHoodieCelestialBlue4_400x.jpg',
+    'https://alphalete.uk/cdn/shop/files/4U8A0538.jpg?crop=center&v=1714233619&width=1400',
   ];
 
   const hanldeNavigateDetails = (product) => {
     //first add slide data with every mapping product and then fetch it from here
-    return router.push("/product-details?id=" + product.id);
+    return router.push('/product-details?id=' + product.id);
   };
-
+  const notify = ({ product, size, adding, removing }) => {
+    toast.custom(
+      (t) => (
+        <CustomToast
+          product={product}
+          size={size}
+          adding={adding}
+          removing={removing}
+        />
+      ),
+      {
+        duration: 2000,
+      }
+    );
+  };
   const onAddItem = ({ product, size }) => {
     dispatch(itemsActions.addItem({ product, size, quantity: 1 }));
+    notify({ product, size, adding: true, removing: false });
   };
 
   const handleMouseEnter = (index) => {
@@ -96,6 +113,7 @@ const HomePage = () => {
   return (
     <WithHeaderWrapper>
       <main className="home">
+        <Toaster position="bottom-center" />
         {ageVerification && <AgeVerificationModal />}
         {state === CURRENT_STATES.LOGOUT && <SignInModal />}
         {/* <div className="topPage">
@@ -130,8 +148,8 @@ const HomePage = () => {
               href="/collections/womens-new-arrivals"
               // style="background-color: #ffffff; color: #000000"
             >
-              {" "}
-              Shop Women's{" "}
+              {' '}
+              Shop Women's{' '}
             </a>
             <a
               className="whitespace-nowrap text-center leading-[100%] max-w-full truncate font-w-600 px-[1.5rem] py-[1rem] till-desktop:py-[12px] rounded-full transition-all bg-white border border-secondary/20 text-black hover:opacity-80"
@@ -153,13 +171,13 @@ const HomePage = () => {
           <div className="slider-buttons">
             <span
               onClick={() => setWomen(true)}
-              className={women ? "bg-gray" : ""}
+              className={women ? 'bg-gray' : ''}
             >
               {`Women's`}
             </span>
             <span
               onClick={() => setWomen(false)}
-              className={!women ? "bg-gray" : ""}
+              className={!women ? 'bg-gray' : ''}
             >
               {`Men's`}
             </span>
@@ -283,7 +301,7 @@ const HomePage = () => {
                   <div
                     className="slider-items lg:ps-10 sm:ps-4"
                     style={
-                      index === 0 ? { margin: "30px 20px", zIndex: "100" } : {}
+                      index === 0 ? { margin: '30px 20px', zIndex: '100' } : {}
                     }
                   >
                     <div className="slider-item">
@@ -365,7 +383,7 @@ const HomePage = () => {
               class="item1"
               style={{
                 backgroundImage: `url(https://alphalete.uk/cdn/shop/files/4U8A0538.jpg?crop=center&v=1714233619&width=1400)`,
-                backgroundSize: "cover",
+                backgroundSize: 'cover',
               }}
             >
               <div className="banner-info">
@@ -379,7 +397,7 @@ const HomePage = () => {
               class="item2"
               style={{
                 backgroundImage: `url(https://alphalete.uk/cdn/shop/files/web_2mensshorts-graphic.jpg?crop=center&v=1714233659&width=1400)`,
-                backgroundSize: "cover",
+                backgroundSize: 'cover',
               }}
             >
               <div className="banner-info">
@@ -393,7 +411,7 @@ const HomePage = () => {
               class="item3"
               style={{
                 backgroundImage: `url(https://alphalete.uk/cdn/shop/files/DSC06397.jpg?crop=center&v=1714233714&width=1400)`,
-                backgroundSize: "cover",
+                backgroundSize: 'cover',
               }}
             >
               <div className="banner-info">
@@ -413,12 +431,12 @@ const HomePage = () => {
           </div>
 
           <div className="slider-buttons">
-            <span onClick={() => setMen(true)} className={men ? "bg-gray" : ""}>
+            <span onClick={() => setMen(true)} className={men ? 'bg-gray' : ''}>
               {`Women's`}
             </span>
             <span
               onClick={() => setMen(false)}
-              className={!men ? "bg-gray" : ""}
+              className={!men ? 'bg-gray' : ''}
             >
               {`Men's`}
             </span>
@@ -428,7 +446,7 @@ const HomePage = () => {
             classame="newClass "
             grid={{
               rows: 2,
-              fill: "row",
+              fill: 'row',
             }}
             spaceBetween={12}
             onBeforeInit={(swiper) => {
@@ -493,7 +511,7 @@ const HomePage = () => {
               <SwiperSlide key={index}>
                 <div
                   className="item-image-box"
-                  style={{ width: "150px", height: "190px" }}
+                  style={{ width: '150px', height: '190px' }}
                   onMouseEnter={() => handleMouseEnter(index)}
                   onMouseLeave={handleMouseLeave}
                 >
@@ -521,7 +539,7 @@ const HomePage = () => {
               class="item1"
               style={{
                 backgroundImage: `url(https://alphalete.uk/cdn/shop/files/aa24-apr27-36.jpg?crop=center&v=1714233923&width=1400)`,
-                backgroundSize: "cover",
+                backgroundSize: 'cover',
               }}
             >
               <div className="banner-info">
@@ -535,7 +553,7 @@ const HomePage = () => {
               class="item2"
               style={{
                 backgroundImage: `url(https://alphalete.uk/cdn/shop/files/aa24-apr27-34.jpg?crop=center&v=1714233984&width=1400)`,
-                backgroundSize: "cover",
+                backgroundSize: 'cover',
               }}
             >
               <div className="banner-info">

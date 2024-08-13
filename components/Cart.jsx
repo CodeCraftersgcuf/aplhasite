@@ -8,11 +8,11 @@ import ExtraItems from './Cart-subcomponents/ExtraItems';
 import OrdersManagementBox from './Cart-subcomponents/OrdersManagementBox';
 import { itemsActions } from '@/store/cartItems';
 import { useSelector } from 'react-redux';
-// import CustomToast from './customToast';
+import toast, { Toaster } from 'react-hot-toast';
+import CustomToast from './CustomToast';
 
 
 const Cart = ({ isOpen }) => {
-    const scrollRef = useRef(null)
     const addedItems = useSelector((state) => state.itemsFn.items)
     const stateMessage = useSelector((state) => state.itemsFn.message)
     const dispatch = useDispatch()
@@ -22,34 +22,38 @@ const Cart = ({ isOpen }) => {
             dispatch(modalActions.closeModal())
         }
     };
-    // if (stateMessage === 'itemAdded') {
-    //     toast(<CustomToast message="Item added to cart" smallText={'This item was added to your cart'} />, {
-    //         className: 'added-toast',
-    //         position: 'bottom-center',
-    //         autoClose: 3000,
-    //         hideProgressBar: false,
-    //         closeOnClick: true,
-    //         draggable: true,
-    //     })
-    //     // dispatch(itemsActions.resetMessage())
-    // }
+    const notify = ({ product, size, adding, removing }) => {
+        toast.custom((t) => (
+            <CustomToast
+                product={product}
+                size={size}
+                adding={adding}
+                removing={removing}
+            />
+        ), {
+            duration: 2000
+
+        }
+        )
+    };
     const handleRemoveItem = (item) => {
         dispatch(itemsActions.removeItem(item))
+        notify({ product: item.product, size: item.size, adding: false, removing: true })
     }
     const handleDecrement = (item) => {
+        if (item.quantity === 1) {
+            handleRemoveItem(item)
+            return
+        }
         dispatch(itemsActions.decrement(item))
     }
     const handleIncrement = (item) => {
         dispatch(itemsActions.increment(item))
     }
 
-const hanldescrolling = () => {
-    scrollRef.current?.scrollIntoView({ behavior: 'smooth', block: 'end' });
-}    
-
-const handleAddItem = ({ product, size }) => {
+    const handleAddItem = ({ product, size }) => {
         dispatch(itemsActions.addItem({ product, size, quantity: 1 }))
-        hanldescrolling()
+        notify({ product, size, adding: true, removing: false })
     };
 
     return (
@@ -65,14 +69,13 @@ const handleAddItem = ({ product, size }) => {
             <div className='main-card-res w-screen h-[90vh]  md:flex-row flex justify-between bg-white text-black '>
                 <ExtraItems addItem={handleAddItem} />
                 <OrdersManagementBox
-                ref={scrollRef}
-                hanldescroll = {hanldescrolling}  // Reference to scrollable div
                     addedItems={addedItems}
                     removeItem={handleRemoveItem}
                     onDecrement={handleDecrement}
                     onIncrement={handleIncrement}
                 />
             </div>
+            <Toaster position='bottom-center' />
         </motion.div>
     )
 }

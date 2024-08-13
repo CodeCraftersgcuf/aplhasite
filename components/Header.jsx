@@ -12,27 +12,25 @@ import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { modalActions } from "@/store/openModel";
 import { itemsActions } from "@/store/cartItems";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Header = () => {
   const dispatch = useDispatch();
   const addedItems = useSelector((state) => state.itemsFn.items);
-  const stateMessage = useSelector((state) => state.itemsFn.message);
+  // const stateMessage = useSelector((state) => state.itemsFn.message);
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
 
-  if (stateMessage === "itemAdded") {
-    toast.success("Item added to cart", {
-      className: "added-toast",
-      position: "bottom-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      draggable: true,
-    });
-    dispatch(itemsActions.resetMessage());
-  }
+  // if (stateMessage === "itemAdded") {
+  //   toast.success("Item added to cart", {
+  //     className: "added-toast",
+  //     position: "bottom-center",
+  //     autoClose: 3000,
+  //     hideProgressBar: false,
+  //     closeOnClick: true,
+  //     draggable: true,
+  //   });
+  //   dispatch(itemsActions.resetMessage());
+  // }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -109,7 +107,6 @@ const Header = () => {
             {/* <RxHamburgerMenu color="white" className="burger" /> */}
           </div>
         </div>
-        <ToastContainer />
       </header>
     </>
   );

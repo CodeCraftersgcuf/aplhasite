@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/free-mode';
@@ -6,9 +6,10 @@ import 'swiper/css/pagination';
 import '../../app/styles/swiper6.scss';
 import { FreeMode, Pagination } from 'swiper/modules';
 
-const DetailsSwiper = ({ productImages }) => {
+const DetailsSwiper = forwardRef(({ productImages }, ref) => {
   return (
     <Swiper
+      ref={ref}
       slidesPerView={1} // Default for small screens
       spaceBetween={0}
       freeMode={true}
@@ -42,6 +43,6 @@ const DetailsSwiper = ({ productImages }) => {
         ))}
     </Swiper>
   );
-}
+})
 
 export default DetailsSwiper
