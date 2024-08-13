@@ -388,7 +388,7 @@ h1 {
   position: relative;
   height: 95vh;
   margin-top: 50px;
-  background-color: rgb(128, 129, 129);
+  // background-color: rgb(128, 129, 129);
   margin: 50px 50px;
   // border-radius: 16px;
   // width: 84%;
@@ -482,4 +482,9 @@ h1 {
   .preFooter > div {
     display: none;
   }
+}
+@media (min-width: 320px) and (max-width: 425px){
+.container2{
+  height: 130vh;
+}
 }
