@@ -46,7 +46,7 @@ const ExtraItems = ({ addItem }) => {
                     </span>
                 </div>
 
-                <div className='grid p-6 sm:grid-cols-1 xsm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6'>
+                <div className='grid p-6 sm:grid-cols-1 xsm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6'>
                     {DUMMY_ITEMS.map((product, index) => (
                         // <SwiperSlide key={index}>
                         //     <div
