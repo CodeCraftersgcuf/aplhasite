@@ -49,15 +49,27 @@ const Header = () => {
       lastScrollY = scrollY;
     }, 200); // Debounce with a 200ms delay
   
+    const checkInitialScroll = () => {
+      const scrollY = window.scrollY;
+  
+      // Add class if the initial scroll position is beyond addThreshold
+      if (scrollY >= addThreshold) {
+        setIsScrolled(true);
+      } else if (scrollY <= removeThreshold) {
+        setIsScrolled(false);
+      }
+    };
+  
     window.addEventListener("scroll", handleScroll);
   
-    // Initial call to set state based on initial scroll position
-    handleScroll();
+    // Initial check to handle cases where the initial scroll position is beyond addThreshold
+    checkInitialScroll();
   
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  
   
   
   

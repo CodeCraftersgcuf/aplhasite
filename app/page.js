@@ -155,7 +155,7 @@ const HomePage = () => {
             </a>
             <a
               className="hero-img-btn whitespace-nowrap text-center leading-[100%] max-w-full truncate font-w-600 px-[1.5rem] py-[1rem]  text-[13px] till-desktop:py-[12px] rounded-full transition-all bg-white border border-secondary/20 text-black hover:opacity-80"
-              href="/product-details?id=2"
+              href="/product-details?id=1"
             // style="background-color: #ffffff; color: #000000"
             >
               Shop Trending
