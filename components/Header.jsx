@@ -25,20 +25,42 @@ const Header = () => {
   // const stateMessage = useSelector((state) => state.itemsFn.message);
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showDropdown, setShowDropdown] = useState( );
+  const [showDropdown, setShowDropdown] = useState(false );
 
   useEffect(() => {
+    const addThreshold = 60; // Scroll position at or above which the class is added
+    const removeThreshold = 30; // Scroll position below which the class is removed
+    const buffer = 10; // Buffer to avoid rapid toggling
+    let lastScrollY = window.scrollY; // Ref to store the last scroll position
+  
     const handleScroll = _.debounce(() => {
-      setIsScrolled(window.scrollY >= 50); // Change > to >= to handle the case when exactly 30
+      const scrollY = window.scrollY;
+  
+      // Add class when scroll position is at or above addThreshold, but only if transitioning from below it
+      if (scrollY >= addThreshold && lastScrollY < addThreshold) {
+        setIsScrolled(true);
+      } 
+      // Remove class when scroll position is below removeThreshold - buffer, but only if transitioning from above it
+      else if (scrollY <= removeThreshold - buffer && lastScrollY > removeThreshold - buffer) {
+        setIsScrolled(false);
+      }
+  
+      // Update last scroll position
+      lastScrollY = scrollY;
     }, 200); // Debounce with a 200ms delay
+  
     window.addEventListener("scroll", handleScroll);
-
+  
+    // Initial call to set state based on initial scroll position
+    handleScroll();
+  
     return () => {
       window.removeEventListener("scroll", handleScroll);
-      handleScroll.cancel(); // Clean up debounce
     };
   }, []);
-
+  
+  
+  
   const showCartModal = () => {
     dispatch(modalActions.openModal());
   };
@@ -47,7 +69,8 @@ const Header = () => {
     <>
       <header
         className={`header-nav z-50 ${isScrolled ? "scrolled" : "transparent"}`}
-      >
+        style={{ zIndex: 59 }} // Using a number instead of a string
+        >
         {!isScrolled && (
           <div className="preheader hover:bg-black">
             {/* <div className="mySwiper"> */}
