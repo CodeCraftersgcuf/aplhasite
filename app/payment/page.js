@@ -1,6 +1,7 @@
 'use client';
 import React from 'react';
 import './payment.css';
+
 import NoHeaderWrapper from '@/components/NoHeaderWrapper';
 import PaymentDetails from '@/components/Payment-subcomponents/PaymentDetails';
 import OrderCheckout from '@/components/Payment-subcomponents/OrderCheckout';

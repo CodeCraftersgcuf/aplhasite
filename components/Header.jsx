@@ -12,6 +12,12 @@ import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { modalActions } from "@/store/openModel";
 import { itemsActions } from "@/store/cartItems";
+import Image from "next/image";
+import pang3a from "@assets/Pang3aBlack.png";
+import pang3aWhite from "../assets/pang3a.png";
+import _ from "lodash";
+
+const items = Array.from({ length: 5 }, (_, index) => index + 1);
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -19,27 +25,17 @@ const Header = () => {
   // const stateMessage = useSelector((state) => state.itemsFn.message);
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
-
-  // if (stateMessage === "itemAdded") {
-  //   toast.success("Item added to cart", {
-  //     className: "added-toast",
-  //     position: "bottom-center",
-  //     autoClose: 3000,
-  //     hideProgressBar: false,
-  //     closeOnClick: true,
-  //     draggable: true,
-  //   });
-  //   dispatch(itemsActions.resetMessage());
-  // }
+  const [showDropdown, setShowDropdown] = useState( );
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-
+    const handleScroll = _.debounce(() => {
+      setIsScrolled(window.scrollY >= 50); // Change > to >= to handle the case when exactly 30
+    }, 200); // Debounce with a 200ms delay
     window.addEventListener("scroll", handleScroll);
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      handleScroll.cancel(); // Clean up debounce
     };
   }, []);
 
@@ -50,17 +46,19 @@ const Header = () => {
   return (
     <>
       <header
-        className={`header-nav ${isScrolled ? "scrolled" : "transparent"}`}
+        className={`header-nav z-50 ${isScrolled ? "scrolled" : "transparent"}`}
       >
         {!isScrolled && (
-          <div className="preheader z-20">
-            <div className="mySwiper">
-              <div className="swiper-wrapper">
-                <div className="swiper-slide">
-                  <p>Free Domestic Shipping over £120 and 30 Day Returns</p>
-                </div>
-              </div>
-            </div>
+          <div className="preheader hover:bg-black">
+            {/* <div className="mySwiper"> */}
+            {/* <div className="swiper-wrapper"> */}
+            {/* <div className="swiper-slide"> */}
+            <p className="text-white ps-7">
+              Free Domestic Shipping over $120 and 30 Day Returns
+            </p>
+            {/* </div> */}
+            {/* </div> */}
+            {/* </div> */}
 
             <div className="example05">
               <Link className="border-s-[1px] ms-1 border-gray-600" href="/">
@@ -74,28 +72,30 @@ const Header = () => {
         )}
         <div className="separator"></div>
         <div className="header">
-          <div className=" gap-5">
-            <h3
-              className="hover:cursor-pointer text-[14px]"
+          <div className="flex h-full items-center gap-5">
+            <Image
               onClick={() => (window.location.href = "/")}
-            >
-              ALPHALETE
-            </h3>
-            <div className="example05 flex items-center mt-1">
-              <p
+              src={pang3aWhite}
+              alt="Logo Here"
+              className="h-[22px] object-contain w-auto"
+            />
+            <div className="example05 flex items-center">
+              <div
                 style={{ cursor: "pointer" }}
-                onClick={() => (window.location.href = "/")}
-                className="text-[11px] text-gray-700 "
+                // onClick={() => (router.push(''))}
+                className=" dropdown-trigger text-[11px] text-gray-700 "
+                onMouseOver={() => setShowDropdown(true)}
+                onMouseOut={() => setShowDropdown(false)}
               >
-                WOMEN
-              </p>
-              <p
+                SHOP
+              </div>
+              {/* <p
                 style={{ padding: "0 10px", cursor: "pointer" }}
                 onClick={() => (window.location.href = "/")}
                 className="text-[11px] text-gray-700 "
               >
                 MEN
-              </p>
+              </p> */}
             </div>
           </div>
           <div className="relative">
@@ -107,6 +107,44 @@ const Header = () => {
             {/* <RxHamburgerMenu color="white" className="burger" /> */}
           </div>
         </div>
+        {showDropdown && (
+          <div
+            className="dropdown-container"
+            onMouseOver={() => setShowDropdown(true)}
+            onMouseOut={() => setShowDropdown(false)}
+          >
+            <div className="left">
+              <div className="grid">
+                {items.map((item, index) => (
+                  <div key={index} className="row">
+                    <p className="first">Heading</p>
+                    <p className="header-links">First</p>
+                    <p className="header-links">Second</p>
+                    <p className="header-links">Third</p>
+                    <p className="header-links">Fourth</p>
+                    <p className="header-links">Fifth</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="right">
+              <div className="image-container">
+                <img
+                  src="https://alphalete.uk/cdn/shop/files/IceTankHeat2_2500x.jpg?v=1721064079"
+                  alt="Image 1"
+                />
+                <img
+                  src="https://alphalete.uk/cdn/shop/files/IceTankHeat5_2500x.jpg?v=1721064079"
+                  alt="Image 2"
+                />
+                <img
+                  src="https://alphalete.uk/cdn/shop/files/IceTankHeat5_2500x.jpg?v=1721064079"
+                  alt="Image 3"
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </header>
     </>
   );

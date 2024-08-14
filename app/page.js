@@ -136,36 +136,36 @@ const HomePage = () => {
           </div>
         </div> */}
         <div className="bg-img"></div>
-        <div className="max-h-[95vh] z-50 top-[69vh] absolute p-8 hero-btn-res">
-          <div className="w-fit max-w-full min-w-[20rem] line-clamp-3 pb-4 leading-[100%] font-secondary font-w-500 uppercase text-[30px] text-white">
+        <div className=" z-[1] bottom-[30px] absolute p-8 hero-img-content ">
+          <div className="w-fit max-w-full min-w-[20rem] line-clamp-3 pb-2 md:pb-4 leading-[100%] font-secondary font-w-500 uppercase text-[14px] md:text-[30px] text-white">
             <p className="uppercase">Your Journy,</p>
             <p className="uppercase">Our mission</p>
           </div>
-          <div className="w-fit mb-[5px] leading-tight font-w-500 text-[13px] pb-4 text-white">
+          <div className="w-fit mb-[5px] leading-tight font-w-500 text-[14px] pb-4 text-white">
             <p>Crafted with every detail in mind. </p>
           </div>
           <div className="w-fit text-[13px] till-desktop:text-[13px] flex gap-[1rem] ">
             <a
-              className="whitespace-nowrap text-center leading-[100%] max-w-full truncate font-w-600 px-[1.5rem] py-[1rem] till-desktop:py-[12px] rounded-full transition-all bg-white border border-secondary/20 text-black hover:opacity-80"
-              href="/collections/womens-new-arrivals"
-              // style="background-color: #ffffff; color: #000000"
+              className=" hero-img-btn whitespace-nowrap text-center leading-[100%] max-w-full truncate font-w-600 px-[1.5rem] py-[1rem] text-[13px]  till-desktop:py-[12px] rounded-full transition-all bg-white border border-secondary/20 text-black hover:opacity-80"
+              href="/product-details?id=3"
+            // style="background-color: #ffffff; color: #000000"
             >
               {' '}
-              Shop Women's{' '}
+              Shop Now{' '}
             </a>
             <a
-              className="whitespace-nowrap text-center leading-[100%] max-w-full truncate font-w-600 px-[1.5rem] py-[1rem] till-desktop:py-[12px] rounded-full transition-all bg-white border border-secondary/20 text-black hover:opacity-80"
-              href="/collections/mens-new-arrivals-1"
-              // style="background-color: #ffffff; color: #000000"
+              className="hero-img-btn whitespace-nowrap text-center leading-[100%] max-w-full truncate font-w-600 px-[1.5rem] py-[1rem]  text-[13px] till-desktop:py-[12px] rounded-full transition-all bg-white border border-secondary/20 text-black hover:opacity-80"
+              href="/product-details?id=2"
+            // style="background-color: #ffffff; color: #000000"
             >
-              Shop Men's
+              Shop Trending
             </a>
           </div>
         </div>
         {/* Upper new arrivals */}
-        <div className="slider-heading">
+        <div className="slider-heading" style={{ marginTop: "-50px" }}>
           <h2>
-            <span>{`${women ? `Women's` : `Men's`}`}</span> NEW ARRIVALS
+            <span>{`${women ? `Now` : `Trending`}`}</span> <span>NEW ARRIVALS</span>
           </h2>
           <button className="button">SHOP ALL</button>
         </div>
@@ -175,13 +175,13 @@ const HomePage = () => {
               onClick={() => setWomen(true)}
               className={women ? 'bg-gray' : ''}
             >
-              {`Women's`}
+              {`Now`}
             </span>
             <span
               onClick={() => setWomen(false)}
               className={!women ? 'bg-gray' : ''}
             >
-              {`Men's`}
+              {`Trending`}
             </span>
           </div>
 
@@ -214,7 +214,7 @@ const HomePage = () => {
                 slidesPerView: 5.5,
               },
               1600: {
-                slidesPerView: 6.5,
+                slidesPerView: 7.5,
               },
             }}
           >
@@ -228,9 +228,9 @@ const HomePage = () => {
               <SwiperSlide key={index}>
                 <div
                   className="slider-items lg:ps-12 md:ps-8 sm:ps-4 ps-0"
-                  // style={
-                  //       index === 0 ? { paddingLeft: "50px", zIndex: '100' } : {}
-                  //     }
+                // style={
+                //       index === 0 ? { paddingLeft: "50px", zIndex: '100' } : {}
+                //     }
                 >
                   <div className="slider-item">
                     <HomeProductSlide
@@ -371,27 +371,26 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="slider-heading">
+          <div className="slider-heading" style={{ marginTop: '50px !important' }}>
             <h2>
-              <span>{`Women's`}</span> NEW ARRIVALS
+              <span>{`Now`}</span> <span> NEW ARRIVALS </span>
             </h2>
-            <button className="button">SHOP ALL</button>
+            <button className="button slider-2-btn">SHOP ALL</button>
           </div>
 
           <div className="slider-buttons">
             <span onClick={() => setMen(true)} className={men ? 'bg-gray' : ''}>
-              {`Women's`}
+              {`Now`}
             </span>
             <span
               onClick={() => setMen(false)}
               className={!men ? 'bg-gray' : ''}
             >
-              {`Men's`}
+              {`Trending`}
             </span>
           </div>
 
           <Swiper
-            classame="newClass "
             grid={{
               rows: 2,
               fill: 'row',
@@ -512,15 +511,15 @@ const HomePage = () => {
               </div>
             </div>
             <div class="item3">
-              <aside className="video-background2">
-                <video className="video-overlay2" autoPlay muted loop>
-                  <source
-                    src="https://cdn.shopify.com/videos/c/o/v/9d4812a2c25248fbbff2509f4093f0ad.mp4"
-                    type="video/webm"
-                  />
-                  Your browser does not support the video tag.
-                </video>
-              </aside>
+              {/* <aside className="video-background2"> */}
+              <video className="video-overlay2" autoPlay muted loop>
+                <source
+                  src="https://cdn.shopify.com/videos/c/o/v/9d4812a2c25248fbbff2509f4093f0ad.mp4"
+                  type="video/webm"
+                />
+                Your browser does not support the video tag.
+              </video>
+              {/* </aside> */}
               <div className="banner-info">
                 <h1>New Arrivals</h1>
                 <p>Amplify Reimagined</p>
@@ -937,20 +936,20 @@ const HomePage = () => {
           </Swiper> */}
 
           <div className="preFooter">
-            <aside className="video-background">
-              <video autoPlay muted loop className="min-h-[100vh min-w-[100%]">
-                <source
-                  src="https://cdn.shopify.com/s/files/1/1752/8007/files/alphaland-drone-loop-land.mp4?v=1654961662"
-                  type="video/webm"
-                />
-                Your browser does not support the video tag.
-              </video>
-            </aside>
+            {/* <aside className="video-background"> */}
+            <video autoPlay muted loop className="min-h-[100vh min-w-[100%]">
+              <source
+                src="https://cdn.shopify.com/s/files/1/1752/8007/files/alphaland-drone-loop-land.mp4?v=1654961662"
+                type="video/webm"
+              />
+              Your browser does not support the video tag.
+            </video>
+            {/* </aside> */}
             <div className="content">
               <h1>New Arrivals</h1>
               <p>Amplify Reimagined</p>
-              <button className="button">Shop Women</button>
-              <button className="button">Shop Men</button>
+              <button className="button">Shop Now</button>
+              {/* <button className="button">Shop Men</button> */}
             </div>
           </div>
         </div>

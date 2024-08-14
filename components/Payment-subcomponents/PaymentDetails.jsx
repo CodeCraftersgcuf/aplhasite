@@ -23,6 +23,7 @@ import visaico from "../../assets/visa.svg";
 import mastercardico from "../../assets/mastercard.svg";
 import masterredcardico from "../../assets/redmaster.svg";
 import bluecard from "../../assets/bluecard.svg";
+import pang3a from "@assets/Pang3aBlack.png";
 
 const PaymentDetails = ({ onSubmit }) => {
   return (
@@ -30,8 +31,8 @@ const PaymentDetails = ({ onSubmit }) => {
       <div className=" lg:p-[38px]  payment-insde  extrasmall:max-w-[300px]  pe-12 sm:ps-0 sm:me-0 sm:max-w-full">
         <div className="w-[150px] h-[22px]  mb-[2.6rem]">
           <Image
-            className="w-[150px] h-[22px] object-contain"
-            src={alphaletelogo}
+            className="w-[350px] object-contain"
+            src={pang3a}
             alt="Logo Here"
           />
         </div>

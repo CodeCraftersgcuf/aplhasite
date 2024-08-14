@@ -42,7 +42,7 @@ const OrdersManagementBox = ({ addedItems, removeItem, onDecrement, onIncrement 
                                     {`${item.product.color} - ${item.size}`}
                                 </span>
                                 <span>
-                                    {`£${item.product.price}`}
+                                    {`$${item.product.price}`}
                                 </span>
                                 <span className='text-sm font-normal p-[0.15rem] border border-gray-400 w-12 text-center'>NEW</span>
                             </div>
@@ -60,7 +60,7 @@ const OrdersManagementBox = ({ addedItems, removeItem, onDecrement, onIncrement 
                                     <MdModeEdit className="text-gray-600 w-6" />
                                 </button>
                             </div>
-                            <span>{`£${(item.quantity * item.product.price).toFixed(2)}`}</span>
+                            <span>{`$${(item.quantity * item.product.price).toFixed(2)}`}</span>
                             <div className=" w-fit flex items-center space-x-2 px-[0.1rem] py-[0.1rem] rounded-full border border-gray-400">
                                 <button
                                     className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-200 transition"
@@ -89,7 +89,7 @@ const OrdersManagementBox = ({ addedItems, removeItem, onDecrement, onIncrement 
                 <div className='flex flex-col gap-3 border-y h-32 border-b border-black py-4 '>
                     <div className='flex justify-between px-6'>
                         <span>Total:</span>
-                        <span>{`£${addedItems.length === 0 ? 0 : totalPrice(addedItems)}`}</span>
+                        <span>{`$${addedItems.length === 0 ? 0 : totalPrice(addedItems)}`}</span>
                     </div>
                     <div className='flex justify-center items-center'>
                         <motion.button

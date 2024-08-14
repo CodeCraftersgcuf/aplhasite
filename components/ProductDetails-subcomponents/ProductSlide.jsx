@@ -17,8 +17,6 @@ const ProductSlide = ({ product, addItem }) => {
         return router.push('/product-details?id=' + product.id)
     }
 
-
-
     const incrementItem = () => {
         setQuantity(quantity + 1)
     }
@@ -59,7 +57,7 @@ const ProductSlide = ({ product, addItem }) => {
                                     <img
                                         className="item-image"
                                         src={image}
-                                        alt={image.alt}
+                                        alt={'image'}
 
                                     />
                                 </SwiperSlide>
@@ -79,7 +77,7 @@ const ProductSlide = ({ product, addItem }) => {
                             <p className="text-[10px] text-gray-600">
                                 Gliese <span> 4 colors</span>
                             </p>
-                            <p className="text-[10px] text-black ">£120.00</p>
+                            <p className="text-[10px] text-black ">$120.00</p>
                         </div>
                         <div className="item-sizes-box">
                             <div>
@@ -97,15 +95,15 @@ const ProductSlide = ({ product, addItem }) => {
                             <div className="separator"></div>
                             <div className="item-sizes">
                                 <p
-                                    onClick={() => incrementItem({ product })}
-                                >
-                                    <FaPlus />
-                                </p>
-                                <div>{quantity}</div>
-                                <p
                                     onClick={() => decrementItem({ product })}
                                 >
                                     <FaMinus />
+                                </p>
+                                <div>{quantity}</div>
+                                <p
+                                    onClick={() => incrementItem({ product })}
+                                >
+                                    <FaPlus />
                                 </p>
                             </div>
                         </div>

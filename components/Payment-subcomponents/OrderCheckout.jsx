@@ -30,7 +30,7 @@ const OrderCheckout = ({ onApply }) => {
                         <span className="text-gray-500 font-light text-xs">M</span>
                     </div>
                     {/* Product Price */}
-                    <div className="text-sm font-normal">£36.00</div>
+                    <div className="text-sm font-normal">$36.00</div>
                 </div>
 
                 {/* Rewards Reminder Section */}
@@ -81,7 +81,7 @@ const OrderCheckout = ({ onApply }) => {
                 {/* Subtotal Section */}
                 <div className="flex justify-between items-center mt-4">
                     <span className="text-sm">Subtotal</span>
-                    <span className="text-sm">£36.00</span>
+                    <span className="text-sm">$36.00</span>
                 </div>
 
                 {/* Shipping Section */}
@@ -98,13 +98,13 @@ const OrderCheckout = ({ onApply }) => {
                         <span className="text-xs font-normal text-gray-500 mr-2">
                             GBP
                         </span>
-                        £36.00
+                        $36.00
                     </div>
                 </div>
 
                 {/* Tax Information Section */}
                 <div className="mt-2 text-xs text-gray-500">
-                    Including £6.00 in taxes
+                    Including $6.00 in taxes
                 </div>
             </div>
         </div>

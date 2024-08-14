@@ -50,7 +50,7 @@ const HomeProductSlide = ({ product, onAddItem, handleNavigateDetails }) => {
                 <p className="hide">
                     Gliese <span> 4 colors</span>
                 </p>
-                <p className="hide">{`£${product.price.toFixed(2)}`}</p>
+                <p className="hide">{`$${product.price.toFixed(2)}`}</p>
                 <div className="item-sizes-box">
                     <div>
                         <p>QUICK ADD</p>
@@ -67,14 +67,6 @@ const HomeProductSlide = ({ product, onAddItem, handleNavigateDetails }) => {
                     <div className="separator"></div>
                     <div className="item-sizes">
                         <p
-                            onClick={
-                                () => setQuantity(quantity + 1)
-                            }
-                        >
-                            <FaPlus />
-                        </p>
-                        <div>{quantity}</div>
-                        <p
                             onClick={() => {
                                 if (quantity > 0) {
                                     setQuantity(quantity - 1)
@@ -83,6 +75,14 @@ const HomeProductSlide = ({ product, onAddItem, handleNavigateDetails }) => {
                             }
                         >
                             <FaMinus />
+                        </p>
+                        <div>{quantity}</div>
+                        <p
+                            onClick={
+                                () => setQuantity(quantity + 1)
+                            }
+                        >
+                            <FaPlus />
                         </p>
                     </div>
                 </div>
