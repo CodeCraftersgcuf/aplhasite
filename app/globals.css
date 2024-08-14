@@ -866,7 +866,7 @@ body {
     font-size: 10px;
   }
   .slider-heading{
-    margin-top: -30px!important;
+    /* margin-top: -30px!important; */
   }
   .slider-heading h2 span{
     font-size: 14px;
