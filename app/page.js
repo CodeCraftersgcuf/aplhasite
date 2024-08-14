@@ -169,7 +169,7 @@ const HomePage = () => {
           </h2>
           <button className="button">SHOP ALL</button>
         </div>
-        <div className="sliders">
+        <div className="sliders overflow-x-hidden">
           <div className="slider-buttons">
             <span
               onClick={() => setWomen(true)}
