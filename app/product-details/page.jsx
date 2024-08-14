@@ -63,7 +63,7 @@ export default function DetailsPage() {
     return (
         <WithHeaderWrapper>
             <Toaster position="bottom-center" />
-            <div className='h-[87vh] relative'>
+            <div className='h-[87vh] relative apni-class-main'>
                 <DetailsSwiper
                     productImages={product && product.images}
                     ref={swiperRef}
