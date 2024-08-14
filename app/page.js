@@ -371,7 +371,7 @@ const HomePage = () => {
             </div>
           </div>
 
-          <div className="slider-heading" style={{ marginTop: '50px !important' }}>
+          <div className="slider-heading !mt-14" >
             <h2>
               <span>{`Now`}</span> <span> NEW ARRIVALS </span>
             </h2>
