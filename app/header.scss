@@ -138,6 +138,9 @@ header {
           position: relative;
           max-width: fit-content;
           padding-bottom: 5px;
+          &:hover {
+            cursor: pointer;
+          }
           /* Ensure positioning context for ::after */
         }
         

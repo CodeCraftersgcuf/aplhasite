@@ -11,7 +11,7 @@ import {
 const Footer = () => {
   return (
     <>
-      <div className="footer flex-wrap xl:flex-nowrap flex justify-center mt-8  w-full border border-[#3b3b3b]">
+      <div className="footer flex-wrap xl:flex-nowrap flex justify-center mt-8  w-full border border-[#3b3b3b] z-20">
         <div className="footer1  flex-col flex flex-wrap justify-between xl:w-[1568px] w-full">
           <div className="links flex  flex-wrap justify-start p-6 gap-7">
             <div className="flex flex-wrap flex-col">

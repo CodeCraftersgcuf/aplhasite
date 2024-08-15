@@ -215,3 +215,42 @@ export const DUMMY_ITEMS = [
     ],
   },
 ];
+
+export const vapeProducts = [
+  {
+    productName: 'Vape Pen X1',
+    options: {
+      styles: ['Compact', 'Sleek', 'Matte'],
+      flavors: ['Mango', 'Mint', 'Berry', 'Tobacco'],
+      colors: ['Black', 'Blue', 'Green', 'Silver'],
+      nicotineLevels: ['0mg', '3mg', '6mg', '12mg'],
+    },
+  },
+  {
+    productName: 'Vape Mod Pro',
+    options: {
+      styles: ['Box', 'Ergonomic', 'Glossy'],
+      flavors: ['Vanilla', 'Grape', 'Watermelon', 'Tobacco'],
+      colors: ['Red', 'Purple', 'Gray', 'Gold'],
+      nicotineLevels: ['0mg', '3mg', '6mg', '9mg', '18mg'],
+    },
+  },
+  {
+    productName: 'Pod System Z',
+    options: {
+      styles: ['Slim', 'Portable', 'Matte'],
+      flavors: ['Strawberry', 'Blueberry', 'Menthol', 'Coffee'],
+      colors: ['White', 'Pink', 'Navy', 'Teal'],
+      nicotineLevels: ['0mg', '3mg', '5mg', '10mg'],
+    },
+  },
+  {
+    productName: 'Disposable Vape Max',
+    options: {
+      styles: ['Disposable', 'Compact', 'Glossy'],
+      flavors: ['Peach', 'Lychee', 'Cola', 'Mint'],
+      colors: ['Yellow', 'Orange', 'Black', 'Silver'],
+      nicotineLevels: ['0mg', '3mg', '5mg'],
+    },
+  },
+];

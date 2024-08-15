@@ -28,28 +28,12 @@ const Header = () => {
   const [showDropdown, setShowDropdown] = useState(false );
 
   useEffect(() => {
-    const addThreshold = 60; // Scroll position at or above which the class is added
+    const addThreshold = 80; // Scroll position at or above which the class is added
     const removeThreshold = 30; // Scroll position below which the class is removed
-    const buffer = 10; // Buffer to avoid rapid toggling
-    let lastScrollY = window.scrollY; // Ref to store the last scroll position
   
-    const handleScroll = _.debounce(() => {
-      const scrollY = window.scrollY;
+
   
-      // Add class when scroll position is at or above addThreshold, but only if transitioning from below it
-      if (scrollY >= addThreshold && lastScrollY < addThreshold) {
-        setIsScrolled(true);
-      } 
-      // Remove class when scroll position is below removeThreshold - buffer, but only if transitioning from above it
-      else if (scrollY <= removeThreshold - buffer && lastScrollY > removeThreshold - buffer) {
-        setIsScrolled(false);
-      }
-  
-      // Update last scroll position
-      lastScrollY = scrollY;
-    }, 200); // Debounce with a 200ms delay
-  
-    const checkInitialScroll = () => {
+    const handleScroll = () => {
       const scrollY = window.scrollY;
   
       // Add class if the initial scroll position is beyond addThreshold
@@ -63,7 +47,7 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
   
     // Initial check to handle cases where the initial scroll position is beyond addThreshold
-    checkInitialScroll();
+    handleScroll();
   
     return () => {
       window.removeEventListener("scroll", handleScroll);

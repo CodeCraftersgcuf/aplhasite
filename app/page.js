@@ -27,11 +27,12 @@ import Image from 'next/image';
 import toast, { Toaster } from 'react-hot-toast';
 import CustomToast from '@/components/CustomToast';
 import HomeProductSlide from '@/components/HomeProductSlide';
-
+import Link from 'next/link';
 const slides = Array.from({ length: 40 }, (_, index) => index + 1);
 const buttonSizes = ['XXS', 'XS', 'S', 'M', 'L', 'XL', 'XXL'];
 // const womenSlides = Array.from({ length: 8 }, (_, index) => index + 1);
 // const menSlides = Array.from({ length: 8 }, (_, index) => index + 1);
+import pang3aWhite from "../assets/pang3a.png";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -145,21 +146,21 @@ const HomePage = () => {
             <p>Crafted with every detail in mind. </p>
           </div>
           <div className="w-fit text-[13px] till-desktop:text-[13px] flex gap-[1rem] ">
-            <a
+            <Link
               className=" hero-img-btn whitespace-nowrap text-center leading-[100%] max-w-full truncate font-w-600 px-[1.5rem] py-[1rem] text-[13px]  till-desktop:py-[12px] rounded-full transition-all bg-white border border-secondary/20 text-black hover:opacity-80"
-              href="/product-details?id=3"
+              href="/shop"
             // style="background-color: #ffffff; color: #000000"
             >
               {' '}
               Shop Now{' '}
-            </a>
-            <a
+            </Link>
+            <Link
               className="hero-img-btn whitespace-nowrap text-center leading-[100%] max-w-full truncate font-w-600 px-[1.5rem] py-[1rem]  text-[13px] till-desktop:py-[12px] rounded-full transition-all bg-white border border-secondary/20 text-black hover:opacity-80"
-              href="/product-details?id=1"
+              href="/shop"
             // style="background-color: #ffffff; color: #000000"
             >
               Shop Trending
-            </a>
+            </Link>
           </div>
         </div>
         {/* Upper new arrivals */}
@@ -167,7 +168,7 @@ const HomePage = () => {
           <h2>
             <span>{`${women ? `Now` : `Trending`}`}</span> <span>NEW ARRIVALS</span>
           </h2>
-          <button className="button">SHOP ALL</button>
+          <button className="button"> <Link href="/shop">SHOP ALL</Link> </button>
         </div>
         <div className="sliders overflow-x-hidden">
           <div className="slider-buttons">
@@ -337,8 +338,8 @@ const HomePage = () => {
               <div className="banner-info">
                 <h1>New Arrivals</h1>
                 <p>Amplify Reimagined</p>
-                <button className="button">Shop Women</button>
-                <button className="button">Shop Men</button>
+                <button className="button"><Link href="/shop">Shop Women</Link></button>
+                <button className="button"><Link href="/shop">Shop Men</Link></button>
               </div>
             </div>
             <div
@@ -351,8 +352,8 @@ const HomePage = () => {
               <div className="banner-info">
                 <h1>New Arrivals</h1>
                 <p>Amplify Reimagined</p>
-                <button className="button">Shop Women</button>
-                <button className="button">Shop Men</button>
+                <button className="button"><Link href="/shop">Shop Women</Link></button>
+                <button className="button"><Link href="/shop">Shop Men</Link></button>
               </div>
             </div>
             <div
@@ -365,8 +366,8 @@ const HomePage = () => {
               <div className="banner-info">
                 <h1>New Arrivals</h1>
                 <p>Amplify Reimagined</p>
-                <button className="button">Shop Women</button>
-                <button className="button">Shop Men</button>
+                <button className="button"><Link href="/shop">Shop Women</Link></button>
+                <button className="button"><Link href="/shop">Shop Men</Link></button>
               </div>
             </div>
           </div>
@@ -492,8 +493,8 @@ const HomePage = () => {
               <div className="banner-info">
                 <h1>New Arrivals</h1>
                 <p>Amplify Reimagined</p>
-                <button className="button">Shop Women</button>
-                <button className="button">Shop Men</button>
+                <button className="button"><Link href="/shop">Shop Women</Link></button>
+                <button className="button"><Link href="/shop">Shop Men</Link></button>
               </div>
             </div>
             <div
@@ -506,8 +507,8 @@ const HomePage = () => {
               <div className="banner-info">
                 <h1>New Arrivals</h1>
                 <p>Amplify Reimagined</p>
-                <button className="button">Shop Women</button>
-                <button className="button">Shop Men</button>
+                <button className="button"><Link href="/shop">Shop Women</Link></button>
+                <button className="button"><Link href="/shop">Shop Men</Link></button>
               </div>
             </div>
             <div class="item3">
@@ -523,8 +524,8 @@ const HomePage = () => {
               <div className="banner-info">
                 <h1>New Arrivals</h1>
                 <p>Amplify Reimagined</p>
-                <button className="button">Shop Women</button>
-                <button className="button">Shop Men</button>
+                <button className="button"><Link href="/shop">Shop Women</Link></button>
+                <button className="button"><Link href="/shop">Shop Men</Link></button>
               </div>
             </div>
           </div>
@@ -948,7 +949,7 @@ const HomePage = () => {
             <div className="content">
               <h1>New Arrivals</h1>
               <p>Amplify Reimagined</p>
-              <button className="button">Shop Now</button>
+              <button className="button"><Link href="/shop">Shop Now</Link></button>
               {/* <button className="button">Shop Men</button> */}
             </div>
           </div>

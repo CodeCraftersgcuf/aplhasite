@@ -8,7 +8,7 @@ import { modalActions } from '@/store/openModel';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 
-const ProductSlide = ({ product, addItem }) => {
+const ProductSlide = ({ product, addItem, bigItemClass }) => {
     const dispatch = useDispatch()
     const [quantity, setQuantity] = useState(0)
     const router = useRouter()
@@ -34,8 +34,8 @@ const ProductSlide = ({ product, addItem }) => {
             //     index === 0 ? { margin: '30px 20px', zIndex: '100' } : {}
             // }
             >
-                <div className="slider-item">
-                    <div className="item-image-box">
+                <div className={`${bigItemClass ? "slider-big-item" : "slider-item"}`}>
+                    <div className={bigItemClass ? "big-item-image-box" : "item-image-box"}>
                         <Swiper
                             className="imageSwiper"
                             cssMode={true}
@@ -51,7 +51,7 @@ const ProductSlide = ({ product, addItem }) => {
                             </div>
                             {product.image.map((image, imgIndex) => (
                                 <SwiperSlide
-                                    className="imageSlide" key={imgIndex}
+                                    className="imageSlide hover:cursor-pointer" key={imgIndex}
                                     onClick={() => handleNavigateDetails(product)}
                                 >
                                     <img
