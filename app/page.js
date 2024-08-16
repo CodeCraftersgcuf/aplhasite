@@ -321,7 +321,7 @@ const HomePage = () => {
               ))} */}
             <button
               onClick={() => swiperRef.current?.slideNext()}
-              className="swiper-button-next"
+              className="swiper-button-next swip-btn-next"
             >
               <GrFormNext />
             </button>
@@ -521,7 +521,7 @@ const HomePage = () => {
                 Your browser does not support the video tag.
               </video>
               {/* </aside> */}
-              <div className="banner-info">
+              <div className="banner-info banner-3">
                 <h1>New Arrivals</h1>
                 <p>Amplify Reimagined</p>
                 <button className="button"><Link href="/shop">Shop Women</Link></button>

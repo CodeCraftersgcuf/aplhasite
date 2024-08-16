@@ -89,7 +89,7 @@ const ShopPage = () => {
                     />
                 </div>}
                 <div className={`flex  bg-white px-8 w-full`}>
-                    <div className='relative w-1/5 bg-white py-[29px] pr-4 overflow-hidden'>
+                    <div className='relative w-1/5 left-side-product-page  bg-white py-[29px] pr-4 overflow-hidden'>
                         <div className={`bg-white h-full ${isScrolled ? 'fixed top-[81px]' : 'absolute'} `}>
                             <div className='flex flex-col'>
                                 <p className='text-[12px] text-gray-700'>Trending</p>
@@ -117,7 +117,7 @@ const ShopPage = () => {
                                 />
                                 <div className='w-full h-[1px] bg-gray-300 mb-[8px]'></div>
                             </div>
-                            <div className='flex h-full flex-col overflow-scroll scrollbar-hide'>
+                            <div className='flex  flex-col overflow-scroll scrollbar-hide'>
                                 {vapeProducts.map((product, index) => (
                                     <AnimeButtons
                                         name={product.productName}
@@ -127,7 +127,7 @@ const ShopPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className='w-4/5 grid grid-cols-3 gap-6'>
+                    <div className='w-4/5 grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3  gap-6'>
                         {/* <div className="slider-buttons "> */}
                         {DUMMY_ITEMS.map((product, index) => (
                             <div className="sliders">

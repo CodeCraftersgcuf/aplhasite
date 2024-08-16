@@ -11,7 +11,7 @@ import {
 const Footer = () => {
   return (
     <>
-      <div className="footer flex-wrap xl:flex-nowrap flex justify-center mt-8  w-full border border-[#3b3b3b] z-20">
+      <div className="footer flex-wrap xl:flex-nowrap flex justify-center mt-8  w-full border border-[#3b3b3b] ">
         <div className="footer1  flex-col flex flex-wrap justify-between xl:w-[1568px] w-full">
           <div className="links flex  flex-wrap justify-start p-6 gap-7">
             <div className="flex flex-wrap flex-col">
@@ -44,7 +44,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="flex justify-center lg:flex-nowrap flex-wrap lg:justify-start items-center border-t border-[#3b3b3b] max-w-full lg:border-b-none sm:border-b-gray-500">
-            <div className="privacyLinks  p-6 lg:max-w-[600px] max-w-full border-e border-[#3b3b3b] ">
+            <div className="privacyLinks footer-links-sec  p-6 lg:max-w-[600px] max-w-full border-e border-[#3b3b3b] ">
               <aside className="copyRight">
                 <span class="footer-last">
                   <ul className="flex flex-wrap lg:flex-nowrap">
