@@ -35,11 +35,21 @@ body {
   background-color: #0d0d0d;
   margin: 0;
   padding: 0;
+}
 
+body.no-scroll {
+  height: auto;
+  overflow: hidden
+}
+
+.overflow-touch {
+  -webkit-overflow-scrolling: touch;
 }
 
 .header-nav {
   transition: background-color 0.3s ease;
+  position: fixed;
+  top: 0;
 
   &.transparent {
     background-color: transparent;
@@ -88,6 +98,7 @@ body {
   width: 100%;
   position: relative;
   overflow: visible;
+  /* display: none; */
 
   >.swiper-button-prev {
     top: 50% !important;
@@ -251,9 +262,9 @@ body {
   margin-left: calc(35% - 40px);
 }
 
-.swiper-wrapper {
+/* .swiper-wrapper {
   padding-left: 18px;
-}
+} */
 
 .test {
   height: unset !important;
@@ -609,15 +620,19 @@ body {
 }
 
 .bg-img {
-  background-image: url("../assets/hero.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
   height: 95vh;
   width: 100%;
   /* z-index: -100; */
-  top: -84px;
   position: relative;
+
+  >img {
+    position: absolute;
+    /* top: -84px; */
+    /* background-image: url("../assets/hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat; */
+  }
 }
 
 
@@ -842,7 +857,17 @@ body {
     /* justify-content: center !important; */
   }
 }
+@media screen and (min-width: 1024px) and (max-width: 1280px) {
+  .footer2{
+    border: none!important;
+  }
+}
 
+@media screen and (min-width: 320px) and (max-width: 375px) {
+  body{
+    width: 362px; 
+  }
+}
 @media screen and (min-width: 320px) and (max-width: 426px) {
   .product-page-det-card {
     right: auto !important;
@@ -868,7 +893,7 @@ body {
 
   .hero-img-btn {
     padding: 10px !important;
-    font-size: 10px;
+    font-size: 12px;
   }
 
   .slider-heading {
@@ -876,6 +901,7 @@ body {
   }
 
   .slider-heading h2 span {
+    margin-top: 20px;
     font-size: 14px;
   }
 
@@ -905,26 +931,31 @@ body {
     padding: 20px 0px 20px 20px !important;
   }
 
-  .apni-class-main {
+  /* .apni-class-main {
     height: 110vh;
-  }
+  } */
 
   .apni-class {
     height: 40% !important;
   }
-  .slider-big-item{
-    width: 250px!important;
+
+  .slider-big-item {
+    width: 250px !important;
   }
-  .slider-item{
-    width: 250px!important;
+
+  .slider-item {
+    width: 250px !important;
   }
+
   .slider {
     width: 250px !important;
   }
-  .banner-3{
+
+  .banner-3 {
     bottom: 75px !important;
   }
-  .swiper-button-next{
+
+  .swiper-button-next {
     top: 50%;
     right: 35px;
   }
@@ -970,11 +1001,14 @@ body {
   }
 
 }
+
 @media screen and (min-width: 320px) and (max-width: 1024px) {
-  .left-side-product-page{
+  /* .left-side-product-page {
     display: none;
-  }
-  .footer-links-sec, .footer2{
-    border: none!important;
+  } */
+
+  .footer-links-sec,
+  .footer2 {
+    border: none !important;
   }
 }

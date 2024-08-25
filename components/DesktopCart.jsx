@@ -11,32 +11,18 @@ import { useSelector } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
 import CustomToast from './CustomToast';
 import { useRouter } from 'next/navigation';
+import notify from '@/helpers/notify';
 
 
-const Cart = ({ isOpen }) => {
+const DesktopCart = ({ isOpen }) => {
     const addedItems = useSelector((state) => state.itemsFn.items)
     const stateMessage = useSelector((state) => state.itemsFn.message)
     const dispatch = useDispatch()
-    console.log(stateMessage)
+    // console.log(stateMessage)
     const closeDiv = (e) => {
         if (e.target.id === 'modal-background') {
             dispatch(modalActions.closeModal())
         }
-    };
-    const notify = ({ product, quantity, adding, removing }) => {
-        toast.custom((t) => (
-            <CustomToast
-                product={product}
-                // size={size}
-                quantity={quantity}
-                adding={adding}
-                removing={removing}
-            />
-        ), {
-            duration: 2000
-
-        }
-        )
     };
     const handleRemoveItem = (item) => {
         dispatch(itemsActions.removeItem(item))
@@ -60,10 +46,10 @@ const Cart = ({ isOpen }) => {
 
     return (
         <motion.div
-            initial={{ y: "20%", opacity: 0 }}  // Start from below the screen
-            animate={{ y: isOpen ? "0%" : "20%", opacity: isOpen ? 1 : 0 }} // Slide up when open, slide down when closing
-            exit={{ y: "20%", opacity: 0 }} // Exit with slide down and fade out
-            transition={{ duration: 0.5 }} // Animation duration
+            initial={{ y: "100%", opacity: 0 }}  // Start from below the screen
+            animate={{ y: isOpen ? "0%" : "100%", opacity: isOpen ? 1 : 0 }} // Slide up when open, slide down when closing
+            exit={{ y: "100%", opacity: 0 }} // Exit with slide down and fade out
+            transition={{ duration: 0.3 }} // Animation duration
             id="modal-background"
             className="fixed inset-0 bg-black bg-opacity-50 flex items-end justify-center z-[100]"
             onClick={closeDiv}
@@ -79,9 +65,9 @@ const Cart = ({ isOpen }) => {
                     onIncrement={handleIncrement}
                 />
             </div>
-            <Toaster position='bottom-center' />
+            {/* <Toaster position='bottom-center' /> */}
         </motion.div>
     )
 }
 
-export default Cart
+export default DesktopCart

@@ -22,12 +22,12 @@ const OrdersManagementBox = ({ addedItems, removeItem, onDecrement, onIncrement 
     }, [addedItems])
 
     return (
-        <div className='flex  flex-col lg:w-3/12 md-[430px] text-black border border-black justify-between'>
+        <div className='hidden lg:flex lg:flex-col lg:w-3/12 md-[430px] text-black border border-black justify-between'>
             <div className='flex items-center justify-center h-20 border-b border-black'>
                 YOUR BAG
             </div>
             <div className='h-full overflow-y-scroll scrollbar-hide'>
-                {addedItems.length === 0 && <div className='flex text-gray-400 text-xl justify-center items-center h-full'>No items in bag</div>}
+                {addedItems.length === 0 && <div className='flex min-h-96 text-gray-400 text-xl justify-center items-center h-full'>No items in bag</div>}
                 {addedItems.length > 0 && addedItems.map((item, index) => (
                     <div key={index} className='h-[16rem] overflow-clip flex flex-col p-4 border border-b-black'>
                         <div className='flex gap-4 p-4'>

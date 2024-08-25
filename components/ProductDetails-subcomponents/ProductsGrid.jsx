@@ -11,7 +11,7 @@ const ProductsGrid = ({ addItem }) => {
     const [women, setWomen] = useState(true)
 
     return (
-        <div className='w-full h-1/2 bg-white py-6 mt-20 lg:mt-0'>
+        <div className='w-full hidden h-1/2 bg-white py-6 mt-20 lg:mt-0 lg:block'>
             <div className='w-full flex flex-col overflow-x-auto scrollbar-hide'>
                 <div className="sliders sm:mt-20 lg:mt-0">
                     <div className="slider-buttons ">

@@ -37,7 +37,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
-      <body className={inter.className}>
+      <body className={inter.className} >
         <ReduxProviderWrapper>{children}</ReduxProviderWrapper>
       </body>
     </html>

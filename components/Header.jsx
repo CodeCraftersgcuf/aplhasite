@@ -12,30 +12,31 @@ import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
 import { modalActions } from "@/store/openModel";
 import { itemsActions } from "@/store/cartItems";
+import PopUp from "@/components/Header-subcomponents/PopUp";
 import Image from "next/image";
 import pang3a from "@assets/Pang3aBlack.png";
 import pang3aWhite from "../assets/pang3a.png";
 import _ from "lodash";
+import DropDown from "@/components/Header-subcomponents/DropDown";
 
-const items = Array.from({ length: 5 }, (_, index) => index + 1);
+
 
 const Header = () => {
+  const [showPopUp, setShowPopUp] = useState(false);
   const dispatch = useDispatch();
   const addedItems = useSelector((state) => state.itemsFn.items);
   // const stateMessage = useSelector((state) => state.itemsFn.message);
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [showDropdown, setShowDropdown] = useState(false );
+  const [showDropdown, setShowDropdown] = useState(false);
 
   useEffect(() => {
     const addThreshold = 80; // Scroll position at or above which the class is added
     const removeThreshold = 30; // Scroll position below which the class is removed
-  
 
-  
     const handleScroll = () => {
       const scrollY = window.scrollY;
-  
+
       // Add class if the initial scroll position is beyond addThreshold
       if (scrollY >= addThreshold) {
         setIsScrolled(true);
@@ -43,20 +44,27 @@ const Header = () => {
         setIsScrolled(false);
       }
     };
-  
+
     window.addEventListener("scroll", handleScroll);
-  
+
     // Initial check to handle cases where the initial scroll position is beyond addThreshold
     handleScroll();
-  
+
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  
-  
-  
-  
+
+
+
+  const handleClosePopUp = () => {
+    setShowPopUp(false);
+  };
+
+  const handleOpenPopUp = () => {
+    setShowPopUp(true);
+  };
+
   const showCartModal = () => {
     dispatch(modalActions.openModal());
   };
@@ -66,7 +74,7 @@ const Header = () => {
       <header
         className={`header-nav z-50 ${isScrolled ? "scrolled" : "transparent"}`}
         style={{ zIndex: 59 }} // Using a number instead of a string
-        >
+      >
         {!isScrolled && (
           <div className="preheader hover:bg-black">
             {/* <div className="mySwiper"> */}
@@ -119,51 +127,33 @@ const Header = () => {
           </div>
           <div className="relative">
             <FaSearch />
-            <SlBag onClick={showCartModal} className="cart" />
-            <p className="mt-[15px] w-[20px]  absolute pr-0 top-2 right-0.5 bg-white !text-black border-0 rounded-full text-center cart-num">
-              {addedItems.length}
-            </p>
-            {/* <RxHamburgerMenu color="white" className="burger" /> */}
+            <div className="relative">
+              <SlBag onClick={showCartModal} className="cart" />
+              <p className="mt-[15px] w-[20px]  absolute pr-0 top-2 right-0.5 bg-white !text-black border-0 rounded-full text-center cart-num">
+                {addedItems.length}
+              </p>
+            </div>
+            <RxHamburgerMenu
+              color="white"
+              className="burger"
+              onClick={() => {
+                if (!showPopUp) {
+                  handleOpenPopUp()
+                } else {
+                  handleClosePopUp()
+                }
+              }}
+            />
           </div>
         </div>
-        {showDropdown && (
-          <div
-            className="dropdown-container"
-            onMouseOver={() => setShowDropdown(true)}
-            onMouseOut={() => setShowDropdown(false)}
-          >
-            <div className="left">
-              <div className="grid">
-                {items.map((item, index) => (
-                  <div key={index} className="row">
-                    <p className="first">Heading</p>
-                    <p className="header-links">First</p>
-                    <p className="header-links">Second</p>
-                    <p className="header-links">Third</p>
-                    <p className="header-links">Fourth</p>
-                    <p className="header-links">Fifth</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div className="right">
-              <div className="image-container">
-                <img
-                  src="https://alphalete.uk/cdn/shop/files/IceTankHeat2_2500x.jpg?v=1721064079"
-                  alt="Image 1"
-                />
-                <img
-                  src="https://alphalete.uk/cdn/shop/files/IceTankHeat5_2500x.jpg?v=1721064079"
-                  alt="Image 2"
-                />
-                <img
-                  src="https://alphalete.uk/cdn/shop/files/IceTankHeat5_2500x.jpg?v=1721064079"
-                  alt="Image 3"
-                />
-              </div>
-            </div>
-          </div>
-        )}
+        <DropDown
+          showDropdown={showDropdown}
+          setShowDropdown={setShowDropdown}
+        />
+        <PopUp
+          showPopUp={showPopUp}
+          handleClose={handleClosePopUp}
+        />
       </header>
     </>
   );

@@ -10,12 +10,11 @@ const payment = () => {
     const inputs = Object.fromEntries(formData.entries());
     const options = formData.getAll('options');
     const data = { inputs, options };
-
   };
 
   const hanldeApply = (formData) => {
     const data = Object.fromEntries(formData.entries());
-    console.log(data);
+    // console.log(data);
   };
 
   return (

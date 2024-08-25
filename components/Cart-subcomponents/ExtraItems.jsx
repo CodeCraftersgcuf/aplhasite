@@ -20,7 +20,7 @@ const ExtraItems = ({ addItem }) => {
     return (
         <div className='main-card-res-none lg:w-9/12 flex md:items-center md:w-[550px] sm:w-[400px]  flex-col overflow-x-auto scrollbar-hide'>
             <div className="sliders">
-                <div className="slider-buttons ">
+                <div className="slider-buttons !mt-[30px]">
                     <span
                         onClick={() => setRecommended(true)}
                         className={`${recommended ? 'bg-gray' : 'txt-black'}`}
@@ -35,7 +35,7 @@ const ExtraItems = ({ addItem }) => {
                     </span>
                 </div>
 
-                <div className='grid p-6 sm:grid-cols-1 xsm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6'>
+                <div className='grid px-6 lg:grid-cols-3 2xl:grid-cols-4 gap-6'>
                     {DUMMY_ITEMS.map((product, index) => (
                         <ProductSlide
                             key={index}

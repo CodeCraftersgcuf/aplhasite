@@ -16,7 +16,8 @@ const AbsolutePart = ({ product, centerSlide, addItem }) => {
 
     return (
         <>
-            {product && <div className='product-page-det-card absolute bg-white p-4 top-[5%] right-[4.5rem] z-50 w-[24rem] h-[33rem] border border-gray-400 rounded-lg overflow-scroll scrollbar-hide'>
+            {product && <div className='w-full lg:absolute lg:w-[24rem] lg:h-[33rem] bg-white p-4 top-[5%] right-[4.5rem] z-50 lg:border border-gray-400 lg:rounded-lg overflow-scroll scrollbar-hide'>
+                {/* {product && <div className='product-page-det-card absolute bg-white p-4 top-[5%] right-[4.5rem] z-50 w-[24rem] h-[33rem] border border-gray-400 rounded-lg overflow-scroll scrollbar-hide'> */}
                 <div className='flex flex-col gap-3 w-full text-black justify-between'>
                     <div className='flex flex-col gap-1 border-b pb-3 border-gray-400'>
                         <div className='flex items-center justify-center h-10'>
@@ -45,33 +46,14 @@ const AbsolutePart = ({ product, centerSlide, addItem }) => {
 
                     </div>
                     <div className='flex flex-col gap-1'>
-                        {/* <div className='flex justify-between text-[12px]'>
-                            <span>Sizes guide</span>
-                            <span className='text-gray-400'>Sizes not available?</span>
-                        </div> */}
-                        {/* <div className=" w-fit flex items-center space-x-2 px-[0.1rem] py-[0.1rem]">
-                            {buttonSizes.map((size, index) => (
-                                <button
-                                    key={size}
-                                    className={`flex items-center justify-center w-8 h-8 text-gray-600 text-[10px]  rounded-lg hover:bg-gray-200 transition ${selectedSize === size ? 'bg-gray-200' : ''}`}
-                                    onClick={() => setSelectedSize(size)}
-                                >
-                                    {size}
-                                </button>
-                            ))}
-
-                        </div> */}
 
                         <div className='flex justify-center items-center'>
                             <motion.button
                                 className={` text-white bg-black text-[0.75rem] font-bold py-2 px-24 rounded-full hover:cursor-pointer`}
                                 whileHover={{ scale: 1.1 }}
                                 transition={{ type: "spring", stiffness: 800, damping: 10 }}
-                                // animate={selectedSize ? 'hover' : 'disabled'}
-                                // disabled={!selectedSize}
                                 onClick={() => addItem({ product })}
                             >
-                                {/* {selectedSize ? `Add ${selectedSize} To Bag` : 'Select Size'} */}
                                 Add To Bag
                             </motion.button>
                         </div>
@@ -79,7 +61,7 @@ const AbsolutePart = ({ product, centerSlide, addItem }) => {
 
                     <div className='flex flex-col text-sm'>
 
-                        <div className='flex flex-col gap-3 border-y border-b border-gray-400 py-4 '>
+                        <div className='flex flex-col gap-3 lg:border-y border-gray-400 py-4 '>
                             <div className=' px-6'>
                                 <ul className='flex flex-col gap-1 list-disc'>
                                     {product.qualities.map((quality, index) => (
