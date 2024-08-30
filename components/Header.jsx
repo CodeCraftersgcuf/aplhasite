@@ -10,8 +10,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useSelector, useDispatch } from "react-redux";
-import { modalActions } from "@/store/openModel";
-import { itemsActions } from "@/store/cartItems";
+import { modalActions } from "@/store/slices/openModel";
+import { itemsActions } from "@/store/slices/cartItems";
 import PopUp from "@/components/Header-subcomponents/PopUp";
 import Image from "next/image";
 import pang3a from "@assets/Pang3aBlack.png";
@@ -23,12 +23,19 @@ import DropDown from "@/components/Header-subcomponents/DropDown";
 
 const Header = () => {
   const [showPopUp, setShowPopUp] = useState(false);
+  const [cartItemsNo, setCartItemsNo] = useState(0);
   const dispatch = useDispatch();
   const addedItems = useSelector((state) => state.itemsFn.items);
   // const stateMessage = useSelector((state) => state.itemsFn.message);
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+
+
+  //its because the normal state of redux causes hydration error
+  useEffect(() => {
+    setCartItemsNo(addedItems.length);
+  }, [addedItems]);
 
   useEffect(() => {
     const addThreshold = 80; // Scroll position at or above which the class is added
@@ -130,7 +137,7 @@ const Header = () => {
             <div className="relative">
               <SlBag onClick={showCartModal} className="cart" />
               <p className="mt-[15px] w-[20px]  absolute pr-0 top-2 right-0.5 bg-white !text-black border-0 rounded-full text-center cart-num">
-                {addedItems.length}
+                {cartItemsNo}
               </p>
             </div>
             <RxHamburgerMenu

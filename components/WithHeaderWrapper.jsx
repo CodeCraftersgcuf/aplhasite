@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { AnimatePresence } from 'framer-motion'
 import DesktopCart from './DesktopCart'
 import MobileCart from './MobileCart'
-import { setDeviceType } from '@/store/currentDevice'
+import { setDeviceType } from '@/store/slices/currentDevice'
 import { useDispatch } from 'react-redux'
 import { Toaster } from 'react-hot-toast'
 

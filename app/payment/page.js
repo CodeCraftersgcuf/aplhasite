@@ -5,11 +5,12 @@ import './payment.css';
 import NoHeaderWrapper from '@/components/NoHeaderWrapper';
 import PaymentDetails from '@/components/Payment-subcomponents/PaymentDetails';
 import OrderCheckout from '@/components/Payment-subcomponents/OrderCheckout';
+import { useSelector } from 'react-redux';
+import { RadioProvider } from '@/store/paymentTypeContext';
 const payment = () => {
-  const hanldeSubmit = async (formData) => {
-    const inputs = Object.fromEntries(formData.entries());
-    const options = formData.getAll('options');
-    const data = { inputs, options };
+  const paymentDetails = useSelector((state) => state.paymentFn);
+  const handleReviewOrder = async (formData) => {
+    console.log(paymentDetails);
   };
 
   const hanldeApply = (formData) => {
@@ -19,12 +20,15 @@ const payment = () => {
 
   return (
     <NoHeaderWrapper>
-      <div className="bg-white h-full w-full">
-        <div className="flex xl:flex-nowrap flex-wrap justify-start ms-4 sm:me-9 lg:ms-24 ">
-          <PaymentDetails onSubmit={hanldeSubmit} />
-          <OrderCheckout onApply={hanldeApply} />
+      <RadioProvider>
+        <div className="bg-white min-w-[100%] overflow-y-hidden">
+          {/* <div className="flex flex-col w-full h-full bg-white"> */}
+          <div className="flex bg-white xl:flex-nowrap flex-wrap justify-start ms-4 sm:me-9 lg:ms-24 extrasmall:ms-0  overflow-y-hidden">
+            <PaymentDetails onReviewOrder={handleReviewOrder} />
+            <OrderCheckout onApply={hanldeApply} />
+          </div>
         </div>
-      </div>
+      </RadioProvider>
     </NoHeaderWrapper>
   );
 };

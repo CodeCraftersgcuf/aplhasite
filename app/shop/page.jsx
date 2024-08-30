@@ -4,7 +4,7 @@ import ProductSlide from '@/components/ProductDetails-subcomponents/ProductSlide
 import { DUMMY_ITEMS, vapeProducts } from '@/utils';
 import '@/app/styles/main.scss';
 import { useEffect, useState } from 'react';
-import { itemsActions } from '@/store/cartItems';
+import { itemsActions } from '@/store/slices/cartItems';
 import { useDispatch } from 'react-redux';
 import Image from 'next/image';
 import MobilePopUpBtns from '@/components/shop-subcomponents/MobilePopUpBtns';

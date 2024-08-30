@@ -1,12 +1,12 @@
 'use client';
 import '@/app/styles/main.scss';
 import { useEffect, useRef, useState } from 'react';
-import { modalActions } from '@/store/openModel';
+import { modalActions } from '@/store/slices/openModel';
 import { useDispatch } from 'react-redux';
 import { motion } from "framer-motion"
 import ExtraItems from './Cart-subcomponents/ExtraItems';
 import MobileOrdersManagement from './Cart-subcomponents/MobileOrdersManagement';
-import { itemsActions } from '@/store/cartItems';
+import { itemsActions } from '@/store/slices/cartItems';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { totalPrice } from '@/helpers/totalPrice';
@@ -130,7 +130,7 @@ const MobileCart = ({ isOpen }) => {
                                     onClick={handleSubmit}
 
                                 >
-                                    CHECKOUT 
+                                    CHECKOUT
                                 </motion.button>
                             </div>
 

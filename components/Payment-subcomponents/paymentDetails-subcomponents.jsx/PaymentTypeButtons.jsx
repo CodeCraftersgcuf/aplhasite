@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
-import googleico from '../../assets/google.svg';
-import paypal from '../../assets/paypal.svg';
+import googleico from '@/assets/google.svg';
+import paypal from '@/assets/paypal.svg';
 
 const PaymentTypeButtons = () => {
     return (

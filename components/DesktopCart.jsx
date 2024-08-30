@@ -1,12 +1,12 @@
 'use client';
 import '@/app/styles/main.scss';
 import { useEffect, useRef, useState } from 'react';
-import { modalActions } from '@/store/openModel';
+import { modalActions } from '@/store/slices/openModel';
 import { useDispatch } from 'react-redux';
 import { motion } from "framer-motion"
 import ExtraItems from './Cart-subcomponents/ExtraItems';
 import OrdersManagementBox from './Cart-subcomponents/OrdersManagementBox';
-import { itemsActions } from '@/store/cartItems';
+import { itemsActions } from '@/store/slices/cartItems';
 import { useSelector } from 'react-redux';
 import toast, { Toaster } from 'react-hot-toast';
 import CustomToast from './CustomToast';
@@ -15,10 +15,13 @@ import notify from '@/helpers/notify';
 
 
 const DesktopCart = ({ isOpen }) => {
+    // const [addedItems, setAddedItems] = useState([])
     const addedItems = useSelector((state) => state.itemsFn.items)
-    const stateMessage = useSelector((state) => state.itemsFn.message)
     const dispatch = useDispatch()
     // console.log(stateMessage)
+    // useEffect(() => {
+    //     setAddedItems(addedItemsRedux)
+    // }, [addedItemsRedux])
     const closeDiv = (e) => {
         if (e.target.id === 'modal-background') {
             dispatch(modalActions.closeModal())

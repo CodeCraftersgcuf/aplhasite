@@ -1,37 +1,54 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import '@/app/payment/payment.css'
 import isymbol from '../../assets/i_symbol.png';
 import cartimg from '../../assets/cart-img.jpg';
+import { useSelector } from 'react-redux';
+import { totalPrice } from '@/helpers/totalPrice';
 
 const OrderCheckout = ({ onApply }) => {
+    const orderItems = useSelector((state) => state.itemsFn.items);
+    const [order, setOrder] = useState([])
+
+    useEffect(() => {
+        setOrder(orderItems)
+    }, [orderItems])
+    console.log(order)
     return (
-        <div className="checkout-main w-[604px] ">
+        // <div className="w-full lg:w-1/2">
+        <div className="checkout-main max-w-[604px] ">
             <div className="p-[38px] checkout-inside">
                 {/* Product Summary Section */}
-                <div className="flex space-x-4 items-center ">
-                    {/* Product Image */}
-                    <div className="buy-img-div w-16 h-16">
-                        {/* Add your image here */}
-                        <Image
-                            src={cartimg}
-                            alt="Product Image"
-                            className="w-full h-full img-border object-cover rounded-md"
-                        />
-                        <div className="num-circle">
-                            <span>1</span>
+                {order.map((item) => (
+                    <div key={item.id} className="flex my-4 space-x-4 items-center ">
+                        {/* Product Image */}
+                        <div className="buy-img-div w-16"
+                            style={{ aspectRatio: '4/5' }}
+                        >
+
+                            {/* Add your image here */}
+                            <Image
+                                src={item.product.image[0]}
+                                alt="Product Image"
+                                className=" rounded-md"
+                                layout='fill'
+                                objectFit='cover'
+                            />
+                            <div className="num-circle">
+                                <span>{item.quantity}</span>
+                            </div>
                         </div>
+                        {/* Product Details */}
+                        <div className="flex-1">
+                            <p className="text-sm font-normal">
+                                {item.product.name}
+                            </p>
+                            <span className="text-gray-500 font-light text-xs">M</span>
+                        </div>
+                        {/* Product Price */}
+                        <div className="text-sm font-normal">${item.product.price}</div>
                     </div>
-                    {/* Product Details */}
-                    <div className="flex-1">
-                        <p className="text-sm font-normal">
-                            Tenacity Deep V Cady Bra - Heat
-                        </p>
-                        <span className="text-gray-500 font-light text-xs">M</span>
-                    </div>
-                    {/* Product Price */}
-                    <div className="text-sm font-normal">$36.00</div>
-                </div>
+                ))}
 
                 {/* Rewards Reminder Section */}
                 <div className="dont-miss flex items-center space-x-2 p-4 bg-gray-100 rounded-md mt-4">
@@ -81,7 +98,7 @@ const OrderCheckout = ({ onApply }) => {
                 {/* Subtotal Section */}
                 <div className="flex justify-between items-center mt-4">
                     <span className="text-sm">Subtotal</span>
-                    <span className="text-sm">$36.00</span>
+                    <span className="text-sm">${totalPrice(order)}</span>
                 </div>
 
                 {/* Shipping Section */}
@@ -108,6 +125,7 @@ const OrderCheckout = ({ onApply }) => {
                 </div>
             </div>
         </div>
+        // </div>
     )
 }
 

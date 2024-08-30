@@ -5,7 +5,7 @@ import 'swiper/css';
 import { FreeMode, Navigation } from 'swiper/modules';
 import { FaPlus, FaMinus } from 'react-icons/fa6';
 import { motion, AnimatePresence } from 'framer-motion';
-import { itemsActions } from '@/store/cartItems';
+import { itemsActions } from '@/store/slices/cartItems';
 import { useDispatch } from 'react-redux';
 import notify from '@/helpers/notify';
 import { DUMMY_ITEMS } from '@/utils';

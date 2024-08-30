@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['alphalete.uk'],
+    domains: ['alphalete.uk', 'cdn.shopify.com'],
   },
 };
 

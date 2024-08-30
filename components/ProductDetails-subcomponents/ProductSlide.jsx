@@ -4,7 +4,7 @@ import { Navigation } from 'swiper/modules';
 import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 import { FaPlus, FaMinus } from 'react-icons/fa6';
 import '@/app/styles/main.scss';
-import { modalActions } from '@/store/openModel';
+import { modalActions } from '@/store/slices/openModel';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 

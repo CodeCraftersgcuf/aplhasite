@@ -5,7 +5,7 @@ import DetailsSwiper from '@/components/ProductDetails-subcomponents/DetailsSwip
 import WithHeaderWrapper from '@/components/WithHeaderWrapper';
 import ProductsGrid from '@/components/ProductDetails-subcomponents/ProductsGrid';
 import { DUMMY_DETAILS, DUMMY_ITEMS } from '@/utils.js'
-import { itemsActions } from '@/store/cartItems';
+import { itemsActions } from '@/store/slices/cartItems';
 import { useDispatch } from 'react-redux';
 import notify from '@/helpers/notify';
 import ShopProductMobile from '@/components/shop-subcomponents/ShopProductMobile';
