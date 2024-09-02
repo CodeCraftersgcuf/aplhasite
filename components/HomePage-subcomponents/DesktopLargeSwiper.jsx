@@ -9,9 +9,10 @@ import { DUMMY_ITEMS } from '@/utils';
 import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 
 
-const DesktopLargeSwiper = ({ onAddItem, handleNavigateDetails }) => {
+const DesktopLargeSwiper = ({ onAddItem, handleNavigateDetails, data }) => {
 
   const swiperRef = useRef(null);
+  console.log(data)
   return (
     <div className="hidden lg:block">
       <Swiper

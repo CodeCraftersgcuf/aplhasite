@@ -30,7 +30,9 @@ const DeliverySection = ({ childType }) => {
                     validFn={(value) => !isNotEmpty(value)}
                     type="text"
                     id="lastName"
-                    error="Last name is required" />
+                    error="Last name is required"
+
+                />
 
                 {/* <div className="flex flex-col space-y-2 w-1/2 extrasmall:w-full extrasmall:mb-4">
                     <input

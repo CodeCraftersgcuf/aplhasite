@@ -4,6 +4,7 @@ import itemsReducer from '@/store/slices/cartItems.js';
 import modalReducer from '@/store/slices/openModel.js';
 import deviceReducer from '@/store/slices/currentDevice.js';
 import paymentReducer from '@/store/slices/paymentInputs.js';
+import authInputReducer from '@/store/slices/authInputs';
 import {
   localStorageMiddleware,
   rehydrateState,
@@ -23,6 +24,7 @@ export const store = configureStore({
     modalFn: modalReducer,
     deviceFn: deviceReducer,
     paymentFn: paymentReducer,
+    authInputFn: authInputReducer,
   },
   preloadedState: typeof window !== 'undefined' ? preloadedState : undefined,
   middleware: (getDefaultMiddleware) =>

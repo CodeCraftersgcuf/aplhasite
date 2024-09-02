@@ -16,7 +16,7 @@ const OrderCheckout = ({ onApply }) => {
     console.log(order)
     return (
         // <div className="w-full lg:w-1/2">
-        <div className="checkout-main max-w-[604px] ">
+        <div className="checkout-main w-[604px] ">
             <div className="p-[38px] checkout-inside">
                 {/* Product Summary Section */}
                 {order.map((item) => (

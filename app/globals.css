@@ -131,7 +131,7 @@ body.no-scroll {
   height: 115vh;
   overflow: hidden;
   display: flex;
-  cursor: grab;
+  cursor: pointer;
 
   .shopLook {
     width: 50%;

@@ -117,14 +117,14 @@ const Footer = () => {
                   purchase. Reply STOP to unsubscribe. HELP for help. Msg
                   frequency varies. Msg &amp; Data rates may apply. View
                   <a
-                    href="/policies/privacy-policy"
+                    href="#"
                     class="relative pb-[2px] whitespace-nowrap snakify-out"
                   >
                     <ins> Privacy Policy</ins>{" "}
                   </a>{" "}
                   &amp;&nbsp;
                   <a
-                    href="/policies/terms-of-service"
+                    href="#"
                     class="relative pb-[2px] whitespace-nowrap snakify-out"
                   >
                     <ins>Terms of Service</ins>

@@ -22,7 +22,7 @@ const PaymentDetails = ({ onReviewOrder }) => {
     <div className="max-w-[710px] extrasmall:w-screen flex flex-wrap justify-center lg:justify-end ">
       <div className=" lg:p-[38px]  payment-insde  pe-12 sm:ps-0 sm:me-0 extrasmall:w-full extrasmall:pe-0 extrasmall:p-4 extrasmall:pr-4 sm:p-4">
         {/* <div className=" lg:p-[38px]  payment-insde  extrasmall:max-w-[300px]  pe-12 sm:ps-0 sm:me-0 sm:max-w-full"> */}
-        <div className="max-w-[150px] h-[22px]  mb-[2.6rem]">
+        <div className="w-[150px] h-[22px]  mb-[2.6rem]">
           <Image
             className="w-[350px] object-contain"
             src={pang3a}

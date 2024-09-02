@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
+import CustomAuthInput from './auth-input-subcomponents/CustomAuthInput';
+import AuthInputButton from './auth-input-subcomponents/AuthInputButton';
+import { useSelector } from 'react-redux';
+import { isEmail, isNotEmpty } from '@/helpers/validationsFuncitons';
 
-const SignInModal = () => {
+const SubscribeModal = () => {
     const [isOpen, setIsOpen] = useState(true);
+    const data = useSelector((state) => state.authInputFn.subscribe)
+
 
     const handleClose = () => {
         setIsOpen(false);
@@ -12,11 +18,14 @@ const SignInModal = () => {
             handleClose();
         }
     };
-    const submitAction = (formData) => {
-        const data = Object.fromEntries(formData.entries())
+    // const submitAction = (formData) => {
+    //     const data = Object.fromEntries(formData.entries())
+    //     console.log(data)
+    // }
+    const hanldeSubmit = (e) => {
+        e.preventDefault()
         console.log(data)
     }
-
     return (
         <>
             {isOpen && (
@@ -49,41 +58,27 @@ const SignInModal = () => {
 
                         </div>
                         <div className='w-full h-[1px] bg-gray-300'></div>
-                        <form action={submitAction} className="flex flex-col gap-2">
-                            <div>
-                                <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
-                                    Email
-                                </label>
-                                <input
-                                    id="email"
-                                    type="email"
-                                    name='email'
-                                    className="border-none rounded-lg w-full outline-none"
-                                    placeholder="liam@acme.com"
-                                    required
-                                />
-                            </div>
+                        <form onSubmit={hanldeSubmit} className="flex flex-col gap-2">
+                            <CustomAuthInput
+                                validFn={(value) => !isNotEmpty(value) || !isEmail(value)}
+                                id='email'
+                                type="email"
+                                placeholder='liam@acme.com'
+                                error={'Enter a valid email'}
+                                childType={'subscribe'}
+                            />
                             <div className='w-full h-[1px] bg-gray-300'></div>
-                            <div>
-                                <label htmlFor="phone" className="block text-gray-700 font-bold mb-2 ">
-                                    Phone Number
-                                </label>
-                                <input
-                                    id="phone"
-                                    type="tel"
-                                    name='phone'
-                                    className="outline-none rounded-lg w-full"
-                                    placeholder="(123) 123-1234"
-                                    required
-                                />
-                            </div>
+
+                            <CustomAuthInput
+                                validFn={(value) => !isNotEmpty(value)}
+                                id='phone'
+                                type="text"
+                                placeholder='(123) 123-1234'
+                                error={'Enter a valid phone number'}
+                                childType={'subscribe'}
+                            />
                             <div className='w-full h-[1px] bg-gray-300'></div>
-                            <button
-                                type="submit"
-                                className="bg-black text-white py-2 my-2 px-4 rounded-full hover:bg-gray-800 focus:outline-none"
-                            >
-                                Subscribe
-                            </button>
+                            <AuthInputButton>Subscribe</AuthInputButton>
                         </form>
                         <p className="text-gray-500 text-xs mt-2">
                             By signing up via text you agree to receive recurring automated marketing messages and recurring cart reminders at the phone number provided. Consent is not a condition of purchase. Reply STOP to unsubscribe, HELP for help. Msg & data rates may apply. View Privacy & Terms of Service.
@@ -95,4 +90,4 @@ const SignInModal = () => {
     );
 };
 
-export default SignInModal;
+export default SubscribeModal;
