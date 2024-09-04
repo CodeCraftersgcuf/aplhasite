@@ -9,11 +9,12 @@ import MobileCart from './MobileCart'
 import { setDeviceType } from '@/store/slices/currentDevice'
 import { useDispatch } from 'react-redux'
 import { Toaster } from 'react-hot-toast'
+import axios from 'axios'
 
 
 const WithHeaderWrapper = ({ children }) => {
     const dispatch = useDispatch();
-
+    const [products, setProducts] = useState([]);
 
     useEffect(() => {
         const handleResize = () => {
@@ -35,7 +36,23 @@ const WithHeaderWrapper = ({ children }) => {
     // }, []);
     const isOpen = useSelector((state) => state.modalFn);
     const device = useSelector((state) => state.deviceFn.deviceType);
+
+    useEffect(() => {
+        const getAllItems = async () => {
+            try {
+                const response = await axios.get(`${process.env.NEXT_VERCEL_DOMAIN_URL || 'https://pang3a-lilac.vercel.app'}/api/get-all-items`);
+                setProducts(response?.data);
+
+            } catch (error) {
+                console.log('unabletofetch')
+            }
+        }
+
+        getAllItems()
+    }, [])
     console.log(device)
+    console.log(products)
+
     return (
         <>
             <Header fixed={true} />
@@ -45,9 +62,15 @@ const WithHeaderWrapper = ({ children }) => {
                     <AnimatePresence>
                         {isOpen && (
                             device === 'mobile' || device === 'tablet' ? (
-                                <MobileCart isOpen={isOpen} />
+                                <MobileCart
+                                    isOpen={isOpen}
+                                    products={products}
+                                />
                             ) : (
-                                <DesktopCart isOpen={isOpen} />
+                                <DesktopCart
+                                    isOpen={isOpen}
+                                    products={products}
+                                />
                             )
                         )}
                     </AnimatePresence>

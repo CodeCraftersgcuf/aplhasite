@@ -22,29 +22,37 @@ const OrdersManagementBox = ({ addedItems, removeItem, onDecrement, onIncrement 
     }, [addedItems])
 
     return (
-        <div className='hidden lg:flex lg:flex-col lg:w-3/12 md-[430px] text-black border border-black justify-between'>
+        <motion.div className='hidden lg:flex lg:flex-col lg:w-3/12 md-[430px] text-black border border-black justify-between'>
             <div className='flex items-center justify-center h-20 border-b border-black'>
                 YOUR BAG
             </div>
             <div className='h-full overflow-y-scroll scrollbar-hide'>
                 {addedItems.length === 0 && <div className='flex min-h-96 text-gray-400 text-xl justify-center items-center h-full'>No items in bag</div>}
                 {addedItems.length > 0 && addedItems.map((item, index) => (
-                    <div key={index} className='h-[16rem] overflow-clip flex flex-col p-4 border border-b-black'>
+                    //    const images = product?.item_data?.ecom_image_uris
+                    // const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money.amount
+                    // const productName = product?.item_data?.name
+                    // const productType = product?.item_data?.product_type
+                    <div key={index} className='h-[auto] overflow-clip flex flex-col p-4 border border-b-black'>
                         <div className='flex gap-4 p-4'>
-                            <div className='w-24 max-h-[7.5rem] overflow-hidden border border-gray-400 rounded-lg'>
-                                <img className='rounded-lg max-h-fit'
-                                    src={item.product.image[0]}
+                            <div
+                                className=' max-w-[7.5rem] overflow-hidden border border-gray-400 rounded-lg flex items-center'
+                                style={{ aspectRatio: '4/5' }}
+                            >
+                                <img className='rounded-lg object-fit'
+                                    src={item.product?.item_data?.ecom_image_uris ? item.product?.item_data?.ecom_image_uris[0] : ''}
                                     alt="image" />
                             </div>
                             <div className='flex flex-col gap-1'>
-                                <span>{item.product.name}</span>
-                                <span className='text-sm text-gray-400'>
-                                    {`${item.product.color} - ${item.size}`}
+                                <span className='text-[12px]'>{item.product?.item_data?.name}</span>
+                                <span className='text-xs text-gray-400'>
+                                    {`${item.product?.item_data?.product_type}`}
+                                    {/* {`${item.product.color} - ${item.size}`} */}
                                 </span>
                                 <span>
-                                    {`$${item.product.price}`}
+                                    {`$${item.product?.item_data?.variations[0]?.item_variation_data.price_money.amount}`}
                                 </span>
-                                <span className='text-sm font-normal p-[0.15rem] border border-gray-400 w-12 text-center'>NEW</span>
+                                <span className='text-xs font-normal p-[0.15rem] border border-gray-400 w-12 text-center'>NEW</span>
                             </div>
                         </div>
                         <span class="block mx-auto w-[276px] h-px bg-gray-300"></span>
@@ -60,7 +68,7 @@ const OrdersManagementBox = ({ addedItems, removeItem, onDecrement, onIncrement 
                                     <MdModeEdit className="text-gray-600 w-6" />
                                 </button>
                             </div>
-                            <span>{`$${(item.quantity * item.product.price).toFixed(2)}`}</span>
+                            <span>{`$${(item.quantity * item.product?.item_data?.variations[0]?.item_variation_data.price_money.amount).toFixed(2)}`}</span>
                             <div className=" w-fit flex items-center space-x-2 px-[0.1rem] py-[0.1rem] rounded-full border border-gray-400">
                                 <button
                                     className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-200 transition"
@@ -105,7 +113,7 @@ const OrdersManagementBox = ({ addedItems, removeItem, onDecrement, onIncrement 
 
                 </div>
             </div>
-        </div>
+        </motion.div>
     )
 }
 

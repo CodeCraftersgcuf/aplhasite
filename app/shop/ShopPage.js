@@ -31,10 +31,10 @@ const ShopPage = ({ data }) => {
   const splicedDataArray = reversedDataArray.splice(0, 30);
 
   const addItem = ({ product, quantity = 1 }) => {
-    const item = DUMMY_ITEMS.find((item) => item.id === product.id);
+    // const item = DUMMY_ITEMS.find((item) => item.id === product.id);
     // console.log(item)
-    dispatch(itemsActions.addItem({ product: item, quantity }));
-    notify({ product: item, quantity, adding: true, removing: false });
+    dispatch(itemsActions.addItem({ product, quantity }));
+    notify({ product, quantity, adding: true, removing: false });
   };
 
   return (

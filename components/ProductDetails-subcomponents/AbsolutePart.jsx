@@ -94,7 +94,7 @@ const AbsolutePart = ({ product, centerSlide, addItem }) => {
                                     <AnimatingButton name={'Ingredients'} detail={description.Ingredients} />
                                 </ul>}
 
-                                {!description && (raw_description ? <p className='text-center text-3xl'>{raw_description}</p> : <p className='text-center text-3xl'>No Description Found</p>)}
+                                {!description && (raw_description ? <p className='text-center text-xl'>{raw_description}</p> : <p className='text-center text-xl'>No Description Found</p>)}
 
                             </div>
                         </div>

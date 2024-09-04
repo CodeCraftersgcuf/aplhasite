@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default async function Page() {
     try {
-        const response = await axios.get(`${process.env.VERCEL_DOMAIN_URL}/api/get-all-items`);
+        const response = await axios.get(`${process.env.NEXT_VERCEL_DOMAIN_URL}/api/get-all-items`);
         // const dataArray = Object.values(response?.data);
         // const reversedDataArray = dataArray.reverse();
 

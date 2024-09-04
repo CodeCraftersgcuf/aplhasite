@@ -9,12 +9,12 @@ import ProductSlide from '@/components/ProductDetails-subcomponents/ProductSlide
 
 const slides2 = [1, 2, 3, 4, 5, 6, 7, 8]
 
-const ExtraItems = ({ addItem }) => {
+const ExtraItems = ({ addItem, products }) => {
     const [recommended, setRecommended] = useState(true);
     const router = useRouter()
 
     function handleNavigateToDetails(product) {
-        return router.push('/product-details?id=' + product.id)
+        return router.push('/product-details/' + product.id)
     }
 
     return (
@@ -36,7 +36,7 @@ const ExtraItems = ({ addItem }) => {
                 </div>
 
                 <div className='grid px-6 lg:grid-cols-3 2xl:grid-cols-4 gap-6'>
-                    {DUMMY_ITEMS.map((product, index) => (
+                    {products.map((product, index) => (
                         <ProductSlide
                             key={index}
                             product={product}

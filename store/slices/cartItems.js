@@ -17,7 +17,7 @@ export const itemsSlice = createSlice({
       const { product, quantity } = action.payload;
       // console.log(product);
       state.message = null;
-
+      console.log(action.payload);
       const itemExists = state.items.some(
         (item) => item.product.id === product.id
       );

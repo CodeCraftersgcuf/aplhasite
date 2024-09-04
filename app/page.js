@@ -1,6 +1,21 @@
 import HomePage from '@/components/pages/HomePage';
 import axios from 'axios';
 
+export default async function Page() {
+  console.log(process.env.NEXT_VERCEL_DOMAIN_URL);
+  try {
+    const response = await axios.get(
+      `${process.env.NEXT_VERCEL_DOMAIN_URL}/api/get-all-items`
+    );
+    // const dataArray = Object.values(response?.data);
+    // const reversedDataArray = dataArray.reverse();
+    return <HomePage data={response?.data} />;
+  } catch (error) {
+    // console.log(error);
+    return <div>Error: {error.message}</div>;
+  }
+}
+
 // export default async function Page() {
 //   try {
 //     const response = await axios.post(
@@ -22,16 +37,3 @@ import axios from 'axios';
 //     return <div>{error.message}</div>;
 //   }
 // }
-export default async function Page() {
-  try {
-    const response = await axios.get(
-      `${process.env.VERCEL_DOMAIN_URL}/api/get-all-items`
-    );
-    // const dataArray = Object.values(response?.data);
-    // const reversedDataArray = dataArray.reverse();
-    return <HomePage data={response?.data} />;
-  } catch (error) {
-    // console.log(error);
-    return <div>Error: {error.message}</div>;
-  }
-}

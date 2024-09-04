@@ -36,20 +36,25 @@ const MobileOrdersManagement = ({ addedItems, removeItem, onDecrement, onIncreme
         >
             {addedItems.length === 0 && <div className='flex h-72 text-gray-400 text-xl justify-center items-center'>No items in bag</div>}
             {addedItems.length > 0 && addedItems.map((item, index) => (
+                //    const images = product?.item_data?.ecom_image_uris
+                // const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money.amount
+                // const productName = product?.item_data?.name
+                // const productType = product?.item_data?.product_type
                 <div key={index} className='h-[16rem] flex flex-col p-4 border border-b-slate-200'>
                     <div className='flex gap-4 p-4'>
                         <div className='w-24 max-h-[7.5rem] overflow-hidden border border-gray-400 rounded-lg'>
                             <img className='rounded-lg max-h-fit'
-                                src={item.product.image[0]}
+                                src={item.product?.item_data?.ecom_image_uris ? item.product?.item_data?.ecom_image_uris[0] : ''}
                                 alt="image" />
                         </div>
                         <div className='flex flex-col gap-1'>
-                            <span>{item.product.name}</span>
+                            <span>{item.product?.item_data?.name}</span>
                             <span className='text-sm text-gray-400'>
-                                {`${item.product.color} - ${item.size}`}
+                                {`${item.product?.item_data?.product_type}`}
+                                {/* {`${item.product.color} - ${item.size}`} */}
                             </span>
                             <span>
-                                {`$${item.product.price}`}
+                                {`$${item.product?.item_data?.variations[0]?.item_variation_data.price_money.amount}`}
                             </span>
                             <span className='text-sm font-normal p-[0.15rem] border border-gray-400 w-12 text-center'>NEW</span>
                         </div>
@@ -67,7 +72,7 @@ const MobileOrdersManagement = ({ addedItems, removeItem, onDecrement, onIncreme
                                 <MdModeEdit className="text-gray-600 w-6" />
                             </button>
                         </div>
-                        <span>{`$${(item.quantity * item.product.price).toFixed(2)}`}</span>
+                        <span>{`$${(item.quantity * item.product?.item_data?.variations[0]?.item_variation_data.price_money.amount).toFixed(2)}`}</span>
                         <div className=" w-fit flex items-center space-x-2 px-[0.1rem] py-[0.1rem] rounded-full border border-gray-400">
                             <button
                                 className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-200 transition"

@@ -60,11 +60,13 @@ const HomePage = ({ data }) => {
   const reversedDataArray = dataArray.reverse();
   const splicedDataArray = reversedDataArray.splice(0, 30);
 
-  const hanldeNavigateDetails = (product) => {
+  const handleNavigateDetails = (product) => {
+    console.log('clicked');
     //first add slide data with every mapping product and then fetch it from here
-    return router.push('/product-details?id=' + product.id);
+    return router.push('/product-details/' + product.id);
   };
   const onAddItem = ({ product, quantity = 1 }) => {
+    console.log(product, quantity);
     dispatch(itemsActions.addItem({ product, quantity }));
     notify({ product, quantity, adding: true, removing: false });
   };
@@ -75,24 +77,6 @@ const HomePage = ({ data }) => {
       setageVerification(false);
     };
   }, []);
-
-  // useEffect(() => {
-  //   async function fetchData() {
-  //     const res = await axios.get(
-  //       'https://connect.squareup.com/v2/catalog/list',
-  //       {
-  //         headers: {
-  //           Authorization:
-  //             'Bearer EAAAlsVtQA5CmiZu39b_6yP5QmfuX_r-poR4KQrRU1l9kcuuACiQibh9mJnY9YCP',
-  //           'Square-Version': '2023-08-16',
-  //         },
-  //         withCredentials: false,
-  //       }
-  //     );
-  //     console.log(res);
-  //   }
-  //   fetchData();
-  // }, []);
 
   return (
     <WithHeaderWrapper>
@@ -110,7 +94,7 @@ const HomePage = ({ data }) => {
           <SliderButtons women={women} setWomen={setWomen} />
           <MobileSwiper data={splicedDataArray} />
           <DesktopLargeSwiper
-            handleNavigateDetails={hanldeNavigateDetails}
+            handleNavigateDetails={handleNavigateDetails}
             onAddItem={onAddItem}
             data={splicedDataArray}
           />

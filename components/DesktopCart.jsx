@@ -14,7 +14,10 @@ import { useRouter } from 'next/navigation';
 import notify from '@/helpers/notify';
 
 
-const DesktopCart = ({ isOpen }) => {
+const DesktopCart = ({ isOpen, products }) => {
+    const dataArray = Object.values(products);
+    const reversedDataArray = dataArray.reverse();
+    const splicedDataArray = reversedDataArray.splice(0, 30);
     // const [addedItems, setAddedItems] = useState([])
     const addedItems = useSelector((state) => state.itemsFn.items)
     const dispatch = useDispatch()
@@ -60,6 +63,7 @@ const DesktopCart = ({ isOpen }) => {
             <div className='main-card-res w-screen h-[90vh]  md:flex-row flex justify-between bg-white text-black '>
                 <ExtraItems
                     addItem={handleAddItem}
+                    products={splicedDataArray}
                 />
                 <OrdersManagementBox
                     addedItems={addedItems}

@@ -20,7 +20,7 @@ const OrderCheckout = ({ onApply }) => {
             <div className="p-[38px] checkout-inside">
                 {/* Product Summary Section */}
                 {order.map((item) => (
-                    <div key={item.id} className="flex my-4 space-x-4 items-center ">
+                    <div key={item.product.id} className="flex my-4 space-x-4 items-center ">
                         {/* Product Image */}
                         <div className="buy-img-div w-16"
                             style={{ aspectRatio: '4/5' }}
@@ -28,7 +28,7 @@ const OrderCheckout = ({ onApply }) => {
 
                             {/* Add your image here */}
                             <Image
-                                src={item.product.image[0]}
+                                src={item.product?.item_data?.ecom_image_uris ? item.product?.item_data?.ecom_image_uris[0] : ''}
                                 alt="Product Image"
                                 className=" rounded-md"
                                 layout='fill'
@@ -41,33 +41,18 @@ const OrderCheckout = ({ onApply }) => {
                         {/* Product Details */}
                         <div className="flex-1">
                             <p className="text-sm font-normal">
-                                {item.product.name}
+                                {item.product?.item_data?.name}
                             </p>
                             <span className="text-gray-500 font-light text-xs">M</span>
                         </div>
                         {/* Product Price */}
-                        <div className="text-sm font-normal">${item.product.price}</div>
+                        <div className="text-sm font-normal">${item.product?.item_data?.variations[0]?.item_variation_data.price_money.amount}</div>
                     </div>
                 ))}
 
                 {/* Rewards Reminder Section */}
                 <div className="dont-miss flex items-center space-x-2 p-4 bg-gray-100 rounded-md mt-4">
                     <div className="text-gray-600 flex flex-wrap justify-center items-center gap-3">
-                        {/* Icon for information */}
-                        {/* <svg
-            class="w-10 h-10 inline-block mr-2"
-            fill="none"
-            stroke="#777777"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M13 16h-1v-4h-1m1-4h.01M12 18a6 6 0 110-12 6 6 0 010 12z"
-            ></path>
-          </svg> */}
                         <Image src={isymbol} alt="isymbol"></Image>
                         <span className="text-sm">
                             Don&apos;t miss out!{' '}

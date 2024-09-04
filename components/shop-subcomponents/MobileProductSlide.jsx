@@ -32,9 +32,9 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
 
     // console.log(product)
     const handleAddItem = ({ product, quantity = 1 }) => {
-        const item = DUMMY_ITEMS.find((item) => item.id === product.id)
-        dispatch(itemsActions.addItem({ product: item, quantity }))
-        notify({ product: item, quantity, adding: true, removing: false })
+        // const item = DUMMY_ITEMS.find((item) => item.id === product.id)
+        dispatch(itemsActions.addItem({ product, quantity }))
+        notify({ product, quantity, adding: true, removing: false })
     }
 
     const handleSlideClick = () => {

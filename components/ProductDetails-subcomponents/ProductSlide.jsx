@@ -29,7 +29,7 @@ const ProductSlide = ({ product, addItem, bigItemClass }) => {
 
     const handleNavigateDetails = (product) => {
         dispatch(modalActions.closeModal())
-        return router.push('/product-details?id=' + product.id)
+        return router.push('/product-details/' + product.id)
     }
 
     const incrementItem = () => {

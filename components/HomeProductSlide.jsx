@@ -8,6 +8,7 @@ import { GrFormPrevious, GrFormNext } from 'react-icons/gr'
 import { FaPlus, FaMinus } from 'react-icons/fa6';
 import '@/app/styles/main.scss';
 
+
 const suggestionsImages = [
     'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p7_i3_w3000.png',
     'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p14_i3_w3000.png',
@@ -22,8 +23,7 @@ const HomeProductSlide = ({ product, onAddItem, handleNavigateDetails }) => {
     const productName = product?.item_data?.name
     const productType = product?.item_data?.product_type
     const inventoryAlert = product?.item_data?.variations[0]?.item_variation_data.location_overrides[0]?.inventory_alert_type
-    console.log(inventoryAlert)
-
+    // console.log(inventoryAlert)
 
 
     return (
@@ -41,9 +41,13 @@ const HomeProductSlide = ({ product, onAddItem, handleNavigateDetails }) => {
                         <GrFormPrevious />
                     </div>
                     {images && Object.keys(images).map((key, imgIndex) => (
-                        <SwiperSlide className="imageSlide" key={imgIndex}>
+                        <SwiperSlide
+                            className="imageSlide"
+                            key={imgIndex}
+                            onClick={() => handleNavigateDetails(product)}
+                        >
                             <img
-                                onClick={() => handleNavigateDetails(product)}
+                                // onClick={() => handleNavigateDetails(product)}
                                 className="item-image hover:cursor-pointer"
                                 src={images[key]}
                                 alt={'product image'}
