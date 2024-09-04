@@ -8,9 +8,23 @@ import { GrFormPrevious, GrFormNext } from 'react-icons/gr'
 import { FaPlus, FaMinus } from 'react-icons/fa6';
 import '@/app/styles/main.scss';
 
+const suggestionsImages = [
+    'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p7_i3_w3000.png',
+    'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p14_i3_w3000.png',
+    'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p15_i3_w3000.png',
+    'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p18_i3_w3000.png'
+];
 
 const HomeProductSlide = ({ product, onAddItem, handleNavigateDetails }) => {
     const [quantity, setQuantity] = useState(0)
+    const images = product?.item_data?.ecom_image_uris
+    const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money.amount
+    const productName = product?.item_data?.name
+    const productType = product?.item_data?.product_type
+    const inventoryAlert = product?.item_data?.variations[0]?.item_variation_data.location_overrides[0]?.inventory_alert_type
+    console.log(inventoryAlert)
+
+
 
     return (
         <>
@@ -26,13 +40,13 @@ const HomeProductSlide = ({ product, onAddItem, handleNavigateDetails }) => {
                     <div className="button-overlay prev-button-overlay">
                         <GrFormPrevious />
                     </div>
-                    {product.image.map((image, imgIndex) => (
+                    {images && Object.keys(images).map((key, imgIndex) => (
                         <SwiperSlide className="imageSlide" key={imgIndex}>
                             <img
                                 onClick={() => handleNavigateDetails(product)}
                                 className="item-image hover:cursor-pointer"
-                                src={image}
-                                alt={image.alt}
+                                src={images[key]}
+                                alt={'product image'}
                             />
                         </SwiperSlide>
                     ))}
@@ -46,11 +60,14 @@ const HomeProductSlide = ({ product, onAddItem, handleNavigateDetails }) => {
                 </p>
             </div>
             <div className="item-info">
-                <h5 className="hide">{product.name}</h5>
-                <p className="hide">
-                    Gliese <span> 4 colors</span>
+                <h5 className="hide">{productName && productName}</h5>
+                <p className="hide !text-gray-400">{`$${productPrice.toFixed(2)}`}</p>
+                <p className="!text-red-600 text-[10px] ">
+                    {inventoryAlert && inventoryAlert}
                 </p>
-                <p className="hide">{`$${product.price.toFixed(2)}`}</p>
+                {/* <p className="hide">
+                    {productType && productType} <span> 4 colors</span>
+                </p> */}
                 <div className="item-sizes-box">
                     <div>
                         <p>QUICK ADD</p>
@@ -87,9 +104,12 @@ const HomeProductSlide = ({ product, onAddItem, handleNavigateDetails }) => {
                     </div>
                 </div>
                 <div className="item-images">
-                    {product.image.map((image, imgIndex) => (
+                    {suggestionsImages.map((image, imgIndex) => (
                         <img key={imgIndex} src={image} alt="image" />
                     ))}
+                    {/* {images && Object.keys(images).map((image, imgIndex) => (
+                        <img key={imgIndex} src={image} alt="image" />
+                    ))} */}
                 </div>
             </div>
         </>

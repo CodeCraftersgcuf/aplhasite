@@ -7,7 +7,7 @@ import { DUMMY_ITEMS } from '@/utils';
 import ProductSlide from './ProductSlide';
 
 
-const ProductsGrid = ({ addItem }) => {
+const ProductsGrid = ({ products, addItem }) => {
     const [women, setWomen] = useState(true)
 
     return (
@@ -30,7 +30,7 @@ const ProductsGrid = ({ addItem }) => {
                     </div>
 
                     <div className='grid p-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-6  lg:grid-cols-3'>
-                        {DUMMY_ITEMS.map((product, index) => (
+                        {products.map((product, index) => (
                             <ProductSlide
                                 key={index}
                                 product={product}

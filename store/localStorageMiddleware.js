@@ -23,7 +23,7 @@ export const rehydrateState = () => {
     }
     return JSON.parse(serializedState); // Parse and return the saved state
   } catch (err) {
-    console.error('Could not load state from localStorage:', err);
+    console.log('Could not load state from localStorage:', err);
     return undefined;
   }
 };

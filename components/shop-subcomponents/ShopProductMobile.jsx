@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import MobileProductSlide from './MobileProductSlide'
 import { DUMMY_ITEMS } from '@/utils'
 
-const ShopProductMobile = ({ addItem }) => {
+const ShopProductMobile = ({ addItem, products }) => {
     const [bgClicked, setBgClicked] = useState(false)
     return (
         <div
             className={`py-8 h-auto grid grid-cols-2 md:grid-cols-3  gap-6 scrollbar-hide lg:hidden`}
             onClick={() => setBgClicked(true)}
         >
-            {DUMMY_ITEMS.map((product, index) => (
+            {products.map((product, index) => (
                 <MobileProductSlide
                     key={index}
                     product={product}

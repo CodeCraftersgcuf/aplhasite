@@ -12,10 +12,17 @@ import ShopProductMobile from '@/components/shop-subcomponents/ShopProductMobile
 import SliderButtons from '@/components/HomePage-subcomponents/SliderButtons';
 
 
-export default function DetailsPage() {
+export default function DetailsPage({ data }) {
     const dispatch = useDispatch()
     const swiperRef = useRef(null);
     const [product, setProduct] = useState(null)
+
+    //for displaying items in suggestion
+    const dataArray = Object.values(data?.suggestionItems);
+    const reversedDataArray = dataArray.reverse();
+    const splicedDataArray = reversedDataArray.splice(0, 30);
+
+    const images = data.item_data?.ecom_image_uris
 
 
 
@@ -51,23 +58,26 @@ export default function DetailsPage() {
         <WithHeaderWrapper>
             <div className='lg:h-[87vh] relative apni-class-main'>
                 <DetailsSwiper
-                    productImages={product && product.images}
+                    productImages={images && images}
                     ref={swiperRef}
                 />
                 <AbsolutePart
                     addItem={handleAddItem}
-                    product={product}
+                    product={data}
                     centerSlide={handleCenterSlide}
                 />
             </div>
             <ProductsGrid
                 addItem={handleAddItem}
+                products={splicedDataArray}
             />
             <div className='px-6 pt-8'>
                 <div className='sliders'>
                     <SliderButtons />
                 </div>
-                <ShopProductMobile />
+                <ShopProductMobile
+                    products={splicedDataArray}
+                />
             </div>
         </WithHeaderWrapper>
     );

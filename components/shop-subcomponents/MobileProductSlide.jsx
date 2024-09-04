@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import notify from '@/helpers/notify';
 import { DUMMY_ITEMS } from '@/utils';
 import { useRouter } from 'next/navigation';
+import axios from 'axios';
 
 
 const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
@@ -17,6 +18,18 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
     const [quantity, setQuantity] = useState(0)
     const dispatch = useDispatch()
     const router = useRouter()
+
+    //handling product Data
+    const images = product?.item_data?.ecom_image_uris
+    let imagesArray;
+    if (images) {
+        imagesArray = Object.values(images)
+    }
+    const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money.amount
+    const productName = product?.item_data?.name
+    const productType = product?.item_data?.product_type
+    const inventoryAlert = product?.item_data?.variations[0]?.item_variation_data.location_overrides[0]?.inventory_alert_type
+
     // console.log(product)
     const handleAddItem = ({ product, quantity = 1 }) => {
         const item = DUMMY_ITEMS.find((item) => item.id === product.id)
@@ -25,8 +38,11 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
     }
 
     const handleSlideClick = () => {
+        // console.log(product.id)
+        const itemId = product.item_data?.variations[0]?.id
+        console.log(product.item_data?.variations[0]?.id)
         if (!showQuantity) {
-            router.push('/product-details?id=' + product.id)
+            router.push('/product-details/' + product.id)
         }
     }
     useEffect(() => {
@@ -54,11 +70,11 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
                 // freeModeSticky={true}
                 navigation={false}
                 modules={[FreeMode, Navigation]}
-                style={{ width: '100%', aspectRatio: '4/5' }}
+                style={{ width: '100%', aspectRatio: '4/5', height: 'auto' }}
 
             // className="mySwiper"
             >
-                {product.image?.map((image, index) => (
+                {images && imagesArray.map((image, index) => (
                     <SwiperSlide key={index}>
                         <div
                             className='w-full h-full rounded-xl overflow-hidden relative'
@@ -84,11 +100,12 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
                 ))}
             </Swiper>
             <div className='flex flex-col bg-black py-2 gap-1'>
-                <h5 className="text-[10px] text-slate-100">{product.name}</h5>
-                <p className="text-[8px] text-gray-300">
-                    Gliese <span> 4 colors</span>
-                </p>
-                <p className="text-[8px] text-slate-100 ">${product.price}</p>
+                <h5 className="text-[10px] text-slate-100">{productName && productName}</h5>
+                {/* <p className="text-[8px] text-gray-300">
+                    {productType} <span> 4 colors</span>
+                </p> */}
+                <p className="text-[10px] text-gray-400">${productPrice && productPrice}</p>
+                <p className="text-[8px] text-red-600">{inventoryAlert && inventoryAlert}</p>
             </div>
 
             <AnimatePresence>

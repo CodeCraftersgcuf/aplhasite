@@ -3,11 +3,11 @@ import MobileProductSlide from '@/components/shop-subcomponents/MobileProductSli
 import { DUMMY_ITEMS } from '@/utils';
 import MobileSmallSwiperSlide from './MobileSmallSwiperSlide';
 
-const MobileSmallSwiper = () => {
+const MobileSmallSwiper = ({ data }) => {
     return (
         <div className='w-screen flex flex-col gap-2 px-6 overflow-x-scroll scrollbar-hide lg:hidden'>
             <div className='flex gap-2 '>
-                {DUMMY_ITEMS.slice(0, Math.ceil(DUMMY_ITEMS.length / 2)).map((product, index) => (
+                {data.slice(0, Math.ceil(data.length / 2)).map((product, index) => (
                     <div key={index} className='w-3/12 max-w-[150px] flex-shrink-0'>
                         <MobileSmallSwiperSlide
                             key={index}
@@ -17,7 +17,7 @@ const MobileSmallSwiper = () => {
                 ))}
             </div>
             <div className='flex gap-2'>
-                {DUMMY_ITEMS.slice(Math.ceil(DUMMY_ITEMS.length / 2)).map((product, index) => (
+                {data.slice(Math.ceil(data.length / 2)).map((product, index) => (
                     <div key={index} className='w-3/12 max-w-[150px] flex-shrink-0'>
                         <MobileSmallSwiperSlide
                             key={index}

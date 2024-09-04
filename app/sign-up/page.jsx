@@ -1,13 +1,15 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import AuthInputButton from '@/components/auth-input-subcomponents/AuthInputButton'
 import CustomAuthInput from '@/components/auth-input-subcomponents/CustomAuthInput'
 import WithHeaderWrapper from '@/components/WithHeaderWrapper'
 import { useRouter } from 'next/navigation'
 import { isEmail, isEqualsToOtherValue, isNotEmpty, isPasswordValid } from '@/helpers/validationsFuncitons'
 import { useSelector } from 'react-redux'
+import ViewPasswordIco from '@/components/auth-input-subcomponents/ViewPasswordIco'
 
 const SignUpPage = () => {
+    const [showPassword, setShowPassword] = useState(false)
     const router = useRouter()
     const data = useSelector((state) => state.authInputFn.signUp)
     const handleNavigateSignup = () => {
@@ -73,7 +75,12 @@ const SignUpPage = () => {
                             placeholder='password'
                             error={'Password must contain atleast 8 digits'}
                             childType={'signUp'}
-                        />
+                        >
+                            <ViewPasswordIco
+                                showPassword={showPassword}
+                                setShowPassword={setShowPassword}
+                            />
+                        </CustomAuthInput>
 
                         <div className='w-full h-[1px] bg-gray-300'></div>
 

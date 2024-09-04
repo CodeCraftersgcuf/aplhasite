@@ -1,14 +1,16 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import AuthInputButton from '@/components/auth-input-subcomponents/AuthInputButton'
 import CustomAuthInput from '@/components/auth-input-subcomponents/CustomAuthInput'
 import WithHeaderWrapper from '@/components/WithHeaderWrapper'
 import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import { isEmail, isEqualsToOtherValue, isNotEmpty, isPasswordValid } from '@/helpers/validationsFuncitons'
+import ViewPasswordIco from '@/components/auth-input-subcomponents/ViewPasswordIco'
 
 const SignInPage = () => {
+    const [showPassword, setShowPassword] = useState(false)
     const router = useRouter()
     const data = useSelector((state) => state.authInputFn.signIn)
     const handleNavigateSignup = () => {
@@ -21,7 +23,7 @@ const SignInPage = () => {
     return (
         <WithHeaderWrapper>
             <div
-                className="h-screen max-w-[100%] flex items-center justify-center bg-white "
+                className="h-screen w-screen flex items-center justify-center bg-white "
             // onClick={handleOutsideClick}
             >
                 <div className="bg-white flex flex-col gap-3 rounded-lg w-full max-w-lg mx-4 sm:mx-0 p-6">
@@ -46,11 +48,16 @@ const SignInPage = () => {
                         <CustomAuthInput
                             validFn={(value) => !isNotEmpty(value) || !isPasswordValid(value)}
                             id='password'
-                            type="password"
+                            type={showPassword ? 'text' : 'password'}
                             placeholder='password'
                             error={'Password must contain atleast 8 digits'}
                             childType={'signIn'}
-                        />
+                        >
+                            <ViewPasswordIco
+                                showPassword={showPassword}
+                                setShowPassword={setShowPassword}
+                            />
+                        </CustomAuthInput>
 
                         <div className='w-full h-[1px] bg-gray-300'></div>
 

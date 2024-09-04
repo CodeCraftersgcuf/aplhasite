@@ -10,12 +10,14 @@ import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
 const slides = Array.from({ length: 40 }, (_, index) => index + 1);
-const images = [
-    'https://cdn.shopify.com/s/files/1/1752/8007/products/TrilogyCropHoodieCelestialBlue4_400x.jpg',
-    'https://alphalete.uk/cdn/shop/files/4U8A0538.jpg?crop=center&v=1714233619&width=1400',
-];
+// const images = [
+//     'https://cdn.shopify.com/s/files/1/1752/8007/products/TrilogyCropHoodieCelestialBlue4_400x.jpg',
+//     'https://alphalete.uk/cdn/shop/files/4U8A0538.jpg?crop=center&v=1714233619&width=1400',
+// ];
 
-const DesktopSmallSwiper = () => {
+// const images = product?.item_data?.ecom_image_uris
+
+const DesktopSmallSwiper = ({ data }) => {
     const swiperRef2 = useRef(null);
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const handleMouseEnter = (index) => {
@@ -92,7 +94,7 @@ const DesktopSmallSwiper = () => {
                 >
                     <GrFormPrevious />
                 </button>
-                {slides.map((slide, index) => (
+                {data.map((product, index) => (
                     <SwiperSlide key={index}>
                         <div
                             className="item-image-box"
@@ -102,8 +104,8 @@ const DesktopSmallSwiper = () => {
                         >
                             <img
                                 className="item-image"
-                                src={hoveredIndex === index ? images[1] : images[0]}
-                                alt=""
+                                src={product.item_data.ecom_image_uris ? product?.item_data?.ecom_image_uris?.length > 1 ? hoveredIndex === index ? product?.item_data?.ecom_image_uris['1'] : product?.item_data?.ecom_image_uris['0'] : product?.item_data?.ecom_image_uris['0'] : ''}
+                                alt="product image"
                             />
                             <p className="plus">
                                 <FaPlus />

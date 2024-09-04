@@ -2,6 +2,11 @@ import React from 'react'
 import { FaPlus } from 'react-icons/fa'
 
 const MobileSmallSwiperSlide = ({ product }) => {
+    const images = product?.item_data?.ecom_image_uris
+    let imagesArray;
+    if (images) {
+        imagesArray = Object.values(images)
+    }
     return (
         <div className="relative">
             <div
@@ -9,7 +14,7 @@ const MobileSmallSwiperSlide = ({ product }) => {
             >
                 <img
                     className="rounded-xl object-cover"
-                    src={product.image[0]}
+                    src={images && imagesArray[0]}
                     alt={`Slide`}
                 />
             </div>

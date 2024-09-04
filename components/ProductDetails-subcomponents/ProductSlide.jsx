@@ -8,10 +8,25 @@ import { modalActions } from '@/store/slices/openModel';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 
+const suggestionsImages = [
+    'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p7_i3_w3000.png',
+    'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p14_i3_w3000.png',
+    'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p15_i3_w3000.png',
+    'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p18_i3_w3000.png'
+];
+
 const ProductSlide = ({ product, addItem, bigItemClass }) => {
     const dispatch = useDispatch()
     const [quantity, setQuantity] = useState(0)
     const router = useRouter()
+
+    //extracting data from raw form
+    const images = product?.item_data?.ecom_image_uris
+    const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money.amount
+    const productName = product?.item_data?.name
+    const productType = product?.item_data?.product_type
+    const inventoryAlert = product?.item_data?.variations[0]?.item_variation_data.location_overrides[0]?.inventory_alert_type
+
     const handleNavigateDetails = (product) => {
         dispatch(modalActions.closeModal())
         return router.push('/product-details?id=' + product.id)
@@ -49,16 +64,15 @@ const ProductSlide = ({ product, addItem, bigItemClass }) => {
                             <div className="button-overlay prev-button-overlay">
                                 <GrFormPrevious />
                             </div>
-                            {product.image.map((image, imgIndex) => (
+                            {images && Object.keys(images).map((key, imgIndex) => (
                                 <SwiperSlide
                                     className="imageSlide hover:cursor-pointer" key={imgIndex}
                                     onClick={() => handleNavigateDetails(product)}
                                 >
                                     <img
                                         className="item-image"
-                                        src={image}
+                                        src={images[key]}
                                         alt={'image'}
-
                                     />
                                 </SwiperSlide>
                             ))}
@@ -73,11 +87,11 @@ const ProductSlide = ({ product, addItem, bigItemClass }) => {
                     </div>
                     <div className="flex flex-col h-[40px] transition-all duration-300 relative cursor-pointer">
                         <div className='flex flex-col bg-white py-2'>
-                            <h5 className="text-[12px] text-black">Amplify Gemini Bra</h5>
+                            <h5 className="text-[12px] text-black">{productName && productName}</h5>
+                            <p className="text-[10px] text-black ">${productPrice && productPrice}</p>
                             <p className="text-[10px] text-gray-600">
-                                Gliese <span> 4 colors</span>
+                                {inventoryAlert && inventoryAlert}
                             </p>
-                            <p className="text-[10px] text-black ">$120.00</p>
                         </div>
                         <div className="item-sizes-box">
                             <div>
@@ -108,10 +122,15 @@ const ProductSlide = ({ product, addItem, bigItemClass }) => {
                             </div>
                         </div>
                         <div className="item-images">
-                            {product.image.map((image, imgIndex) => (
+                            {suggestionsImages.map((image, imgIndex) => (
                                 <img key={imgIndex} src={image} alt="image" />
                             ))}
                         </div>
+                        {/* <div className="item-images">
+                            {product.image.map((image, imgIndex) => (
+                                <img key={imgIndex} src={image} alt="image" />
+                            ))}
+                        </div> */}
                     </div>
                 </div>
             </div>

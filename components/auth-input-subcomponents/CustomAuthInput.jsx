@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import { authInputActions } from '@/store/slices/authInputs'
 import splitAndCapitalize from '@/helpers/splitAndCapitalize'
 
-const CustomAuthInput = ({ validFn, type, id, error, childType, placeholder }) => {
+const CustomAuthInput = ({ validFn, type, id, error, childType, placeholder, children }) => {
     const dispatch = useDispatch()
     const { setValueInSignIn, setValueInSignUp, setValueInSubscribe } = authInputActions
     const { enteredValue, handleChange, handleBlur, hasError, setEnteredValue } = useInput('', (value) => validFn(value))
@@ -18,7 +18,7 @@ const CustomAuthInput = ({ validFn, type, id, error, childType, placeholder }) =
 
 
     return (
-        <div>
+        <div className='relative'>
             <label htmlFor="email" className="block text-gray-700 font-bold mb-2">
                 {splitAndCapitalize(id)}
             </label>
@@ -31,6 +31,7 @@ const CustomAuthInput = ({ validFn, type, id, error, childType, placeholder }) =
                 onChange={handleChange}
                 onBlur={handleBlur}
             />
+            {children && children}
             {hasError && <p className="text-red-500">{error}</p>}
         </div>
     )

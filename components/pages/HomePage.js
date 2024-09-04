@@ -24,6 +24,11 @@ import MobileSmallSwiper from '@/components/HomePage-subcomponents/MobileSmallSw
 import Image from 'next/image';
 import axios from 'axios';
 
+const topVapeImages = [
+  'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p7_i3_w3000.png',
+  'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p14_i3_w3000.png',
+  'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p15_i3_w3000.png',
+];
 const topImages = [
   'https://alphalete.uk/cdn/shop/files/web_2mensshorts-graphic.jpg?crop=center&v=1714233659&width=1400',
   'https://alphalete.uk/cdn/shop/files/4U8A0538.jpg?crop=center&v=1714233619&width=1400',
@@ -38,6 +43,7 @@ const bottomImages = [
   'https://alphalete.uk/cdn/shop/files/aa24-apr27-34.jpg?crop=center&v=1714233984&width=1400',
   'https://alphalete.uk/cdn/shop/files/aa24-apr27-36.jpg?crop=center&v=1714233923&width=1400',
 ];
+
 const HomePage = ({ data }) => {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -49,6 +55,10 @@ const HomePage = ({ data }) => {
   const [men, setMen] = useState(false);
 
   const innerSwiperRef = useRef();
+
+  const dataArray = Object.values(data);
+  const reversedDataArray = dataArray.reverse();
+  const splicedDataArray = reversedDataArray.splice(0, 30);
 
   const hanldeNavigateDetails = (product) => {
     //first add slide data with every mapping product and then fetch it from here
@@ -98,19 +108,19 @@ const HomePage = ({ data }) => {
         <SliderHeading />
         <div className="sliders overflow-x-hidden">
           <SliderButtons women={women} setWomen={setWomen} />
-          <MobileSwiper />
+          <MobileSwiper data={splicedDataArray} />
           <DesktopLargeSwiper
             handleNavigateDetails={hanldeNavigateDetails}
             onAddItem={onAddItem}
-            data={data}
+            data={splicedDataArray}
           />
-          <LowerContainer images={topImages} />
+          <LowerContainer images={topVapeImages} />
           <SliderHeading women={women} /> {/* Lower new arrivals || !mt-14 */}
           <SliderButtons women={women} setWomen={setWomen} />
-          <DesktopSmallSwiper />
-          <MobileSmallSwiper />
+          <DesktopSmallSwiper data={splicedDataArray} />
+          <MobileSmallSwiper data={splicedDataArray} />
           {/* <BottomContainer /> */}
-          <LowerContainer images={bottomImages} videos={videos} />
+          <LowerContainer images={topVapeImages} videos={''} />
           <PreFooter />
         </div>
       </main>
