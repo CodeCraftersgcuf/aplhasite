@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
+import { FaPlus } from "react-icons/fa6"
+import AnimeListItem from './AnimeListItem';
 
 const AnimeButtons = ({ name, options }) => {
     const controls = useAnimation();
@@ -16,7 +18,7 @@ const AnimeButtons = ({ name, options }) => {
     };
 
     const addSignVariants = {
-        open: { rotate: 45, transition: { duration: 0.5 } },
+        open: { rotate: 225, transition: { duration: 0.5 } },
         collapsed: { rotate: 0, transition: { duration: 0.5 } }
     };
 
@@ -28,29 +30,22 @@ const AnimeButtons = ({ name, options }) => {
             >
                 <span>{name}</span>
                 <motion.span
-                    className='text-lg'
+                    className='text-sm'
                     animate={controls}
                     variants={addSignVariants}
+
                 >
-                    +
+                    <FaPlus />
                 </motion.span>
             </div>
-            {Object.keys(options).map((option, index) => (
-                <motion.li
+            {options.map((option, index) => (
+                <AnimeListItem
                     key={index}
-                    className="flex items-center text-[12px] text-gray-400"
-                    initial="collapsed"
-                    animate={controls}
-                    variants={listItemsVariants}
-                >
-                    <input
-                        type="radio"
-                        name="customRadio"
-                        className="appearance-none h-4 w-4 border border-gray-300 rounded-md checked:bg-gray-800 focus:outline-none transition duration-200 mr-2 hover:cursor-pointer"
-                    />
-                    {option}
-                </motion.li>
-
+                    option={option}
+                    controls={controls}
+                    listItemsVariants={listItemsVariants}
+                    category={name}
+                />
             ))}
             <div className='w-full h-[1px] my-[8px] bg-gray-300' />
         </>

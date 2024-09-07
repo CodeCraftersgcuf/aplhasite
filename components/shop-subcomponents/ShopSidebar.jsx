@@ -2,6 +2,20 @@ import React from 'react'
 import { DUMMY_ITEMS, vapeProducts } from '@/utils';
 import AnimeButtons from '@/components/shop-subcomponents/SideBarAnimatedButtons';
 
+const CATEGORIES = [
+    {
+        category: 'Nuro Disposable',
+        subCategories: ['1ml - Classic', '1ml - Limited Edition', '1ml - Essential', '3ml - Classic', '3ml - Super Blend', '3ml - Broad Spec']
+    },
+    {
+        category: 'Nuro Cartridge',
+        subCategories: ['1ml - Limited Edition', '1ml - Classic']
+    },
+    {
+        category: 'Candy Pod',
+        subCategories: ['1ml - Broad Spec']
+    },
+]
 
 const ShopSidebar = ({ isStyles, setStyles }) => {
     return (
@@ -35,11 +49,11 @@ const ShopSidebar = ({ isStyles, setStyles }) => {
                     <div className='w-full h-[1px] bg-gray-300 mb-[8px]'></div>
                 </div>
                 <div className='flex  flex-col overflow-scroll scrollbar-hide'>
-                    {vapeProducts.map((product, index) => (
+                    {CATEGORIES.map((ele, index) => (
                         <AnimeButtons
                             key={index}
-                            name={product.productName}
-                            options={product.options}
+                            name={ele.category}
+                            options={ele.subCategories}
                         />
                     ))}
                 </div>
