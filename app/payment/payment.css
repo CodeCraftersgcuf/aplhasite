@@ -130,19 +130,11 @@ select:focus-visible {
   outline: 1px solid #868686 !important;
 }
 
-.drop-down-div {
-  position: relative;
-}
 
 .select-tag {
-  padding: 21px 30px 6px 11px;
+  padding: 27px 30px 8px 11px;
 }
 
-.country-span {
-  position: absolute;
-  top: 10px;
-  left: 15px;
-}
 
 .in-p {
   padding: 15px 10px !important;

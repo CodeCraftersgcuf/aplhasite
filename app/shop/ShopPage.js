@@ -29,6 +29,7 @@ const ShopPage = ({ data }) => {
   const dataArray = Object.values(data);
   const reversedDataArray = dataArray.reverse();
   const splicedDataArray = reversedDataArray.splice(0, 30);
+  console.log(splicedDataArray);
 
   const addItem = ({ product, quantity = 1 }) => {
     // const item = DUMMY_ITEMS.find((item) => item.id === product.id);

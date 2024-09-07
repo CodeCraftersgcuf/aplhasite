@@ -11,6 +11,7 @@ import Header from '@/components/Header';
 import ReduxProviderWrapper from '@/components/ReduxProviderWrapper';
 import './globals.css';
 import Footer from '@/components/Footer';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -37,8 +38,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head />
-      <body className={inter.className} >
-        <ReduxProviderWrapper>{children}</ReduxProviderWrapper>
+      <body className={inter.className}>
+        <ReduxProviderWrapper>
+          <SkeletonTheme baseColor="#2f2c2c" highlightColor="#726a6a">
+            {children}
+          </SkeletonTheme>
+        </ReduxProviderWrapper>
       </body>
     </html>
   );

@@ -9,8 +9,8 @@ const DeliverySection = ({ childType }) => {
         <div className="">
             {/* Country/Region Section */}
 
-            <div className="drop-down-div flex flex-col space-y-2 mb-4">
-                <span className="country-span text-gray-400 text-[12px]">
+            <div className="relative flex flex-col space-y-2 mb-4">
+                <span className="absolute top-[15px] left-[15px] text-gray-400 text-[12px]">
                     Country/Region
                 </span>
 
@@ -54,12 +54,7 @@ const DeliverySection = ({ childType }) => {
                 id="company"
                 error="company is required" />
             {/* Address Section */}
-            <InputElement
-                childType={childType}
-                validFn={(value) => !isNotEmpty(value)}
-                type="text"
-                id="lastName"
-                error="Last name is required" />
+
             <InputElement
                 childType={childType}
                 validFn={(value) => !isNotEmpty(value)}

@@ -1,55 +1,53 @@
-// import { connectDb } from '../../../../configure/connectDb';
-// import { NextResponse, NextRequest } from 'next/server';
-// import User from '@/models/User';
-// import bcrypt from 'bcryptjs';
-// import { paramCase } from 'param-case';
-// import { sendEmail } from '../send-email/route';
+import { NextRequest, NextResponse } from 'next/server';
+import User from '@/models/User'; // Ensure correct path to your User model
+import { connectDb } from '@/configure/connectDb'; // Ensure correct path to your database connection
 
-// connectDb();
+// Connect to the database
+connectDb();
 
-// export const POST = async (request: NextRequest) => {
-//   try {
-//     const reqBody = await request.json();
-//     const { email, password, username } = reqBody;
+export const POST = async (request) => {
+  try {
+    const reqBody = await request.json();
+    console.log(reqBody);
+    const { firstName, lastName, email, password } = reqBody;
 
-//     //check user already exists
-//     const user = await User.findOne({ email: email }).exec();
+    // Basic validation
+    if (!firstName || !lastName || !email || !password) {
+      return NextResponse.json(
+        { message: 'All fields are required' },
+        { status: 400 }
+      );
+    }
 
-//     if (user) {
-//       return NextResponse.json(
-//         { error: 'User Already Exists' },
-//         { status: 400 }
-//       );
-//     }
+    // Check if the user already exists
+    const existingUser = await User.findOne({ email }).exec();
+    if (existingUser) {
+      return NextResponse.json(
+        { message: 'User already exists' },
+        { status: 400 }
+      );
+    }
 
-//     //hash password
-//    const salt = bcrypt.genSaltSync(10);
-//     const hashedPassword = bcrypt.hashSync(password, salt);
+    // Create a new user
+    const newUser = new User({
+      firstName,
+      lastName,
+      email,
+      password, // Password will be hashed by pre-save hook
+    });
 
-//     //create new user
-//     const userParam = paramCase(username);
-//     console.log(userParam);
-//     const newUser = new User({
-//       email,
-//       password: hashedPassword,
-//       username,
-//       userParam: userParam,
-//     });
+    // Save the user to the database
+    await newUser.save();
 
-//     const savedUser = await newUser.save();
-
-//     await sendEmail({
-//       email,
-//       emailType: 'VERIFY',
-//       userId: savedUser._id,
-//     });
-//     return NextResponse.json({
-//       message: 'Successfully created new User',
-//       success: true,
-//       savedUser,
-//     });
-//     console.log('request sent');
-//   } catch (error) {
-//     return NextResponse.json({ error }, { status: 500 });
-//   }
-// };
+    return NextResponse.json(
+      { message: 'User registered successfully' },
+      { status: 201 }
+    );
+  } catch (error) {
+    console.error('Error during signup:', error);
+    return NextResponse.json(
+      { message: 'Internal server error' },
+      { status: 500 }
+    );
+  }
+};

@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AuthInputButton from '@/components/auth-input-subcomponents/AuthInputButton'
 import CustomAuthInput from '@/components/auth-input-subcomponents/CustomAuthInput'
 import WithHeaderWrapper from '@/components/WithHeaderWrapper'
@@ -7,18 +7,35 @@ import { useRouter } from 'next/navigation'
 import { isEmail, isEqualsToOtherValue, isNotEmpty, isPasswordValid } from '@/helpers/validationsFuncitons'
 import { useSelector } from 'react-redux'
 import ViewPasswordIco from '@/components/auth-input-subcomponents/ViewPasswordIco'
+import usePost from '@/hooks/usePost'
+import { useDispatch } from 'react-redux'
+import { stateActions } from '@/store/slices/currentState'
+import '@/app/styles/spinner.scss'
 
 const SignUpPage = () => {
+    const dispatch = useDispatch()
+    const { isLoading, isError, isSuccess, postData } = usePost()
     const [showPassword, setShowPassword] = useState(false)
     const router = useRouter()
     const data = useSelector((state) => state.authInputFn.signUp)
     const handleNavigateSignup = () => {
         router.push('/sign-in')
     }
-    const hanldeSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault()
         console.log(data)
+        if (data.email.trim() === '' || data.password.trim() === '') {
+            return
+        }
+        postData({ url: 'http://localhost:3000/api/signup', data: data })
     }
+
+    useEffect(() => {
+        if (isSuccess) {
+            // dispatch(stateActions.userLogin())
+            router.push('/sign-in')
+        }
+    }, [isSuccess])
 
     return (
         <WithHeaderWrapper>
@@ -32,7 +49,7 @@ const SignUpPage = () => {
 
                     </div>
                     <form
-                        onSubmit={hanldeSubmit}
+                        onSubmit={handleSubmit}
                         className="flex flex-col gap-2">
 
                         <CustomAuthInput
@@ -85,7 +102,7 @@ const SignUpPage = () => {
                         <div className='w-full h-[1px] bg-gray-300'></div>
 
                         <AuthInputButton>
-                            Register
+                            {isLoading ? <span className="small-loader"></span> : 'Sign Up'}
                         </AuthInputButton>
                     </form>
                     <div className="flex justify-center text-xs mt-2">

@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AuthInputButton from '@/components/auth-input-subcomponents/AuthInputButton'
 import CustomAuthInput from '@/components/auth-input-subcomponents/CustomAuthInput'
 import WithHeaderWrapper from '@/components/WithHeaderWrapper'
@@ -8,8 +8,14 @@ import { useRouter } from 'next/navigation'
 import { useSelector } from 'react-redux'
 import { isEmail, isEqualsToOtherValue, isNotEmpty, isPasswordValid } from '@/helpers/validationsFuncitons'
 import ViewPasswordIco from '@/components/auth-input-subcomponents/ViewPasswordIco'
+import usePost from '@/hooks/usePost'
+import { stateActions } from '@/store/slices/currentState'
+import { useDispatch } from 'react-redux'
+import '@/app/styles/spinner.scss'
 
 const SignInPage = () => {
+    const dispatch = useDispatch()
+    const { isLoading, isError, isSuccess, postData } = usePost()
     const [showPassword, setShowPassword] = useState(false)
     const router = useRouter()
     const data = useSelector((state) => state.authInputFn.signIn)
@@ -19,7 +25,19 @@ const SignInPage = () => {
     const hanldeSubmit = (e) => {
         e.preventDefault()
         console.log(data)
+        if (data.email.trim() === '' || data.password.trim() === '') {
+            return
+        }
+        postData({ url: 'http://localhost:3000/api/login', data: data })
     }
+
+    useEffect(() => {
+        if (isSuccess) {
+            dispatch(stateActions.userLogin())
+            router.push('/')
+        }
+    }, [isSuccess])
+
     return (
         <WithHeaderWrapper>
             <div
@@ -46,7 +64,7 @@ const SignInPage = () => {
                         <div className='w-full h-[1px] bg-gray-300'></div>
 
                         <CustomAuthInput
-                            validFn={(value) => !isNotEmpty(value) || !isPasswordValid(value)}
+                            validFn={() => false}
                             id='password'
                             type={showPassword ? 'text' : 'password'}
                             placeholder='password'
@@ -62,7 +80,7 @@ const SignInPage = () => {
                         <div className='w-full h-[1px] bg-gray-300'></div>
 
                         <AuthInputButton>
-                            Sign In
+                            {isLoading ? <span className="small-loader"></span> : 'Sign In'}
                         </AuthInputButton>
                     </form>
                     <div className="flex justify-center text-xs mt-2">

@@ -50,8 +50,8 @@ const WithHeaderWrapper = ({ children }) => {
 
         getAllItems()
     }, [])
-    console.log(device)
-    console.log(products)
+    // console.log(device)
+    // console.log(products)
 
     return (
         <>

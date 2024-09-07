@@ -1,11 +1,20 @@
 import React from 'react'
+import { paymentActions } from '@/store/slices/paymentInputs'
+import { useDispatch } from 'react-redux'
 
 const Select = () => {
+    const dispatch = useDispatch()
+
+    const handleChangeOption = (e) => {
+        console.log(e.target.value)
+        dispatch(paymentActions.setValueInDeliveryDetails({ key: 'country', value: e.target.value }))
+    }
     return (
         <select
             id="country"
             name="country"
-            className="border border-gray-300 rounded-md w-full select-tag text-sm"
+            className="border border-gray-300 rounded-md w-full select-tag text-black text-sm"
+            onChange={handleChangeOption}
         >
             <option value="united-kingdom" className="text-sm">United Kingdom</option>
             <option value="afghanistan" className="text-sm">Afghanistan</option>

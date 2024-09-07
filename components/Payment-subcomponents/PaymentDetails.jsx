@@ -46,7 +46,7 @@ const PaymentDetails = ({ onReviewOrder }) => {
           <Heading>CONTACT</Heading>
           <div>
             <Link
-              href="/user/login"
+              href="/sign-in"
               className="underline text-[13px] text-[#707070]"
             >
               Log in
@@ -123,6 +123,7 @@ const PaymentDetails = ({ onReviewOrder }) => {
         {/* Footer Links Section */}
         <FooterLinks />
       </div>
+
     </div>
     // </div>
   );

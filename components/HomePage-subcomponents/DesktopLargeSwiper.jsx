@@ -7,12 +7,13 @@ import { FreeMode, Grid, Navigation, Pagination } from 'swiper/modules';
 import HomeProductSlide from '../HomeProductSlide';
 import { DUMMY_ITEMS } from '@/utils';
 import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
+import { SkeletonTheme } from 'react-loading-skeleton';
 
 
 const DesktopLargeSwiper = ({ onAddItem, handleNavigateDetails, data }) => {
 
   const swiperRef = useRef(null);
-  console.log(typeof data)
+  // console.log(typeof data)
   // console.log(data['0'])
   // console.log(Object.keys(data))
   // Object.keys(data).map((key) => {
@@ -75,6 +76,7 @@ const DesktopLargeSwiper = ({ onAddItem, handleNavigateDetails, data }) => {
             //       index === 0 ? { paddingLeft: "50px", zIndex: '100' } : {}
             //     }
             >
+              <SkeletonTheme color="#d3d3e0" highlightColor="#e1e1e1" />
               <div className="slider-item">
                 <HomeProductSlide
                   key={index}

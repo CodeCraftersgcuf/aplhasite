@@ -18,7 +18,7 @@ const ExtraItems = ({ addItem, products }) => {
     }
 
     return (
-        <div className='main-card-res-none lg:w-9/12 flex md:items-center md:w-[550px] sm:w-[400px]  flex-col overflow-x-auto scrollbar-hide'>
+        <div className='main-card-res-none lg:w-9/12 flex md:items-center md:w-[550px] sm:w-[400px]  flex-col overflow-x-auto scrollbar-hide border border-t-gray-400'>
             <div className="sliders">
                 <div className="slider-buttons !mt-[30px]">
                     <span

@@ -13,7 +13,7 @@ import { totalPrice } from '@/helpers/totalPrice';
 import notify from '@/helpers/notify';
 
 
-const MobileCart = ({ isOpen }) => {
+const MobileCart = ({ isOpen, products }) => {
     const router = useRouter()
     const cartDiv = useRef()
     const upperDiv = useRef()

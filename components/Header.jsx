@@ -98,7 +98,7 @@ const Header = () => {
               <Link className="border-s-[1px] ms-1 border-gray-600" href="/">
                 Info
               </Link>
-              <Link className="border-s-[1px] ms-1 border-gray-600" href="/">
+              <Link className="border-s-[1px] ms-1 border-gray-600" href="/sign-in">
                 Login
               </Link>
             </div>
@@ -134,9 +134,9 @@ const Header = () => {
           </div>
           <div className="relative">
             <FaSearch />
-            <div className="relative">
-              <SlBag onClick={showCartModal} className="cart" />
-              <p className="mt-[15px] w-[20px]  absolute pr-0 top-2 right-0.5 bg-white !text-black border-0 rounded-full text-center cart-num">
+            <div onClick={showCartModal} className="relative">
+              <SlBag className="cart" />
+              <p className="mt-[15px] w-[20px] absolute pr-0 top-2 right-0.5 bg-white !text-black border-0 rounded-full text-center cart-num">
                 {cartItemsNo}
               </p>
             </div>

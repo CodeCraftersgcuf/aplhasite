@@ -7,7 +7,7 @@ export const totalPrice = (items) => {
           .price_money.amount
       ) * Number(items[i].quantity);
   }
-  return total.toFixed(2);
+  return (total / 100).toFixed(2);
 };
 // export const totalPrice = (items) => {
 //   let total = 0;

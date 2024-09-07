@@ -71,21 +71,25 @@ const HomePage = ({ data }) => {
     notify({ product, quantity, adding: true, removing: false });
   };
 
-  useEffect(() => {
-    setageVerification(true);
-    return () => {
-      setageVerification(false);
-    };
-  }, []);
-
+  // useEffect(() => {
+  //   setageVerification(true);
+  //   return () => {
+  //     setageVerification(false);
+  //   };
+  // }, []);
+  console.log(state);
   return (
     <WithHeaderWrapper>
       <main className="home">
         {/* <Toaster position="bottom-center" /> */}
         {ageVerification && <AgeVerificationModal />}
-        {state === CURRENT_STATES.LOGOUT && <SubscribeModal />}
+        {/* {state === CURRENT_STATES.LOGOUT && <SubscribeModal />} */}
         <div className="relative max-w-[100%] h-screen">
-          <Image src={bgImage} className="object-cover h-full w-full" />
+          <Image
+            src={bgImage}
+            className="object-cover h-full w-full"
+            priority={true}
+          />
           <TopContainer women={women} />
         </div>
         {/* Upper new arrivals */}
