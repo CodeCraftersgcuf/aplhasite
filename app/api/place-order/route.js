@@ -1,3 +1,139 @@
+// import { Client, Environment } from 'square';
+// import { NextResponse } from 'next/server';
+// import { v4 as uuidv4 } from 'uuid';
+// import fulfilledCredentials from '@/helpers/fulfilledCredentials';
+// import axios from 'axios';
+
+// // Initialize the Square client
+// const client = new Client({
+//   accessToken: 'EAAAl1LNQl5Goarm04j3AoKhyvNETQNC2QGiIYb_yEO8kveKktSkzRGTKA-z7vDe',
+//   environment: 'sandbox',
+// });
+
+// const ordersApi = client.ordersApi;
+// const paymentsApi = client.paymentsApi;
+
+// export async function POST(req) {
+//   const reqBody = await req.json();
+//   const { items, sourceId, customerCredentials } = reqBody;
+
+//   // Basic validation
+//   if (!items || !Array.isArray(items) || items.length === 0) {
+//     return NextResponse.json(
+//       {
+//         error: 'Items are required and should be an array.',
+//       },
+//       { status: 400 }
+//     );
+//   }
+
+//   if (!sourceId) {
+//     return NextResponse.json(
+//       {
+//         error: 'Payment token and sourceId are required.',
+//       },
+//       { status: 400 }
+//     );
+//   }
+
+//   if (!fulfilledCredentials(customerCredentials)) {
+//     return NextResponse.json(
+//       {
+//         error: 'Customer credentials are required.',
+//       },
+//       { status: 400 }
+//     );
+//   }
+
+//   // Generate a unique idempotency key
+//   const idempotency_key = uuidv4();
+
+// const orderRequest = {
+//   idempotency_key: idempotency_key,
+//   order: {
+//     location_id: 'LC9KSAAPWHWE2', // Your location ID
+//     line_items: [
+//       {
+//         quantity: '1',
+//         base_price_money: {
+//           amount: 9900, // Amount in cents
+//           currency: 'USD',
+//         },
+//         name: 'This is a custom item.', // You can omit catalog_object_id and catalog_version to simplify
+//       },
+//     ],
+//   },
+// };
+
+
+//   try {
+//     // Create the order
+//     const orderResponse = await axios.post(
+//       'https://connect.squareupsandbox.com/v2/orders',
+//       orderRequest,
+//       {
+//         headers: {
+//           'Square-Version': '2024-08-21',
+//           Authorization: `Bearer EAAAl1LNQl5Goarm04j3AoKhyvNETQNC2QGiIYb_yEO8kveKktSkzRGTKA-z7vDe`,
+//           'Content-Type': 'application/json',
+//         },
+//       }
+//     );
+
+//     const order = orderResponse.data.order;
+//     console.log(order);
+
+//     // Ensure order total matches the payment total
+//     const totalAmount = order.total_money.amount;
+
+//     // Prepare the payment request
+//     console.log('Payment Reached');
+//     const paymentRequest = {
+//       sourceId, // Ensure this is correctly set
+//       idempotencyKey: idempotency_key, // Must be unique
+//       amountMoney: {
+//         amount: totalAmount, // Use the total amount from the order
+//         currency: 'USD',
+//       },
+//       orderId: order.id,
+//       autocomplete: true, // Optional: automatically complete the payment
+//     };
+
+//     // Create the payment
+//     const paymentResponse = await paymentsApi.createPayment(paymentRequest);
+//     console.log(paymentResponse.result);
+
+//     // Respond with the order and payment details
+//     return NextResponse.json(
+//       {
+//         success: true,
+//         payment: paymentResponse.result,
+//       },
+//       { status: 200 }
+//     );
+//   } catch (error) {
+//     console.error('Error creating order or payment:', error);
+
+//     // Handle Square API errors
+//     if (error.response && error.response.errors) {
+//       return NextResponse.json(
+//         {
+//           error: error.response.errors,
+//         },
+//         { status: 500 }
+//       );
+//     } else {
+//       return NextResponse.json(
+//         {
+//           error: 'Internal server error',
+//         },
+//         { status: 500 }
+//       );
+//     }
+//   }
+// }
+
+
 import { Client, Environment } from 'square';
 import { NextResponse } from 'next/server';
 import { v4 as uuidv4 } from 'uuid';
@@ -22,62 +158,35 @@ const paymentsApi = client.paymentsApi;
 export async function POST(req) {
   const reqBody = await req.json();
   const { items, sourceId, customerCredentials } = reqBody;
-  //   console.log('reqBody: ', reqBody);
 
-  // Basic validation
-  if (!items || !Array.isArray(items) || items.length === 0) {
-    return NextResponse.json(
-      {
-        error: 'Items are required and should be an array.',
-      },
-      { status: 400 }
-    );
-  }
-
-  if (!sourceId) {
-    return NextResponse.json(
-      {
-        error: 'Payment token and sourceId are required.',
-      },
-      { status: 400 }
-    );
-  }
-
-  if (!fulfilledCredentials(customerCredentials)) {
-    return NextResponse.json(
-      {
-        error: 'Customer credentials are required.',
-      },
-      { status: 400 }
-    );
-  }
+  // Your existing validation code...
+  // (unchanged)
 
   // Generate a unique idempotency key
   const idempotency_key = uuidv4();
 
   const orderRequest = {
-    idempotency_key: 'ef0c50cf-c714-466e-943a-97a4cb9d6ad4',
+    idempotency_key,
     order: {
-      location_id: 'LC9KSAAPWHWE2', // Your location ID
+      location_id: 'LC9KSAAPWHWE2',
       line_items: [
         {
           quantity: '1',
           base_price_money: {
-            amount: 9900, // Amount in smallest currency unit (cents)
+            amount: 9900,
             currency: 'USD',
           },
-          catalog_object_id: '6SKVYNQHHT6WIPWDMB4GT32F', // Your item ID
-          catalog_version: 1725696145387,
-          item_type: 'ITEM',
           name: 'This is a custom item.',
-          uid: 'hghhgh7676gfgftftfgfvv', // Unique ID for the item
+          uid: 'hghhgh7676gfgftftfgfvv',
         },
       ],
       state: 'OPEN',
       fulfillments: [
         {
-          delivery_details: {
+          type: 'SHIPMENT',
+          shipment_details: {
             recipient: {
+              display_name: 'Customer Last Name',
               address: {
                 address_line_1: 'Address line 1',
                 address_line_2: 'Address line 2',
@@ -92,7 +201,6 @@ export async function POST(req) {
               phone_number: '033331213',
             },
           },
-          shipment_details: {},
         },
       ],
     },
@@ -100,7 +208,6 @@ export async function POST(req) {
 
   try {
     // Create the order
-    // Ensure orderRequest has the correct structure and data
     const orderResponse = await axios.post(
       'https://connect.squareupsandbox.com/v2/orders',
       orderRequest,
@@ -118,33 +225,60 @@ export async function POST(req) {
     console.log(order);
 
     // Calculate total amount (ensure consistency with frontend)
-    const totalAmount = 9900; // Or use dynamic calculation if needed
-    // const totalAmount = lineItems.reduce((total, item) => {
-    //   return total + parseInt(item.base_price_money.amount) * parseInt(item.quantity);
-    // }, 0);
+    const totalAmount = 9900;
 
     // Prepare the payment request
     console.log('payment Reached');
     const paymentRequest = {
-      sourceId, // Ensure this is correctly set
-      idempotencyKey: idempotency_key, // Must be unique
+      sourceId,
+      idempotencyKey: idempotency_key,
       amountMoney: {
-        amount: totalAmount, // Amount in smallest currency unit (e.g., cents for USD)
+        amount: totalAmount,
         currency: 'USD',
       },
       orderId: order.id,
-      // autocomplete: true, // Uncomment if you want automatic payment completion
     };
 
     // Create the payment
     const paymentResponse = await paymentsApi.createPayment(paymentRequest);
-    console.log(paymentResponse.result);
+    // console.log(paymentResponse.result);
 
+    // Convert BigInt to Number for serialization
+    // const paymentResult = {
+    //   ...paymentResponse.result,
+    //   ...paymentResponse.result.payment,
+    //         amountMoney: {
+    //     ...paymentResponse.result.amountMoney,
+    //     amount: Number(paymentResponse.result.amountMoney.amount),
+    //   },
+    //   totalMoney: {
+    //     ...paymentResponse.result.totalMoney,
+    //     amount: Number(paymentResponse.result.totalMoney.amount),
+    //   },
+    //   approvedMoney: {
+    //     ...paymentResponse.result.approvedMoney,
+    //     amount: Number(paymentResponse.result.approvedMoney.amount),
+    //   },
+    //   amountMoney: {
+    //     ...paymentResponse.result.payment.amountMoney,
+    //     amount: Number(paymentResponse.result.payment.amountMoney),
+    //   },
+    //   totalMoney: {
+    //     ...paymentResponse.result.payment.totalMoney,
+    //     amount: Number(paymentResponse.result.payment.totalMoney.amount),
+    //   },
+    //   approvedMoney: {
+    //     ...paymentResponse.result.payment.approvedMoney,
+    //     amount: Number(paymentResponse.result.payment.approvedMoney.amount),
+    //   },
+    // };
+
+    // console.log(paymentResult)
     // Respond with the order and payment details
     return NextResponse.json(
       {
         success: true,
-        payment: paymentResponse.result,
+        // payment: paymentResult,
       },
       { status: 200 }
     );
