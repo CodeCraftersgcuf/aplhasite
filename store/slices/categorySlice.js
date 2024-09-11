@@ -4,14 +4,14 @@ const categorySlice = createSlice({
   name: 'authInput',
   initialState: {
     selectedCategory: 'null',
-    filterText: '',
+    searchTerm: '',
   },
   reducers: {
     setCategory(state, action) {
       state.selectedCategory = action.payload;
     },
-    setFilter(state, action) {
-      state.filterText = action.payload;
+    setSearchTerm(state, action) {
+      state.searchTerm = action.payload;
     },
   },
 });

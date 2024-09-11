@@ -1,15 +1,17 @@
 import React from 'react'
 import Image from 'next/image'
+import shopHero from '@assets/Shop.jpeg';
 
 const TopImage = () => {
     return (
-        <div className='relative w-full h-[20vh] md:h-[30vh] lg:h-[40vh] overflow-hidden'>
+        <div className='relative w-full h-[30vh] md:h-[30vh] lg:h-[40vh] overflow-hidden'>
             <Image
                 className='absolute'
-                src="https://alphalete.uk/cdn/shop/collections/m_sweater_b79c3787-15cf-4367-9f68-e29eb75bcf56_2500x1050_crop_center.jpg?v=1679098832"
+                src={shopHero}
                 alt="image"
                 layout="fill"
                 objectFit="cover"
+                priority={true}
             />
         </div>
     )

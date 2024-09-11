@@ -15,7 +15,7 @@ const AnimeListItem = ({ controls, listItemsVariants, option, category }) => {
             <input
                 type="radio"
                 // value={option}
-                onChange={() => { dispatch(categoryActions.setCategory(`${category} - ${option}`)) }}
+                onChange={() => { dispatch(categoryActions.setCategory(option)) }}
                 name="customRadio"
                 className="appearance-none h-4 w-4 border border-gray-300 rounded-md checked:bg-gray-800 focus:outline-none transition duration-200 mr-2 hover:cursor-pointer"
             />

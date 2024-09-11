@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import MobileProductSlide from '@/components/shop-subcomponents/MobileProductSlide'
-import { DUMMY_ITEMS } from '@/utils'
+// import { DUMMY_ITEMS } from '@/utils'
 
 
 const MobileSwiper = ({ data }) => {

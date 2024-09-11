@@ -8,7 +8,7 @@ const SliderHeading = ({ women, mt }) => {
                 <span>{`${women ? `Now` : `Trending`}`}</span>{' '}
                 <span>NEW ARRIVALS</span>
             </h2>
-            <button className="button">
+            <button>
                 {' '}
                 <Link href="/shop">SHOP ALL</Link>{' '}
             </button>

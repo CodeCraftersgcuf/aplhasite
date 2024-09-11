@@ -37,19 +37,6 @@ const WithHeaderWrapper = ({ children }) => {
     const isOpen = useSelector((state) => state.modalFn);
     const device = useSelector((state) => state.deviceFn.deviceType);
 
-    useEffect(() => {
-        const getAllItems = async () => {
-            try {
-                const response = await axios.get(`${process.env.NEXT_VERCEL_DOMAIN_URL || 'https://pang3a-lilac.vercel.app'}/api/get-all-items`);
-                setProducts(response?.data);
-
-            } catch (error) {
-                console.log('unabletofetch')
-            }
-        }
-
-        getAllItems()
-    }, [])
     // console.log(device)
     // console.log(products)
 
@@ -57,8 +44,8 @@ const WithHeaderWrapper = ({ children }) => {
         <>
             <Header fixed={true} />
             <Toaster position='bottom-center' />
-            <div id="smooth-wrapper">
-                <div id="smooth-content">
+            <div id="smooth-wrapper scrollbar-hide">
+                <div id="smooth-content scrollbar-hide">
                     <AnimatePresence>
                         {isOpen && (
                             device === 'mobile' || device === 'tablet' ? (

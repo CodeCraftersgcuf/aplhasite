@@ -89,7 +89,7 @@ const PopUpAnimeButtons = ({ name, options }) => {
         // <div className=''>
         <>
             <div
-                className="flex justify-between items-center text-lg text-slate-100 cursor-pointer"
+                className="flex justify-between items-center text-lg text-black cursor-pointer"
                 onClick={toggleOpen}
             >
                 <span>{name}</span>
@@ -111,10 +111,10 @@ const PopUpAnimeButtons = ({ name, options }) => {
                         exit="collapsed"
                         variants={{ open: { transition: { staggerChildren: 0.1 } }, collapsed: { transition: { staggerChildren: 0.1 } } }}
                     >
-                        {Object.keys(options).map((option, index) => (
+                        {options.map((option, index) => (
                             <motion.li
                                 key={index}
-                                className="flex items-center my-2 font-normal text-lg text-slate-100"
+                                className="flex items-center my-2 font-normal text-lg text-black"
                                 variants={listItemsVariants}
                             >
                                 <input
@@ -129,7 +129,7 @@ const PopUpAnimeButtons = ({ name, options }) => {
                 )}
             </AnimatePresence>
 
-            <div className='w-full h-[1px] my-[16px] bg-gray-700' />
+            <div className='w-full h-[1px] my-[16px] bg-gray-200' />
         </>
         // </div>
     );

@@ -62,8 +62,8 @@ header {
 
   width: 100%;
   margin: auto;
-  border-bottom: 1px solid rgb(77, 77, 77);
-  position: sticky;
+  // border-bottom: 1px solid rgb(77, 77, 77);
+  position: fixed;
   top: 0;
   z-index: 60;
   // background-color: #02020200;
@@ -95,14 +95,13 @@ header {
         line-height: 12px;
       }
       div.dropdown-trigger{
-        color: #f2f2f2;
         line-height: 12px;
         
         }
       svg {
         font-size: 40px;
         margin: 0 0px;
-        fill: aliceblue;
+        // fill: aliceblue;
         padding: 10px;
         cursor: pointer;
         border-radius: 15px;
@@ -114,9 +113,6 @@ header {
       .burger {
         display: none;
       }
-    }
-    &:hover {
-      background-color: rgba(2, 2, 2, 1);
     }
   }
 }
@@ -229,7 +225,7 @@ header {
 
   > div {
     margin: 0 1% 0 0;
-    color: #f5f5f5;
+    // color: #f5f5f5;
     display: flex;
     :link {
       padding: 0 5px;
@@ -245,9 +241,6 @@ header {
 }
 .example05 a span {
   @include hover-underline("slide", "left-in-right");
-}
-.cart {
-  position: relative;
 }
 .p {
   position: absolute;

@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import Skeleton from 'react-loading-skeleton';
 import LargeSwiperCardSkeleton from '../HomePage-subcomponents/LargeSwiperCardSkeleton';
+import { itemsActions } from '@/store/slices/cartItems';
 
 const suggestionsImages = [
     'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p7_i3_w3000.png',
@@ -19,7 +20,7 @@ const suggestionsImages = [
 ];
 
 let totalImages = 0
-const ProductSlide = ({ product, addItem, bigItemClass }) => {
+const ProductSlide = ({ product, bigItemClass, isLoading }) => {
     const [loadedImagesCount, setLoadedImagesCount] = useState(0);
     const [imageLoading, setImageLoading] = useState(true);
     const dispatch = useDispatch()
@@ -28,7 +29,7 @@ const ProductSlide = ({ product, addItem, bigItemClass }) => {
 
     //extracting data from raw form
     const images = product?.item_data?.ecom_image_uris
-    const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money.amount
+    const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money.amount / 100
     const productName = product?.item_data?.name
     const productType = product?.item_data?.product_type
     const inventoryAlert = product?.item_data?.variations[0]?.item_variation_data.location_overrides[0]?.inventory_alert_type
@@ -50,6 +51,10 @@ const ProductSlide = ({ product, addItem, bigItemClass }) => {
             setQuantity(quantity - 1)
         }
     }
+
+    const handleAddItem = ({ product, quantity = 1 }) => {
+        dispatch(itemsActions.addItem({ product, quantity }));
+    };
     const handleImageLoad = () => {
         setLoadedImagesCount((prevCount) => {
             const newCount = prevCount + 1;
@@ -59,9 +64,10 @@ const ProductSlide = ({ product, addItem, bigItemClass }) => {
             return newCount;
         });
     };
+
     return (
-        <div className='h-[470px] overflow-hidden'>
-            {images && imageLoading && (
+        <div className='overflow-hidden'>
+            {isLoading || (images && imageLoading) && (
                 <div className="mt-[30px] h-full">
                     <LargeSwiperCardSkeleton maxHeight={470} maxWidth={330} />
                 </div>
@@ -69,9 +75,6 @@ const ProductSlide = ({ product, addItem, bigItemClass }) => {
             <SwiperSlide>
                 <div
                     className="slider-items"
-                // style={
-                //     index === 0 ? { margin: '30px 20px', zIndex: '100' } : {}
-                // }
                 >
                     <div className={`${bigItemClass ? "slider-big-item" : "slider-item"}`}>
                         <div className={bigItemClass ? "big-item-image-box" : "item-image-box"}>
@@ -116,9 +119,6 @@ const ProductSlide = ({ product, addItem, bigItemClass }) => {
                                 </div>
                             </Swiper>
                             <p className="new">NEW</p>
-                            <p className="plus">
-                                <FaPlus />
-                            </p>
                         </div>
                         <div className="flex flex-col h-[40px] transition-all duration-300 relative cursor-pointer">
                             <div className='flex flex-col bg-white py-2'>
@@ -134,7 +134,7 @@ const ProductSlide = ({ product, addItem, bigItemClass }) => {
                                     <FaPlus
                                         onClick={() => {
                                             if (quantity > 0) {
-                                                addItem({ product, quantity });
+                                                handleAddItem({ product, quantity });
                                             }
                                         }}
                                         className={`plus ${quantity === 0 ? 'hover:cursor-not-allowed' : ''}`}

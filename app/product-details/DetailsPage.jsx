@@ -4,10 +4,9 @@ import AbsolutePart from '@/components/ProductDetails-subcomponents/AbsolutePart
 import DetailsSwiper from '@/components/ProductDetails-subcomponents/DetailsSwiper';
 import WithHeaderWrapper from '@/components/WithHeaderWrapper';
 import ProductsGrid from '@/components/ProductDetails-subcomponents/ProductsGrid';
-import { DUMMY_DETAILS, DUMMY_ITEMS } from '@/utils.js'
+// import { DUMMY_DETAILS, DUMMY_ITEMS } from '@/utils.js'
 import { itemsActions } from '@/store/slices/cartItems';
 import { useDispatch } from 'react-redux';
-import notify from '@/helpers/notify';
 import ShopProductMobile from '@/components/shop-subcomponents/ShopProductMobile';
 import SliderButtons from '@/components/HomePage-subcomponents/SliderButtons';
 
@@ -15,7 +14,6 @@ import SliderButtons from '@/components/HomePage-subcomponents/SliderButtons';
 export default function DetailsPage({ data }) {
     const dispatch = useDispatch()
     const swiperRef = useRef(null);
-    const [product, setProduct] = useState(null)
 
     //for displaying items in suggestion
     const dataArray = Object.values(data?.suggestionItems);
@@ -23,14 +21,6 @@ export default function DetailsPage({ data }) {
     const splicedDataArray = reversedDataArray.splice(0, 30);
 
     const images = data.item_data?.ecom_image_uris
-
-
-
-    const handleAddItem = ({ product, quantity = 1 }) => {
-        const item = DUMMY_ITEMS.find((item) => item.id === product.id)
-        dispatch(itemsActions.addItem({ product: item, quantity }))
-        notify({ product: item, quantity, adding: true, removing: false })
-    };
 
     const handleCenterSlide = (index) => {
         if (swiperRef.current && swiperRef.current.swiper) {
@@ -47,13 +37,6 @@ export default function DetailsPage({ data }) {
         }
     };
 
-    useEffect(() => {
-        const url = new URL(window.location.href);
-        const id = url.searchParams.get('id');
-        console.log(id)
-        const loadedProduct = DUMMY_DETAILS.find((product) => product.id === +id);
-        setProduct(loadedProduct)
-    }, [])
     return (
         <WithHeaderWrapper>
             <div className='lg:h-[87vh] relative apni-class-main'>
@@ -62,16 +45,14 @@ export default function DetailsPage({ data }) {
                     ref={swiperRef}
                 />
                 <AbsolutePart
-                    addItem={handleAddItem}
                     product={data}
                     centerSlide={handleCenterSlide}
                 />
             </div>
             <ProductsGrid
-                addItem={handleAddItem}
                 products={splicedDataArray}
             />
-            <div className='px-6 pt-8'>
+            <div className='px-6 pt-8 lg:hidden'>
                 <div className='sliders'>
                     <SliderButtons />
                 </div>

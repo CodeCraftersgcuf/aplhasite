@@ -5,15 +5,15 @@ import ContainerVideo from './Container-subcomponents/ContainerVideo'
 
 
 
-const LowerContainer = ({ images, videos }) => {
+const LowerContainer = ({ data }) => {
     return (
         <div class="w-full grid grid-col-1 md:grid-cols-3 items-center gap-4 p-4">
-            {images.map((image, index) => (
-                <ContainerImage image={image} key={index} />
+            {data.map((banner, index) => (
+                <ContainerImage data={banner} key={index} />
             ))}
-            {videos && videos.map((video, index) => (
+            {/* {videos && videos.map((video, index) => (
                 <ContainerVideo video={video} key={index} />
-            ))}
+            ))} */}
         </div>
     )
 }

@@ -7,44 +7,49 @@ import {
   BsTiktok,
   BsYoutube,
 } from "react-icons/bs";
+import pang3aBlack from "@assets/Pang3aBlack.png"
+import AuthInputButton from "./auth-input-subcomponents/AuthInputButton";
+import CustomAuthInput from "./auth-input-subcomponents/CustomAuthInput";
+import Image from "next/image";
+
 
 const Footer = () => {
   return (
     <>
-      <div className="footer flex-wrap xl:flex-nowrap flex justify-center mt-8  w-full border border-[#3b3b3b] ">
-        <div className="footer1  flex-col flex flex-wrap justify-between xl:w-[1568px] w-full">
-          <div className="links flex  flex-wrap justify-start p-6 gap-7">
+      <div className="flex-wrap xl:flex-nowrap flex justify-center mt-8  w-full border border-[#3b3b3b]">
+        <div className="flex-col flex flex-wrap justify-between xl:w-[1568px] w-full">
+          <div className="links flex flex-wrap justify-start p-6 gap-7">
             <div className="flex flex-wrap flex-col">
-              <h4 className="mb-3 footer-div-h4 text-white font-semibold text-[13px]">
+              <h4 className="mb-3 text-black font-semibold text-[13px]">
                 Help
               </h4>
-              <a href="#">Contact</a>
-              <a href="#">Returns & Exchanges</a>
-              <a href="#">Help Center</a>
-              <a href="#">Brexit Info</a>
+              <Link href="#">Contact</Link>
+              <Link href="#">Returns & Exchanges</Link>
+              <Link href="#">Help Center</Link>
+              <Link href="#">Brexit Info</Link>
             </div>
             <div className="flex flex-wrap flex-col">
-              <h4 className="mb-3 footer-div-h4 text-white font-semibold text-[13px]">
+              <h4 className="mb-3 footer-div-h4 text-black font-semibold text-[13px]">
                 More
               </h4>
-              <a href="#">Share The Look</a>
-              <a href="#">About US</a>
-              <a href="#">Careers</a>
-              <a href="#">Alphaland</a>
-              <a href="#">Summer Shredding</a>
+              <Link href="#">Share The Look</Link>
+              <Link href="#">About US</Link>
+              <Link href="#">Careers</Link>
+              <Link href="#">Alphaland</Link>
+              <Link href="#">Summer Shredding</Link>
             </div>
             <div className="flex flex-wrap flex-col">
-              <h4 className="mb-3 footer-div-h4 text-white font-semibold text-[13px]">
+              <h4 className="mb-3 footer-div-h4 text-black font-semibold text-[13px]">
                 Address
               </h4>
-              <a href="#">
+              <Link href="#">
                 13927 South Gessner Road, Missouri City Texas 77489, United
                 States
-              </a>
+              </Link>
             </div>
           </div>
           <div className="flex justify-center lg:flex-nowrap flex-wrap lg:justify-start items-center border-t border-[#3b3b3b] max-w-full lg:border-b-none sm:border-b-gray-500">
-            <div className="privacyLinks footer-links-sec  p-6 lg:max-w-[600px] max-w-full border-e border-[#3b3b3b] ">
+            <div className="footer-links-sec  p-6 lg:max-w-[600px] max-w-full border-e border-[#3b3b3b] ">
               <aside className="copyRight">
                 <span class="footer-last">
                   <ul className="flex flex-wrap lg:flex-nowrap">
@@ -59,13 +64,13 @@ const Footer = () => {
                   {/* <p>PRIVACY POLICY</p> <p>TERMS OF SERVICE</p> <p>SITEMAP</p>{" "}
             <p>DO NOT SELL OR SHARE MY PERSONAL INFORMATION</p> */}
                 </span>
-                <h6 className="text-[10px]">
+                <h6 className="text-[10px] text-[#131212]">
                   © 2024 &#x2022; Alphalete Athletics LLC | All Rights Reserved
                 </h6>
               </aside>
             </div>
             <div className="style-text flex flex-col justify-center  text-center lg:text-start lg:max-w-[968px]  max-w-full p-5 ">
-              <p className="text-[13px] text-white font-semibold ">
+              <p className="text-[13px] text-[#131212] font-semibold ">
                 Premium Workout Clothes & Athleisure
               </p>
               <span className="text-[10px] pt-2">
@@ -79,12 +84,33 @@ const Footer = () => {
         <div className="footer2   border-s border-[#3b3b3b] lg:max-w-[350px] md:max-w-[250px]  sm:w-full">
           <div className="form">
             <div>
-              <h4 className="form-heading  text-white  extrasmall:text-[14px] text-[18px] text-center pt-5">
+              <h4 className="form-heading text-black  extrasmall:text-[14px] text-[18px] text-center pt-5">
                 STAY CONNECTED
               </h4>
-              <div className="sub-input p-6">
+              <div className="sub-input px-6 py-2">
                 <div className="">
-                  <label className="flex text-white flex-col text-sm text-[9px] gap-3">
+                  <CustomAuthInput
+                    validFn={(value) => true}
+                    id='email'
+                    type="email"
+                    placeholder='liam@acme.com'
+                    error={'Enter a valid email'}
+                    childType={'subscribe'}
+                  />
+                  <div className="w-full h-4">
+                    <div className='w-full h-[1px] bg-gray-300'></div>
+                  </div>
+
+                  <CustomAuthInput
+                    validFn={(value) => true}
+                    id='phone'
+                    type="text"
+                    placeholder='(123) 123-1234'
+                    error={'Enter a valid phone number'}
+                    childType={'subscribe'}
+                  />
+                  <div className='w-full h-[1px] bg-gray-300'></div>
+                  {/* <label className="flex text-white flex-col text-sm text-[9px] gap-3">
                     Email
                     <input
                       className=" rounded-none flex-1 bg-transparent text-[10px] !outline-none border-b border-secondary/20 transition-all hover:border-secondary focus:border-secondary border-error error mt-[5px] pb-[10px]"
@@ -100,35 +126,36 @@ const Footer = () => {
                       type="phone"
                       placeholder="+123 456 789"
                     />
-                  </label>
+                  </label> */}
                 </div>
                 <div className="w-full">
-                  <button
+                  <AuthInputButton>Subscribe</AuthInputButton>
+                  {/* <button
                     style={{ borderRadius: "50px" }}
                     className="button w-full "
                   >
                     Subscribe
-                  </button>
+                  </button> */}
                 </div>
-                <p class="opacity-60 leading-tight text-[8px]  text-start">
+                <p class="opacity-60 leading-tight text-[8px] text-start">
                   By signing up via text you agree to receive recurring
                   automated marketing messages and shopping cart reminders at
                   the phone number provided. Consent is not a condition of
                   purchase. Reply STOP to unsubscribe. HELP for help. Msg
                   frequency varies. Msg &amp; Data rates may apply. View
-                  <a
+                  <Link
                     href="#"
                     class="relative pb-[2px] whitespace-nowrap snakify-out"
                   >
                     <ins> Privacy Policy</ins>{" "}
-                  </a>{" "}
+                  </Link>{" "}
                   &amp;&nbsp;
-                  <a
+                  <Link
                     href="#"
                     class="relative pb-[2px] whitespace-nowrap snakify-out"
                   >
                     <ins>Terms of Service</ins>
-                  </a>
+                  </Link>
                 </p>
               </div>
             </div>
@@ -146,7 +173,19 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="bgCover"></div>
+      <div className="bgCover">
+        <div className="w-3/4 h- flex items-center justify-center">
+          <Image
+            layout="responsive"
+            height={100}
+            width={400}
+            objectFit="cover"
+            src={pang3aBlack}
+            alt="cover"
+            quality={50}
+          />
+        </div>
+      </div>
     </>
   );
 };

@@ -14,6 +14,7 @@ import {
 const preloadedState = {
   itemsFn: {
     items: rehydrateState() || [], // Use loaded state or default to empty array
+    added: 0,
   },
   // Initialize other slices if needed
 };

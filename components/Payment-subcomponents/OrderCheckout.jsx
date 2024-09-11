@@ -46,7 +46,7 @@ const OrderCheckout = ({ onApply }) => {
                             <span className="text-gray-500 font-light text-xs">M</span>
                         </div>
                         {/* Product Price */}
-                        <div className="text-sm font-normal">${item.product?.item_data?.variations[0]?.item_variation_data.price_money.amount}</div>
+                        <div className="text-sm font-normal">${((item.product?.item_data?.variations[0]?.item_variation_data.price_money.amount) / 100).toFixed(2)}</div>
                     </div>
                 ))}
 

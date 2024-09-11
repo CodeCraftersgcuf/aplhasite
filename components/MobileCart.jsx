@@ -4,13 +4,11 @@ import { useEffect, useRef, useState } from 'react';
 import { modalActions } from '@/store/slices/openModel';
 import { useDispatch } from 'react-redux';
 import { motion } from "framer-motion"
-import ExtraItems from './Cart-subcomponents/ExtraItems';
 import MobileOrdersManagement from './Cart-subcomponents/MobileOrdersManagement';
-import { itemsActions } from '@/store/slices/cartItems';
 import { useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import { totalPrice } from '@/helpers/totalPrice';
-import notify from '@/helpers/notify';
+
 
 
 const MobileCart = ({ isOpen, products }) => {
@@ -32,27 +30,8 @@ const MobileCart = ({ isOpen, products }) => {
         setTopMargin(upperDiv.current?.clientHeight)
         setHeight(cartDiv.current?.clientHeight - 245)
     }, [])
-    console.log(height)
+    // console.log(height)
 
-    const handleRemoveItem = (item) => {
-        dispatch(itemsActions.removeItem(item))
-        notify({ product: item.product, adding: false, removing: true })
-    }
-    const handleDecrement = (item) => {
-        if (item.quantity === 1) {
-            handleRemoveItem(item)
-            return
-        }
-        dispatch(itemsActions.decrement(item))
-    }
-    const handleIncrement = (item) => {
-        dispatch(itemsActions.increment(item))
-    }
-
-    const handleAddItem = ({ product, quantity = 1 }) => {
-        dispatch(itemsActions.addItem({ product, quantity }))
-        notify({ product, quantity, adding: true, removing: false })
-    };
     const handleSubmit = () => {
         //submit order to backend
         return router.push('/payment')
@@ -87,14 +66,13 @@ const MobileCart = ({ isOpen, products }) => {
                 transition={{ duration: 0.3 }}
                 exit={{ y: '100%' }}
             >
-                <div className="relative h-full w-full bg-black text-slate-100 pt-10 rounded-t-2xl">
+                <div className="relative h-full w-full flex flex-col bg-white text-black pt-10 rounded-t-2xl">
+                    <div className='bg-white rounded-t-2xl absolute w-full top-0 '>
+                        <div className=' w-[50px] h-[5px] mx-auto my-[15px] bg-gray-500 rounded-[3px] hover:cursor-pointer'></div>
+                    </div>
                     <div
-                        className='absolute top-0 w-full h-auto flex flex-col'
-
+                        className='w-full h-auto flex flex-col'
                     >
-                        <div className='bg-black rounded-t-2xl '>
-                            <div className=' w-[50px] h-[5px] mx-auto my-[15px] bg-white rounded-[3px] hover:cursor-pointer'></div>
-                        </div>
                         <div
                             ref={upperDiv}
                             className='w-full flex items-center justify-center h-16 border border-slate-200'>
@@ -103,9 +81,6 @@ const MobileCart = ({ isOpen, products }) => {
                     </div>
                     <MobileOrdersManagement
                         addedItems={addedItems}
-                        removeItem={handleRemoveItem}
-                        onDecrement={handleDecrement}
-                        onIncrement={handleIncrement}
                         height={height}
                         topMargin={topMargin}
                         isOpen={isOpen}
@@ -113,7 +88,7 @@ const MobileCart = ({ isOpen, products }) => {
                     {/* <ExtraItems
                         addItem={handleAddItem}
                     /> */}
-                    <div className='absolute w-full bottom-0 flex flex-col bg-black'>
+                    <div className=' w-full flex flex-col bg-white'>
                         <div className='flex items-center justify-center h-12 border border-slate-200'>
                             Free Standard Shipping Unlocked
                         </div>
@@ -124,7 +99,7 @@ const MobileCart = ({ isOpen, products }) => {
                             </div>
                             <div className='flex justify-center items-center'>
                                 <motion.button
-                                    className='text-white text-[0.75rem] font-bold py-4 px-24 rounded-full bg-green-400'
+                                    className='text-black text-[0.75rem] font-bold py-4 px-24 rounded-full bg-green-400'
                                     whileHover={{ scale: 1.1 }}
                                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
                                     onClick={handleSubmit}

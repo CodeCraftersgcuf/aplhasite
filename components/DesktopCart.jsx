@@ -8,23 +8,28 @@ import ExtraItems from './Cart-subcomponents/ExtraItems';
 import OrdersManagementBox from './Cart-subcomponents/OrdersManagementBox';
 import { itemsActions } from '@/store/slices/cartItems';
 import { useSelector } from 'react-redux';
-import toast, { Toaster } from 'react-hot-toast';
-import CustomToast from './CustomToast';
-import { useRouter } from 'next/navigation';
-import notify from '@/helpers/notify';
+import useFetch from '@/hooks/useFetch';
 
 
-const DesktopCart = ({ isOpen, products }) => {
-    const dataArray = Object.values(products);
-    const reversedDataArray = dataArray.reverse();
-    const splicedDataArray = reversedDataArray.splice(0, 30);
-    // const [addedItems, setAddedItems] = useState([])
+const DesktopCart = ({ isOpen }) => {
+    const [products, setProducts] = useState([]);
+    const { data,
+        isLoading,
+        isError,
+        fetchData,
+        isSuccess,
+        setIsSuccess, } = useFetch()
+
+    let splicedDataArray = []
+    if (data) {
+        const dataArray = Object.values(data) || [];
+        const reversedDataArray = dataArray.reverse();
+        splicedDataArray = reversedDataArray.splice(0, 30) || []
+    }
+    //process the fetched array
     const addedItems = useSelector((state) => state.itemsFn.items)
     const dispatch = useDispatch()
-    // console.log(stateMessage)
-    // useEffect(() => {
-    //     setAddedItems(addedItemsRedux)
-    // }, [addedItemsRedux])
+
     const closeDiv = (e) => {
         if (e.target.id === 'modal-background') {
             dispatch(modalActions.closeModal())
@@ -32,7 +37,6 @@ const DesktopCart = ({ isOpen, products }) => {
     };
     const handleRemoveItem = (item) => {
         dispatch(itemsActions.removeItem(item))
-        notify({ product: item.product, adding: false, removing: true })
     }
     const handleDecrement = (item) => {
         if (item.quantity === 1) {
@@ -47,8 +51,13 @@ const DesktopCart = ({ isOpen, products }) => {
 
     const handleAddItem = ({ product, quantity = 1 }) => {
         dispatch(itemsActions.addItem({ product, quantity }))
-        notify({ product, quantity, adding: true, removing: false })
     };
+
+    useEffect(() => {
+        isOpen && fetchData(`/api/get-all-items`)
+    }, [isOpen])
+
+    console.log(isLoading)
 
     return (
         <motion.div
@@ -64,8 +73,10 @@ const DesktopCart = ({ isOpen, products }) => {
                 <ExtraItems
                     addItem={handleAddItem}
                     products={splicedDataArray}
+                    isLoading={isLoading}
                 />
                 <OrdersManagementBox
+                    isOpen={isOpen}
                     addedItems={addedItems}
                     removeItem={handleRemoveItem}
                     onDecrement={handleDecrement}

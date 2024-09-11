@@ -1,5 +1,5 @@
 'use client';
-import bgImage from '@assets/hero.jpg';
+import Hero from '@assets/Top-banner.png';
 import '@/app/styles/main.scss';
 import { useRouter } from 'next/navigation';
 import React, { useRef, useState, useEffect } from 'react';
@@ -23,11 +23,31 @@ import MobileSwiper from '@/components/HomePage-subcomponents/MobileSwiper';
 import MobileSmallSwiper from '@/components/HomePage-subcomponents/MobileSmallSwiper';
 import Image from 'next/image';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 
-const topVapeImages = [
-  'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p7_i3_w3000.png',
-  'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p14_i3_w3000.png',
-  'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p15_i3_w3000.png',
+const topSmallBanners = [
+  {
+    url: 'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p7_i3_w3000.png',
+    name: '1ML DISPOSABLES',
+    subtitle: 'NURO',
+    btn1: 'Essential Blend',
+    btn2: 'Broad Spec',
+  },
+  {
+    url: 'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p14_i3_w3000.png',
+    name: '3ML DISPOSABLES',
+    subtitle: 'NURO',
+    btn1: 'Essential Blend',
+    btn2: 'Broad Spec',
+  },
+  {
+    url: 'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p15_i3_w3000.png',
+    name: '5ML DISPOSABLES',
+    subtitle: 'CANDY',
+    btn1: 'Essential Blend',
+    btn2: 'Top Sellers',
+  },
+  ,
 ];
 const topImages = [
   'https://alphalete.uk/cdn/shop/files/web_2mensshorts-graphic.jpg?crop=center&v=1714233659&width=1400',
@@ -52,7 +72,6 @@ const HomePage = ({ data }) => {
 
   // console.log(data);
   const state = useSelector((state) => state.stateFn.currentState);
-  const [men, setMen] = useState(false);
 
   const innerSwiperRef = useRef();
 
@@ -61,14 +80,10 @@ const HomePage = ({ data }) => {
   const splicedDataArray = reversedDataArray.splice(0, 30);
 
   const handleNavigateDetails = (product) => {
-    console.log('clicked');
-    //first add slide data with every mapping product and then fetch it from here
     return router.push('/product-details/' + product.id);
   };
   const onAddItem = ({ product, quantity = 1 }) => {
-    console.log(product, quantity);
     dispatch(itemsActions.addItem({ product, quantity }));
-    notify({ product, quantity, adding: true, removing: false });
   };
 
   // useEffect(() => {
@@ -84,12 +99,25 @@ const HomePage = ({ data }) => {
         {/* <Toaster position="bottom-center" /> */}
         {ageVerification && <AgeVerificationModal />}
         {/* {state === CURRENT_STATES.LOGOUT && <SubscribeModal />} */}
-        <div className="relative max-w-[100%] h-screen">
-          <Image
-            src={bgImage}
-            className="object-cover h-full w-full"
-            priority={true}
-          />
+        <div className="relative max-w-[100%] h-dvh">
+          <motion.div
+            initial={{ scale: 1.05, opacity: 0.5 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{
+              duration: 2,
+              ease: [0.87, 0, 0.13, 1],
+            }}
+            className="absolute w-full h-full"
+          >
+            <Image
+              src={Hero}
+              alt="Hero"
+              layout="fill" // Ensures the image takes the full container size
+              objectFit="cover" // Makes sure the image covers the container
+              priority={true} // Optional: Prioritize loading of this image
+            />
+          </motion.div>
+
           <TopContainer women={women} />
         </div>
         {/* Upper new arrivals */}
@@ -102,13 +130,13 @@ const HomePage = ({ data }) => {
             onAddItem={onAddItem}
             data={splicedDataArray}
           />
-          <LowerContainer images={topVapeImages} />
+          <LowerContainer data={topSmallBanners} />
           <SliderHeading women={women} /> {/* Lower new arrivals || !mt-14 */}
           <SliderButtons women={women} setWomen={setWomen} />
           <DesktopSmallSwiper data={splicedDataArray} />
           <MobileSmallSwiper data={splicedDataArray} />
           {/* <BottomContainer /> */}
-          <LowerContainer images={topVapeImages} videos={''} />
+          <LowerContainer data={topSmallBanners} videos={''} />
           <PreFooter />
         </div>
       </main>

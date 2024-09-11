@@ -7,12 +7,10 @@ import { FaPlus, FaMinus } from 'react-icons/fa6';
 import { motion, AnimatePresence } from 'framer-motion';
 import { itemsActions } from '@/store/slices/cartItems';
 import { useDispatch } from 'react-redux';
-import notify from '@/helpers/notify';
-import { DUMMY_ITEMS } from '@/utils';
 import { useRouter } from 'next/navigation';
-import axios from 'axios';
 import Image from 'next/image';
 import LargeSwiperCardSkeleton from '../HomePage-subcomponents/LargeSwiperCardSkeleton';
+import '@/app/styles/main.scss';
 
 
 let totalImages = 0
@@ -30,7 +28,7 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
     if (images) {
         imagesArray = Object.values(images)
     }
-    const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money.amount
+    const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money.amount / 100
     const productName = product?.item_data?.name
     const productType = product?.item_data?.product_type
     const inventoryAlert = product?.item_data?.variations[0]?.item_variation_data.location_overrides[0]?.inventory_alert_type
@@ -51,9 +49,7 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
 
     // console.log(product)
     const handleAddItem = ({ product, quantity = 1 }) => {
-        // const item = DUMMY_ITEMS.find((item) => item.id === product.id)
         dispatch(itemsActions.addItem({ product, quantity }))
-        notify({ product, quantity, adding: true, removing: false })
     }
 
     const handleSlideClick = () => {
@@ -76,8 +72,11 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
 
 
     return (
-        <div className='max-h-full overflow-hidden' style={{ aspectRatio: '3/5' }}>
-            {imageLoading && <LargeSwiperCardSkeleton maxHeight='100%' maxWidth='100%' />}
+        <div
+            className='max-h-full overflow-hidden relative'
+        // style={{ aspectRatio: '7/13' }}
+        >
+            {imageLoading && <LargeSwiperCardSkeleton />}
             <div
                 className='relative flex flex-col'
             // onClick={handleSlideClick}
@@ -98,11 +97,13 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
                     {images && imagesArray.map((image, index) => (
                         <SwiperSlide key={index}>
                             <div
-                                className='w-full h-full rounded-xl overflow-hidden relative'
+                                style={{ aspectRatio: '4/5', position: 'relative', width: '100%', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#eeecec', borderRadius: '10px' }}
                                 onClick={handleSlideClick}
                             >
                                 <Image
-                                    layout='fill'
+                                    layout='responsive'
+                                    height={5}
+                                    width={4}
                                     objectFit='cover'
                                     objectPosition='center'
                                     quality={50}
@@ -116,7 +117,7 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
                                     src={image}
                                     alt={'product image'}
                                 />
-                                <p className="absolute w-12 h-12 flex justify-center items-center bottom-0 right-0 text-black"
+                                <p className="absolute w-12 h-12 flex justify-center items-center bottom-0 right-0 text-black "
                                     onClick={(e) => {
                                         e.stopPropagation()
                                         // setBgClicked(true)
@@ -124,19 +125,27 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
 
                                     }}
                                 >
-                                    <FaPlus />
+                                    <span className='bg-white/50 rounded-full p-2'>
+                                        <FaPlus className='' />
+
+                                    </span>
                                 </p>
                             </div>
                         </SwiperSlide>
                     ))}
                 </Swiper>
-                <div className='flex flex-col bg-black py-2 gap-1'>
-                    <h5 className="text-[10px] text-slate-100">{productName && productName}</h5>
+                <div className='flex flex-col py-2'>
+                    <h5 className="text-[9px] text-black">{productName && productName}</h5>
                     {/* <p className="text-[8px] text-gray-300">
                     {productType} <span> 4 colors</span>
                 </p> */}
-                    <p className="text-[10px] text-gray-400">${productPrice && productPrice}</p>
-                    <p className="text-[8px] text-red-600">{inventoryAlert && inventoryAlert}</p>
+                    <p className="text-[10px] text-gray-700">${productPrice && productPrice}</p>
+                    {inventoryAlert && <p className="text-[8px] w-fit text-white bg-gradient-to-r from-[#3dbfff] to-[#a649ff] rounded-lg p-1">{inventoryAlert}</p>}
+                    {/* padding: 2px 5px;
+          background: linear-gradient(90deg, #3dbfff, #a649ff);
+          border-radius: 5px;
+          font-size: 10px;
+          text-align: center; */}
                 </div>
 
                 <AnimatePresence>
@@ -149,39 +158,38 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
                             exit={{ opacity: 0, y: '100%' }}
                             transition={{ duration: 0.3 }}
                         >
-                            <div className='w-[87%] h-auto bg-black border border-[#3d3d3d] rounded-lg p-2.5'>
-                                <div className='flex justify-between text-[10px] text-slate-100 py-1'>
-                                    <p className='text-[8px] '>QUICK ADD</p>
-                                    <FaPlus
+                            <div className='w-[87%] h-auto bg-white border border-[#3d3d3d] rounded-lg p-2.5 pt-0'>
+                                <div className='flex justify-between items-center text-[10px] text-black pt-2 pb-1'>
+                                    <p className=''>QUICK ADD</p>
+                                    <button
+                                        className='bg-[#eeecec] rounded-full p-1'
                                         onClick={() => {
                                             if (quantity > 0) {
                                                 handleAddItem({ product, quantity });
                                             }
-                                        }}
-                                    // className={`plus ${quantity === 0 ? 'hover:cursor-not-allowed' : ''}`}
-                                    // className='plus'
-
-                                    />
+                                        }}>
+                                        <FaPlus />
+                                    </button>
                                 </div>
-                                <div className="separator"></div>
-                                <div className="flex justify-center items-center text-[10px] text-slate-100 gap-3 py-2">
-                                    <p
+                                <div className="separator !bg-[#eeecec]"></div>
+                                <div className="flex justify-center items-center text-[10px] text-black gap-3 py-2">
+                                    <button
                                         onClick={() => {
                                             if (quantity > 0) {
                                                 setQuantity(quantity - 1)
                                             }
                                         }}
-                                        className='bg-gray-700 rounded-full p-1'
+                                        className='bg-[#eeecec] rounded-full p-1'
                                     >
                                         <FaMinus />
-                                    </p>
+                                    </button>
                                     <div>{quantity}</div>
-                                    <p
+                                    <button
                                         onClick={() => { setQuantity(quantity + 1) }}
-                                        className='bg-gray-700 rounded-full p-1'
+                                        className='bg-[#eeecec] rounded-full p-1'
                                     >
                                         <FaPlus />
-                                    </p>
+                                    </button>
                                 </div>
                             </div>
                         </motion.div>}

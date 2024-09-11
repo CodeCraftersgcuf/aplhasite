@@ -5,9 +5,11 @@ import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import { FreeMode, Grid, Navigation, Pagination } from 'swiper/modules';
 import HomeProductSlide from '../HomeProductSlide';
-import { DUMMY_ITEMS } from '@/utils';
+// import { DUMMY_ITEMS } from '@/utils';
 import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const slides = Array.from({ length: 40 }, (_, index) => index + 1);
 // const images = [
@@ -18,6 +20,8 @@ const slides = Array.from({ length: 40 }, (_, index) => index + 1);
 // const images = product?.item_data?.ecom_image_uris
 
 const DesktopSmallSwiper = ({ data }) => {
+    const router = useRouter()
+
     const swiperRef2 = useRef(null);
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const handleMouseEnter = (index) => {
@@ -26,6 +30,10 @@ const DesktopSmallSwiper = ({ data }) => {
 
     const handleMouseLeave = () => {
         setHoveredIndex(null);
+    };
+
+    const handleNavigateDetails = (product) => {
+        return router.push('/product-details/' + product.id);
     };
 
     return (
@@ -69,19 +77,19 @@ const DesktopSmallSwiper = ({ data }) => {
                         slidesPerView: 7,
                     },
                     1366: {
-                        slidesPerView: 7,
-                    },
-                    1400: {
                         slidesPerView: 8,
                     },
+                    // 1400: {
+                    //     slidesPerView: 10,
+                    // },
                     1450: {
-                        slidesPerView: 7,
-                    },
-                    1500: {
                         slidesPerView: 9,
                     },
-                    1600: {
+                    1500: {
                         slidesPerView: 10,
+                    },
+                    1600: {
+                        slidesPerView: 11,
                     },
                     1700: {
                         slidesPerView: 11,
@@ -97,16 +105,30 @@ const DesktopSmallSwiper = ({ data }) => {
                 {data.map((product, index) => (
                     <SwiperSlide key={index}>
                         <div
-                            className="item-image-box"
-                            style={{ width: '150px', height: '190px' }}
+                            className="item-image-box hover:cursor-pointer"
+                            onClick={() => handleNavigateDetails(product)}
+                            style={{ maxWidth: '312px', height: 'auto', aspectRatio: '4/5', display: 'flex', justifyContent: 'center', alignItems: 'center', }}
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}
+                            title='View product details'
                         >
-                            <img
-                                className="item-image"
+                            <Image
+                                className='object-cover'
+                                objectFit='cover'
+                                // objectPosition='center'
+                                layout='responsive'
+                                height={5}
+                                width={4}
+                                // height={190}
+                                // width={150}
                                 src={product.item_data.ecom_image_uris ? product?.item_data?.ecom_image_uris?.length > 1 ? hoveredIndex === index ? product?.item_data?.ecom_image_uris['1'] : product?.item_data?.ecom_image_uris['0'] : product?.item_data?.ecom_image_uris['0'] : ''}
                                 alt="product image"
                             />
+                            {/* <img
+                                className="item-image"
+                                src={product.item_data.ecom_image_uris ? product?.item_data?.ecom_image_uris?.length > 1 ? hoveredIndex === index ? product?.item_data?.ecom_image_uris['1'] : product?.item_data?.ecom_image_uris['0'] : product?.item_data?.ecom_image_uris['0'] : ''}
+                                alt="product image"
+                            /> */}
                             <p className="plus">
                                 <FaPlus />
                             </p>

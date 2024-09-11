@@ -6,7 +6,7 @@ import Image from 'next/image'; // Assuming you are using Next.js; otherwise, us
 
 const CustomToast = ({ product, quantity, adding, removing }) => {
     const images = product?.item_data?.ecom_image_uris
-    const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money.amount
+    const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money.amount / 100
     const productName = product?.item_data?.name
     const productType = product?.item_data?.product_type
 
@@ -14,7 +14,18 @@ const CustomToast = ({ product, quantity, adding, removing }) => {
         <div className="flex items-center bg-white p-4 border border-gray-300 rounded-lg shadow">
             {/* Image on the left */}
             <div className="flex-shrink-0 mr-3 h-16 overflow-hidden rounded-lg" style={{ aspectRatio: '4/5' }}>
-                <img src={images && images[0]} alt="icon" className='rounded-lg object-cover' />
+                <Image
+                    className='rounded-lg'
+                    src={images && images[0]}
+                    alt="image"
+                    layout='responsive'
+                    height={5} // Maintain aspect ratio
+                    width={4}  // Maintain aspect ratio
+                    objectPosition='center'
+                    objectFit='cover'
+
+                />
+                {/* <img src={images && images[0]} alt="icon" className='rounded-lg object-cover' /> */}
                 {/* <Image src={product.image[0]} alt="Icon" fill={true} className="rounded-md" /> */}
             </div>
 

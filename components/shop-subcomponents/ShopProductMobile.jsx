@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import MobileProductSlide from './MobileProductSlide'
-import { DUMMY_ITEMS } from '@/utils'
+// import { DUMMY_ITEMS } from '@/utils'
 
 const ShopProductMobile = ({ addItem, products }) => {
     const [bgClicked, setBgClicked] = useState(false)

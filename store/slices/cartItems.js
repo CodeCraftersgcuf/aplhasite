@@ -1,46 +1,33 @@
+import notify from '@/helpers/notify';
 import { createSlice } from '@reduxjs/toolkit';
-
-//Accepting data in the following pattern:
-// {item: null, size: null, quantity: null,},
 
 const initialState = {
   items: [],
+  added: 0,
 };
 export const itemsSlice = createSlice({
   name: 'items',
   initialState,
   reducers: {
-    resetMessage(state) {
-      state.message = null;
-    },
     addItem(state, action) {
       const { product, quantity } = action.payload;
-      // console.log(product);
-      state.message = null;
-      console.log(action.payload);
       const itemExists = state.items.some(
         (item) => item.product.id === product.id
       );
-
-      if (itemExists) {
-        state.message = 'itemExists';
-      } else {
+      if (!itemExists) {
         state.items.push(action.payload);
-        state.message = 'itemAdded';
+        state.added += 1;
+        notify({ product, quantity, adding: true, removing: false });
       }
     },
     removeItem(state, action) {
       const { product, size, quantity } = action.payload;
-      state.message = null;
       const itemIndex = state.items.findIndex(
         (item) => item.product.id === product.id && item.size === size
       );
-
       if (itemIndex !== -1) {
         state.items.splice(itemIndex, 1);
-        state.message = 'itemRemoved';
-      } else {
-        state.message = 'Item does not exist';
+        notify({ product, quantity, adding: false, removing: true });
       }
     },
     increment(state, action) {
@@ -51,24 +38,20 @@ export const itemsSlice = createSlice({
       );
       if (itemIndex !== -1) {
         state.items[itemIndex].quantity += 1;
-      } else {
-        state.message = 'Item does not exist';
       }
     },
     decrement(state, action) {
       const { product, size, quantity } = action.payload;
       const itemIndex = state.items.findIndex(
-        (item) => item.product.id === product.id && item.size === size
+        (item) => item.product.id === product.id
       );
       if (itemIndex !== -1) {
         if (state.items[itemIndex].quantity === 1) {
           state.items.splice(itemIndex, 1);
-          state.message = 'itemRemoved';
+          notify({ product, quantity, adding: false, removing: true });
         } else {
           state.items[itemIndex].quantity -= 1;
         }
-      } else {
-        state.message = 'Item does not exist';
       }
     },
   },

@@ -14,7 +14,7 @@ import { modalActions } from "@/store/slices/openModel";
 import { itemsActions } from "@/store/slices/cartItems";
 import PopUp from "@/components/Header-subcomponents/PopUp";
 import Image from "next/image";
-import pang3a from "@assets/Pang3aBlack.png";
+import pang3aBlack from "@assets/Pang3aBlack.png";
 import pang3aWhite from "../assets/pang3a.png";
 import _ from "lodash";
 import DropDown from "@/components/Header-subcomponents/DropDown";
@@ -24,12 +24,14 @@ import DropDown from "@/components/Header-subcomponents/DropDown";
 const Header = () => {
   const [showPopUp, setShowPopUp] = useState(false);
   const [cartItemsNo, setCartItemsNo] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
   const addedItems = useSelector((state) => state.itemsFn.items);
   // const stateMessage = useSelector((state) => state.itemsFn.message);
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
   const [showDropdown, setShowDropdown] = useState(false);
+
 
 
   //its because the normal state of redux causes hydration error
@@ -81,13 +83,15 @@ const Header = () => {
       <header
         className={`header-nav z-50 ${isScrolled ? "scrolled" : "transparent"}`}
         style={{ zIndex: 59 }} // Using a number instead of a string
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
       >
         {!isScrolled && (
-          <div className="preheader hover:bg-black">
+          <div className="preheader ">
             {/* <div className="mySwiper"> */}
             {/* <div className="swiper-wrapper"> */}
             {/* <div className="swiper-slide"> */}
-            <p className="text-white ps-7">
+            <p className="ps-7">
               Free Domestic Shipping over $120 and 30 Day Returns
             </p>
             {/* </div> */}
@@ -108,16 +112,17 @@ const Header = () => {
         <div className="header">
           <div className="flex h-full items-center gap-5">
             <Image
-              onClick={() => (window.location.href = "/")}
-              src={pang3aWhite}
+              onClick={() => (router.push("/"))}
+              src={isHovered || isScrolled ? pang3aBlack : pang3aWhite}
               alt="Logo Here"
-              className="h-[22px] object-contain w-auto"
+              className="h-[22px] object-contain w-auto hover:cursor-pointer"
+              title="Go to Home Page"
             />
             <div className="example05 flex items-center">
               <div
                 style={{ cursor: "pointer" }}
                 // onClick={() => (router.push(''))}
-                className=" dropdown-trigger text-[11px] text-gray-700 "
+                className=" dropdown-trigger text-[11px] "
                 onMouseOver={() => setShowDropdown(true)}
                 onMouseOut={() => setShowDropdown(false)}
               >
@@ -135,8 +140,8 @@ const Header = () => {
           <div className="relative">
             <FaSearch />
             <div onClick={showCartModal} className="relative">
-              <SlBag className="cart" />
-              <p className="mt-[15px] w-[20px] absolute pr-0 top-2 right-0.5 bg-white !text-black border-0 rounded-full text-center cart-num">
+              <SlBag className="relative" />
+              <p className="mt-[15px] w-[20px] absolute pr-0 top-2 right-0.5 bg-white !text-black border-0 rounded-full text-center cart-num hover:cursor-pointer">
                 {cartItemsNo}
               </p>
             </div>

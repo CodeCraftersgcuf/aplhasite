@@ -4,8 +4,8 @@
 // import gsap from 'gsap';
 // import { ScrollSmoother } from 'gsap-trial/dist/ScrollSmoother';
 // import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import { Inter } from 'next/font/google';
 // import { useGSAP } from '@gsap/react';
+import { Inter } from 'next/font/google';
 
 import Header from '@/components/Header';
 import ReduxProviderWrapper from '@/components/ReduxProviderWrapper';
@@ -40,9 +40,7 @@ export default function RootLayout({ children }) {
       <head />
       <body className={inter.className}>
         <ReduxProviderWrapper>
-          <SkeletonTheme baseColor="#2f2c2c" highlightColor="#726a6a">
-            {children}
-          </SkeletonTheme>
+          <SkeletonTheme baseColor="#ececec">{children}</SkeletonTheme>
         </ReduxProviderWrapper>
       </body>
     </html>

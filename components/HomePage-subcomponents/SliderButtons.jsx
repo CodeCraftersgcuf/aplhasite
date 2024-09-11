@@ -5,13 +5,13 @@ const SliderButtons = ({ women, setWomen }) => {
         <div className="slider-buttons">
             <span
                 onClick={() => setWomen(true)}
-                className={women ? 'bg-gray' : ''}
+                className={women ? 'bg-gray-400' : ''}
             >
                 {`Now`}
             </span>
             <span
                 onClick={() => setWomen(false)}
-                className={!women ? 'bg-gray' : ''}
+                className={!women ? 'bg-gray-400' : ''}
             >
                 {`Trending`}
             </span>

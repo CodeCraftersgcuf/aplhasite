@@ -5,28 +5,21 @@ import 'swiper/css/grid';
 import 'swiper/css/pagination';
 import { FreeMode, Grid, Navigation, Pagination } from 'swiper/modules';
 import HomeProductSlide from '../HomeProductSlide';
-import { DUMMY_ITEMS } from '@/utils';
+// import { DUMMY_ITEMS } from '@/utils';
 import { GrFormPrevious, GrFormNext } from 'react-icons/gr';
-import { SkeletonTheme } from 'react-loading-skeleton';
 
 
 const DesktopLargeSwiper = ({ onAddItem, handleNavigateDetails, data }) => {
 
   const swiperRef = useRef(null);
-  // console.log(typeof data)
-  // console.log(data['0'])
-  // console.log(Object.keys(data))
-  // Object.keys(data).map((key) => {
-  //   console.log(data[key])
-  // })
 
-  // console.log(reversed)
   return (
     <div className="hidden lg:block">
       <Swiper
         freeMode={true}
         direction="horizontal"
         modules={[FreeMode]}
+        // spaceBetween={25}
         className="mySwiper test ms-[30px]"
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
@@ -69,15 +62,19 @@ const DesktopLargeSwiper = ({ onAddItem, handleNavigateDetails, data }) => {
           <GrFormPrevious />
         </button>
         {data.map((product, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={product.id}>
             <div
+              // className="slider-items"
               className="slider-items lg:ps-12 md:ps-8 sm:ps-4 ps-0"
             // style={
             //       index === 0 ? { paddingLeft: "50px", zIndex: '100' } : {}
             //     }
             >
-              <SkeletonTheme color="#d3d3e0" highlightColor="#e1e1e1" />
-              <div className="slider-item">
+              {/* <SkeletonTheme color="#d3d3e0" highlightColor="#e1e1e1" /> */}
+              <div
+                className="slider-item"
+              // style={{ aspectRatio: '7/12' }}
+              >
                 <HomeProductSlide
                   key={index}
                   product={product}
