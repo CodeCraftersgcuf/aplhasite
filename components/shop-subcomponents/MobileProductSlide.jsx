@@ -140,7 +140,7 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
                     {productType} <span> 4 colors</span>
                 </p> */}
                     <p className="text-[10px] text-gray-700">${productPrice && productPrice}</p>
-                    {inventoryAlert && <p className="text-[8px] w-fit text-white bg-gradient-to-r from-[#3dbfff] to-[#a649ff] rounded-lg p-1">{inventoryAlert}</p>}
+                    {inventoryAlert && <p className="text-[8px] w-fit text-white bg-gradient-to-r from-[#3dbfff] to-[#a649ff] rounded-full p-1">{inventoryAlert}</p>}
                     {/* padding: 2px 5px;
           background: linear-gradient(90deg, #3dbfff, #a649ff);
           border-radius: 5px;

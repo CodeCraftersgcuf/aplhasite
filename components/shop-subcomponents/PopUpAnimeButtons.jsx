@@ -106,6 +106,7 @@ const PopUpAnimeButtons = ({ name, options }) => {
             <AnimatePresence>
                 {isOpen && (
                     <motion.ul
+                        className="flex flex-col pt-2 gap-2"
                         initial="collapsed"
                         animate="open"
                         exit="collapsed"
@@ -114,16 +115,17 @@ const PopUpAnimeButtons = ({ name, options }) => {
                         {options.map((option, index) => (
                             <motion.li
                                 key={index}
-                                className="flex items-center my-2 font-normal text-lg text-black"
+                                className="flex items-center font-normal text-lg text-gray-500"
                                 variants={listItemsVariants}
                             >
                                 <input
                                     type="radio"
                                     name="customRadio"
-                                    className="appearance-none h-4 w-4 border border-gray-300 rounded-md checked:bg-gray-800 focus:outline-none transition duration-200 mr-2 hover:cursor-pointer"
+                                    className="appearance-none -mt-1 h-4 w-4 border border-gray-300 rounded-md checked:bg-gray-800 focus:outline-none transition duration-200 mr-2 hover:cursor-pointer"
                                 />
-                                {option}
+                                <span className="leading-none flex items-center" style={{ verticalAlign: 'middle' }}>{option}</span>
                             </motion.li>
+
                         ))}
                     </motion.ul>
                 )}

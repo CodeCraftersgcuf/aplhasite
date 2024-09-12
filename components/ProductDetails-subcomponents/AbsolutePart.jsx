@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import parseProductDetails from '@/helpers/parseProductDetails'
 import { itemsActions } from '@/store/slices/cartItems'
 import { useDispatch } from 'react-redux'
+import Image from 'next/image'
 
 const AbsolutePart = ({ product, centerSlide }) => {
     const dispatch = useDispatch()
@@ -48,15 +49,20 @@ const AbsolutePart = ({ product, centerSlide }) => {
                         <span className='text-xs text-gray-500 font-normal p-[0.15rem] border-[1px] border-gray-400 w-12 rounded-md text-center shadow-md'>NEW</span>
                     </div>
                     <span className='text-xs text-gray-400'>{`${inventory?.quantity} ${inventory?.state}`}</span>
-                    <div className='flex gap-1'>
+                    <div className='flex gap-1 p-1 border border-gray-400 rounded-lg'>
                         {images && images.map((image, index) => (
                             <div
                                 key={index}
-                                className={`w-14 border border-gray-400 rounded-lg  hover:cursor-pointer ${selectedImage === index ? 'scale-105 border-2' : ''}`}
+                                style={{ aspectRatio: '4/5' }}
+                                className={`w-14 border flex items-center border-gray-400 rounded-lg  hover:cursor-pointer ${selectedImage === index ? 'scale-105 border-2' : ''}`}
                                 onClick={() => handleSelectedImage(index)}
                             >
-                                <img className='rounded-lg'
+                                <Image
+                                    className='rounded-lg'
                                     src={image}
+                                    layout='responsive'
+                                    height={5}
+                                    width={4}
                                     alt="image" />
                             </div>
                         ))}
@@ -79,15 +85,6 @@ const AbsolutePart = ({ product, centerSlide }) => {
                     <div className='flex flex-col text-sm'>
 
                         <div className='flex flex-col gap-3 lg:border-y border-gray-400 py-4 '>
-                            {/* <div className=' px-6'>
-                                <ul className='flex flex-col gap-1 list-disc'>
-                                    {product.qualities.map((quality, index) => (
-                                        <li key={index} className='text-xs text-gray-400'>
-                                            {quality}
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div> */}
                             <div className='flex flex-col'>
                                 {description && <ul className="p-2 border-y list-disc font-semibold">
                                     <AnimatingButton name={'Description'} detail={description.Description} />

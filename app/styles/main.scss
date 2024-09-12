@@ -99,6 +99,7 @@ h1 {
     bottom: 12px;
     right: 15px;
     background-color: #f3ebeb;
+    // background: opacity($color: #e2e1e1);
     padding: 2px;
     border-radius: 50%;
     cursor: pointer;
@@ -220,7 +221,7 @@ h1 {
         p.bg-gradient {
           padding: 2px 5px;
           background: linear-gradient(90deg, #3dbfff, #a649ff);
-          border-radius: 5px;
+          border-radius: 50px;
           font-size: 10px;
           text-align: center;
         }

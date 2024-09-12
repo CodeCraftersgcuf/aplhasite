@@ -34,7 +34,7 @@ const topSmallBanners = [
     btn2: 'Broad Spec',
   },
   {
-    url: 'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p14_i3_w3000.png',
+    url: 'https://517992454425628599.square.site/uploads/1/4/6/0/146082605/s650997120377647197_p138_i1_w3000.png',
     name: '3ML DISPOSABLES',
     subtitle: 'NURO',
     btn1: 'Essential Blend',

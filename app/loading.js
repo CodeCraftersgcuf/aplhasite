@@ -3,7 +3,7 @@ import '@/app/styles/spinner.scss';
 
 const Loading = () => {
   return (
-    <div className="h-screen w-screen flex items-center justify-center">
+    <div className="fixed h-screen w-screen flex items-center justify-center">
       <span class="loader"></span>
     </div>
   );

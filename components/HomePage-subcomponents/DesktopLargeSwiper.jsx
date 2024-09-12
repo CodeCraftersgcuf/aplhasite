@@ -51,8 +51,11 @@ const DesktopLargeSwiper = ({ onAddItem, handleNavigateDetails, data }) => {
             slidesPerView: 5.5,
           },
           1600: {
-            slidesPerView: 7.5,
+            slidesPerView: 6,
           },
+          1800: {
+            slidesPerView: 6.5,
+          }
         }}
       >
         <button

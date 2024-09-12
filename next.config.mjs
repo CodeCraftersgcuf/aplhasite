@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['alphalete.uk', 'cdn.shopify.com', 'www.nuro.la'],
+    domains: ['alphalete.uk', 'cdn.shopify.com', 'www.nuro.la','517992454425628599.square.site'],
   },
   webpack(config, { isServer }) {
     // Add support for video files

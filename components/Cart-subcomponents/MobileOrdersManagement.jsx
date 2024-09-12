@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 import { itemsActions } from '@/store/slices/cartItems';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { CgDetailsMore } from "react-icons/cg";
 import Image from 'next/image';
 
 const MobileOrdersManagement = ({ addedItems, height, topMargin, isOpen }) => {
@@ -82,7 +83,7 @@ const MobileOrdersManagement = ({ addedItems, height, topMargin, isOpen }) => {
                                 {/* {`${item.product.color} - ${item.size}`} */}
                             </span>
                             <span>
-                                {`$${item.product?.item_data?.variations[0]?.item_variation_data.price_money.amount}`}
+                                {`$${((item.product?.item_data?.variations[0]?.item_variation_data.price_money.amount) / 100).toFixed(2)}`}
                             </span>
                             <span className='text-xs text-gray-500 font-normal p-[0.15rem] border-[1px] border-gray-400 w-12 rounded-md text-center shadow-md'>NEW</span>
                         </div>
@@ -97,7 +98,7 @@ const MobileOrdersManagement = ({ addedItems, height, topMargin, isOpen }) => {
                                 <MdDelete className="text-gray-600 w-6" />
                             </button>
                             <button className="flex items-center justify-center w-8 h-8 rounded-full hover:bg-gray-200 transition">
-                                <MdModeEdit className="text-gray-600 w-6" />
+                                <CgDetailsMore className="text-gray-600 w-6" />
                             </button>
                         </div>
                         <span>{`$${((item.quantity * item.product?.item_data?.variations[0]?.item_variation_data.price_money.amount) / 100).toFixed(2)}`}</span>

@@ -107,7 +107,7 @@ const DesktopSmallSwiper = ({ data }) => {
                         <div
                             className="item-image-box hover:cursor-pointer"
                             onClick={() => handleNavigateDetails(product)}
-                            style={{ maxWidth: '312px', height: 'auto', aspectRatio: '4/5', display: 'flex', justifyContent: 'center', alignItems: 'center', }}
+                            style={{ maxWidth: '312px', height: 'auto', aspectRatio: '4/5', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgb(216, 215, 215)', borderRadius: '12px' }}
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}
                             title='View product details'
@@ -119,6 +119,7 @@ const DesktopSmallSwiper = ({ data }) => {
                                 layout='responsive'
                                 height={5}
                                 width={4}
+                                loading='lazy'
                                 // height={190}
                                 // width={150}
                                 src={product.item_data.ecom_image_uris ? product?.item_data?.ecom_image_uris?.length > 1 ? hoveredIndex === index ? product?.item_data?.ecom_image_uris['1'] : product?.item_data?.ecom_image_uris['0'] : product?.item_data?.ecom_image_uris['0'] : ''}

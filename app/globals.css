@@ -907,6 +907,7 @@ body.no-scroll {
 
   .apni-class {
     height: 40% !important;
+    overflow: hidden;
   }
 
   .slider-big-item {

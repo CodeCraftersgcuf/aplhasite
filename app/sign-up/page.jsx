@@ -88,7 +88,7 @@ const SignUpPage = () => {
                         <CustomAuthInput
                             validFn={(value) => !isNotEmpty(value) || !isPasswordValid(value)}
                             id='password'
-                            type="password"
+                            type={showPassword ? "text" : "password"}
                             placeholder='password'
                             error={'Password must contain atleast 8 digits'}
                             childType={'signUp'}

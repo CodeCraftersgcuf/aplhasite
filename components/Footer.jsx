@@ -11,7 +11,7 @@ import pang3aBlack from "@assets/Pang3aBlack.png"
 import AuthInputButton from "./auth-input-subcomponents/AuthInputButton";
 import CustomAuthInput from "./auth-input-subcomponents/CustomAuthInput";
 import Image from "next/image";
-
+import footerPhoto from '@assets/Footer.png'
 
 const Footer = () => {
   return (
@@ -173,14 +173,14 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="bgCover">
-        <div className="w-3/4 h- flex items-center justify-center">
+      <div className="flex items-center justify-center px-4 md:px-12 lg:px-[163px] py-0">
+        <div className="w-full lg:w-3/4 h- flex items-center justify-center">
           <Image
             layout="responsive"
             height={100}
             width={400}
             objectFit="cover"
-            src={pang3aBlack}
+            src={footerPhoto}
             alt="cover"
             quality={50}
           />

@@ -18,8 +18,8 @@ import pang3aBlack from "@assets/Pang3aBlack.png";
 import pang3aWhite from "../assets/pang3a.png";
 import _ from "lodash";
 import DropDown from "@/components/Header-subcomponents/DropDown";
-
-
+import headerPhoto from '@assets/headerPhoto.png'
+import headerWhite from '@assets/headerWhite.png'
 
 const Header = () => {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -113,7 +113,7 @@ const Header = () => {
           <div className="flex h-full items-center gap-5">
             <Image
               onClick={() => (router.push("/"))}
-              src={isHovered || isScrolled ? pang3aBlack : pang3aWhite}
+              src={isHovered || isScrolled ? headerPhoto : headerWhite}
               alt="Logo Here"
               className="h-[22px] object-contain w-auto hover:cursor-pointer"
               title="Go to Home Page"
@@ -138,7 +138,7 @@ const Header = () => {
             </div>
           </div>
           <div className="relative">
-            <FaSearch />
+            {/* <FaSearch /> */}
             <div onClick={showCartModal} className="relative">
               <SlBag className="relative" />
               <p className="mt-[15px] w-[20px] absolute pr-0 top-2 right-0.5 bg-white !text-black border-0 rounded-full text-center cart-num hover:cursor-pointer">
@@ -147,7 +147,7 @@ const Header = () => {
             </div>
             <RxHamburgerMenu
               color="white"
-              className="burger"
+              className={`burger ${isScrolled ? "scrolled" : ""}`}
               onClick={() => {
                 if (!showPopUp) {
                   handleOpenPopUp()
