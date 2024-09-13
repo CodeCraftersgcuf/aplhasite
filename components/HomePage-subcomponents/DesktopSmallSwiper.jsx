@@ -102,12 +102,13 @@ const DesktopSmallSwiper = ({ data }) => {
                 >
                     <GrFormPrevious />
                 </button>
+
                 {data.map((product, index) => (
                     <SwiperSlide key={index}>
                         <div
                             className="item-image-box hover:cursor-pointer"
                             onClick={() => handleNavigateDetails(product)}
-                            style={{ maxWidth: '312px', height: 'auto', aspectRatio: '4/5', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: 'rgb(216, 215, 215)', borderRadius: '12px' }}
+                            style={{ maxWidth: '312px', height: 'auto', aspectRatio: '4/5', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#F6F6F6', borderRadius: '12px' }}
                             onMouseEnter={() => handleMouseEnter(index)}
                             onMouseLeave={handleMouseLeave}
                             title='View product details'

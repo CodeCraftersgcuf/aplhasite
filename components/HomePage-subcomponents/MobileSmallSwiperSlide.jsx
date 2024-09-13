@@ -12,7 +12,7 @@ const MobileSmallSwiperSlide = ({ product }) => {
         <div className="relative">
             <div
                 className='relative w-full rounded-xl overflow-hidden flex items-center justify-center'
-                style={{ aspectRatio: '4/5', backgroundColor: '#eeecec' }}
+                style={{ aspectRatio: '4/5', backgroundColor: '#F6F6F6' }}
             >
                 <Image
                     layout='responsive'

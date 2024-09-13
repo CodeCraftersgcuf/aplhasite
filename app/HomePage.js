@@ -41,11 +41,11 @@ const topSmallBanners = [
     btn2: 'Broad Spec',
   },
   {
-    url: 'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p15_i3_w3000.png',
-    name: '5ML DISPOSABLES',
-    subtitle: 'CANDY',
-    btn1: 'Essential Blend',
-    btn2: 'Top Sellers',
+    url: 'https://517992454425628599.square.site/uploads/1/4/6/0/146082605/s650997120377647197_p14_i4_w1920.png',
+    name: 'Nuro 1ml',
+    subtitle: 'CARTRIDGE',
+    btn1: 'Classic',
+    btn2: 'Limited Edition',
   },
   ,
 ];
@@ -76,8 +76,10 @@ const HomePage = ({ data }) => {
   const innerSwiperRef = useRef();
 
   const dataArray = Object.values(data);
-  const reversedDataArray = dataArray.reverse();
-  const splicedDataArray = reversedDataArray.splice(0, 30);
+  // const reversedDataArray = dataArray.reverse();
+  const splicedDataArray = dataArray;
+  // const splicedDataArray = dataArray.splice(0, 30);
+  console.log(splicedDataArray);
 
   const handleNavigateDetails = (product) => {
     return router.push('/product-details/' + product.id);

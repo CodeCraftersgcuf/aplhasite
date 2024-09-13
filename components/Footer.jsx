@@ -7,11 +7,11 @@ import {
   BsTiktok,
   BsYoutube,
 } from "react-icons/bs";
-import pang3aBlack from "@assets/Pang3aBlack.png"
+import pang3aBlack from "@assets/Footer.png"
 import AuthInputButton from "./auth-input-subcomponents/AuthInputButton";
 import CustomAuthInput from "./auth-input-subcomponents/CustomAuthInput";
 import Image from "next/image";
-import footerPhoto from '@assets/Footer.png'
+
 
 const Footer = () => {
   return (
@@ -180,7 +180,7 @@ const Footer = () => {
             height={100}
             width={400}
             objectFit="cover"
-            src={footerPhoto}
+            src={pang3aBlack}
             alt="cover"
             quality={50}
           />

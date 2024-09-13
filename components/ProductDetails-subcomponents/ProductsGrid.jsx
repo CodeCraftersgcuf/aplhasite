@@ -22,19 +22,19 @@ const ProductsGrid = ({ products }) => {
                     <div className="slider-buttons ">
                         <span
                             onClick={() => setWomen(true)}
-                            className={`${women ? 'bg-gray' : 'txt-black'}`}
+                            className={`${women ? 'bg-[#d8d7d7]' : ''}`}
                         >
                             Recommended
                         </span>
                         <span
                             onClick={() => setWomen(false)}
-                            className={!women ? 'bg-gray' : 'txt-black'}
+                            className={!women ? 'bg-[#d8d7d7]' : ''}
                         >
                             Recently viewed
                         </span>
                     </div>
 
-                    <div className='grid px-6 pb-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5  lg:grid-cols-4'>
+                    <div className='grid px-6 pb-6 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 2xl:grid-cols-5 lg:grid-cols-4'>
                         {/* {products.map((product, index) => (
                             <ProductSlide
                                 key={index}

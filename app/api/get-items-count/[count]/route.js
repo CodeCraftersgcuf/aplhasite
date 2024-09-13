@@ -2,6 +2,7 @@ import axios from 'axios';
 import { NextResponse } from 'next/server';
 
 export const GET = async (request) => {
+  console.log('reached');
   let items = [];
   let cursor = null;
   const limit = 55; // Set the limit to fetch 55 items in total

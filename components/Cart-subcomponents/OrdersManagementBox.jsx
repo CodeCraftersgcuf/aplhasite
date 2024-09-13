@@ -96,7 +96,7 @@ const OrdersManagementBox = ({ addedItems, removeItem, onDecrement, onIncrement,
                                         {/* {`${item.product.color} - ${item.size}`} */}
                                     </span>
                                     <span>
-                                        {`$${item.product?.item_data?.variations[0]?.item_variation_data.price_money.amount}`}
+                                        {`$${(item.product?.item_data?.variations[0]?.item_variation_data.price_money.amount / 100).toFixed(2)}`}
                                     </span>
                                     <span className='text-xs text-gray-500 font-normal p-[0.15rem] border-[1px] border-gray-400 w-12 rounded-md text-center shadow-md'>NEW</span>
                                 </div>

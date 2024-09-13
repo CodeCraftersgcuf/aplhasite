@@ -8,12 +8,13 @@ import axios from 'axios';
 const client = new Client({
   // accessToken: process.env.NEXT_SQUARE_ACCESS_TOKEN,
   accessToken:
-    'EAAAl1LNQl5Goarm04j3AoKhyvNETQNC2QGiIYb_yEO8kveKktSkzRGTKA-z7vDe',
-  environment: 'sandbox',
-  // environment:
-  //   process.env.NEXT_SQUARE_ENVIRONMENT === 'production'
-  //     ? Environment.Production
-  //     : 'sandbox',
+    process.env.NEXT_SQUARE_ENVIRONMENT === 'production'
+      ? process.env.NEXT_SQUARE_ACCESS_TOKEN_PROD
+      : process.env.NEXT_SQUARE_ACCESS_TOKEN_DEV,
+  environment:
+    process.env.NEXT_SQUARE_ENVIRONMENT === 'production'
+      ? Environment.Production
+      : Environment.Sandbox,
 });
 
 const ordersApi = client.ordersApi;

@@ -41,7 +41,7 @@ const SignInPage = () => {
     return (
         <WithHeaderWrapper>
             <div
-                className="h-screen max-w-[100%] flex items-center justify-center bg-white "
+                className="h-screen w-full flex items-center justify-center bg-white "
             // onClick={handleOutsideClick}
             >
                 <div className="bg-white flex flex-col gap-3 rounded-lg w-full max-w-lg mx-4 sm:mx-0 p-6">

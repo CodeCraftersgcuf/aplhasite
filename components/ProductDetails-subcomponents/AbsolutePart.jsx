@@ -20,6 +20,7 @@ const AbsolutePart = ({ product, centerSlide }) => {
     let description;
     const raw_description = product?.item_data?.description_plaintext
     if (raw_description) {
+        console.log(parseProductDetails(raw_description))
         description = parseProductDetails(raw_description)
     }
 
@@ -87,9 +88,9 @@ const AbsolutePart = ({ product, centerSlide }) => {
                         <div className='flex flex-col gap-3 lg:border-y border-gray-400 py-4 '>
                             <div className='flex flex-col'>
                                 {description && <ul className="p-2 border-y list-disc font-semibold">
-                                    <AnimatingButton name={'Description'} detail={description.Description} />
-                                    <AnimatingButton name={'Product Details'} detail={description.ProductDetails} />
-                                    <AnimatingButton name={'Ingredients'} detail={description.Ingredients} />
+                                    <AnimatingButton name={'Description'} detail={description.description} />
+                                    <AnimatingButton name={'Acknowledgements'} detail={description.acknowledgements} />
+                                    {/* <AnimatingButton name={'Ingredients'} detail={description.Ingredients} /> */}
                                 </ul>}
 
                                 {!description && (raw_description ? <p className='text-center text-xl'>{raw_description}</p> : <p className='text-center text-xl'>No Description Found</p>)}

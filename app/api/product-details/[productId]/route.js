@@ -73,9 +73,8 @@ export const GET = async (request, { params }) => {
       `https://connect.squareup.com/v2/catalog/object/${productId}`,
       {
         headers: {
-          Authorization:
-            'Bearer EAAAlsVtQA5CmiZu39b_6yP5QmfuX_r-poR4KQrRU1l9kcuuACiQibh9mJnY9YCP',
-          'Square-Version': '2023-08-16',
+          Authorization: `Bearer ${process.env.NEXT_SQUARE_ACCESS_TOKEN_PROD}`,
+          'Square-Version': '2024-08-21',
           'Content-Type': 'application/json',
         },
       }
@@ -96,9 +95,8 @@ export const GET = async (request, { params }) => {
       },
       {
         headers: {
-          Authorization:
-            'Bearer EAAAlsVtQA5CmiZu39b_6yP5QmfuX_r-poR4KQrRU1l9kcuuACiQibh9mJnY9YCP',
-          'Square-Version': '2023-08-16',
+          Authorization: `Bearer ${process.env.NEXT_SQUARE_ACCESS_TOKEN_PROD}`,
+          'Square-Version': '2024-08-21',
           'Content-Type': 'application/json',
         },
       }

@@ -1,11 +1,19 @@
 import HomePage from '@/app/HomePage';
 import axios from 'axios';
+import { cookies } from 'next/headers';
 
 export default async function Page() {
-  console.log(process.env.NEXT_VERCEL_DOMAIN_URL);
+  const cookieStore = cookies(); // Get cookies from the request
+  const token = cookieStore.get('token'); // Fetch the 'token' cookie
   try {
     const response = await axios.get(
-      `${process.env.NEXT_VERCEL_DOMAIN_URL}/api/get-all-items`
+      `${process.env.NEXT_VERCEL_DOMAIN_URL}/api/get-all-items`,
+      {
+        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token || ''}`,
+        },
+      }
     );
     // const dataArray = Object.values(response?.data);
     // const reversedDataArray = dataArray.reverse();

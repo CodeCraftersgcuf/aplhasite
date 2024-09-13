@@ -36,7 +36,11 @@ export const POST = async (request) => {
       message: 'Login Successful',
       success: true,
     });
-    response.cookies.set('token', token, { httpOnly: true });
+    response.cookies.set('token', token, {
+      httpOnly: true,
+      sameSite: 'strict',
+      secure: process.env.NEXT_SQUARE_ENVIRONMENT === 'production',
+    });
 
     return response;
   } catch (error) {

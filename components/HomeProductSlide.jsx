@@ -14,7 +14,7 @@ import { itemsActions } from '@/store/slices/cartItems';
 import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/navigation';
 
-
+let inventoryAlert = null
 const suggestionsImages = [
     'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p7_i3_w3000.png',
     'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p14_i3_w3000.png',
@@ -30,10 +30,15 @@ const HomeProductSlide = ({ product }) => {
     const [loadedImagesCount, setLoadedImagesCount] = useState(0)
     const [quantity, setQuantity] = useState(0)
     const images = product?.item_data?.ecom_image_uris
-    const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money.amount / 100
+    const productPrice = product?.item_data?.variations[0]?.item_variation_data.price_money?.amount / 100
     const productName = product?.item_data?.name
     const productType = product?.item_data?.product_type
-    const inventoryAlert = product?.item_data?.variations[0]?.item_variation_data.location_overrides[0]?.inventory_alert_type
+    if (product?.item_data?.variations) {
+        if (Array.isArray(product?.item_data?.variations[0]?.item_variation_data.location_overrides)) {
+            inventoryAlert = product?.item_data?.variations[0]?.item_variation_data.location_overrides[0]?.inventory_alert_type
+        }
+    }
+    // const inventoryAlert = product?.item_data?.variations[0]?.item_variation_data.location_overrides[0]?.inventory_alert_type
     // console.log(inventoryAlert)
     // console.log(imageLoading)
 
@@ -77,20 +82,20 @@ const HomeProductSlide = ({ product }) => {
                     <div className="button-overlay prev-button-overlay">
                         <GrFormPrevious />
                     </div>
-                    {images && Object.keys(images).map((key, imgIndex) => (
+                    {images && images.map((key, imgIndex) => (
                         <SwiperSlide
                             // className="imageSlide"
                             key={imgIndex}
                             onClick={() => handleNavigateDetails(product)}
                         >
-                            <div style={{ aspectRatio: '4/5', position: 'relative', width: '100%', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#eeecec', borderRadius: '10px' }}>
+                            <div style={{ aspectRatio: '4/5', position: 'relative', width: '100%', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#F6F6F6', borderRadius: '10px' }}>
                                 <Image
                                     layout='responsive'
                                     objectFit='contain'
                                     height={5}
                                     width={4}
                                     objectPosition='center'
-                                    quality={50}
+                                    quality={20}
                                     onLoad={() => {
                                         handleImageLoad()
                                         // console.log('loaded image')
@@ -98,7 +103,7 @@ const HomeProductSlide = ({ product }) => {
                                     loading='lazy'
                                     // onClick={() => handleNavigateDetails(product)}
                                     className="hover:cursor-pointer"
-                                    src={images[key]}
+                                    src={key}
                                     alt={'product image'}
                                 />
                                 <p className="new">NEW</p>
