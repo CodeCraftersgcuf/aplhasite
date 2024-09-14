@@ -20,13 +20,14 @@ import _ from "lodash";
 import DropDown from "@/components/Header-subcomponents/DropDown";
 
 
-
 const Header = () => {
   const [showPopUp, setShowPopUp] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const [cartItemsNo, setCartItemsNo] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
   const dispatch = useDispatch();
   const addedItems = useSelector((state) => state.itemsFn.items);
+  const state = useSelector((state) => state.stateFn.currentState);
   // const stateMessage = useSelector((state) => state.itemsFn.message);
   const router = useRouter();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,6 +39,16 @@ const Header = () => {
   useEffect(() => {
     setCartItemsNo(addedItems.length);
   }, [addedItems]);
+
+  useEffect(() => {
+    if (state === 'userLogin') {
+      setIsLogin(true);
+    } else {
+      if (state === 'loggedOut') {
+        setIsLogin(false);
+      }
+    }
+  }, [state])
 
   useEffect(() => {
     const addThreshold = 80; // Scroll position at or above which the class is added
@@ -102,9 +113,15 @@ const Header = () => {
               <Link className="border-s-[1px] ms-1 border-gray-600" href="/">
                 Info
               </Link>
-              <Link className="border-s-[1px] ms-1 border-gray-600" href="/sign-in">
-                Login
-              </Link>
+              {isLogin ?
+                <Link className="border-s-[1px] ms-1 border-gray-600" href="#">
+                  My Account
+                </Link> :
+                <Link className="border-s-[1px] ms-1 border-gray-600" href="/sign-in">
+                  Login
+                </Link>
+              }
+
             </div>
           </div>
         )}

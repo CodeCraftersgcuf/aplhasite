@@ -338,19 +338,19 @@ h1 {
         // padding: 2px 5px;
         transition: all 0.3s;
         display: flex;
-        gap: 2px;
+        gap: 4px;
         justify-content: center;
         align-items: center;
         overflow: hidden;
         z-index: 8;
 
-        img {
-          width: 45px;
-          height: 100%;
-          border-radius: 5px;
-          margin: 0 4px;
-          background-color: #eeecec;
-        }
+        // img {
+        //   width: 45px;
+        //   height: 100%;
+        //   border-radius: 5px;
+        //   margin: 0 4px;
+        //   background-color: #eeecec;
+        // }
       }
     }
     .slider-big-item {

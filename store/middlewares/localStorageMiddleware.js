@@ -9,7 +9,9 @@ export const localStorageMiddleware = (store) => (next) => (action) => {
   const state = store.getState();
 
   // Save specific parts of the state to localStorage
-  localStorage.setItem('cartItems', JSON.stringify(state.itemsFn.items));
+  if (typeof window !== 'undefined') {
+    localStorage.setItem('cartItems', JSON.stringify(state.itemsFn.items));
+  }
 
   return result; // Return the result of next(action)
 };

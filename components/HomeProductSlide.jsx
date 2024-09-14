@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/grid';
 import 'swiper/css/pagination';
-import { FreeMode, Grid, Navigation, Pagination } from 'swiper/modules';
+import { EffectFade, FreeMode, Grid, Navigation, Pagination } from 'swiper/modules';
 import { GrFormPrevious, GrFormNext } from 'react-icons/gr'
 import { FaPlus, FaMinus } from 'react-icons/fa6';
 import '@/app/styles/main.scss';
@@ -24,8 +24,10 @@ const suggestionsImages = [
 
 let totalImages = 0
 const HomeProductSlide = ({ product }) => {
+    const swiperRef = useRef(null)
     const dispatch = useDispatch()
     const router = useRouter()
+    const [selectedImageIndex, setSelectedImageIndex] = useState(null)
     const [imageLoading, setImageLoading] = useState(true)
     const [loadedImagesCount, setLoadedImagesCount] = useState(0)
     const [quantity, setQuantity] = useState(0)
@@ -64,6 +66,10 @@ const HomeProductSlide = ({ product }) => {
         return router.push('/product-details/' + product.id)
     }
 
+    const handleSelectImage = (index) => {
+        swiperRef.current.slideTo(index, 300)
+        setSelectedImageIndex(index)
+    }
     return (
 
         <div className='h-full w-full overflow-hidden relative'>
@@ -77,7 +83,14 @@ const HomeProductSlide = ({ product }) => {
                     // direction='horizontal'
                     slidesPerView={1}
                     navigation={true}
+                    // effect='fade'
+                    // fadeEffect={{
+                    //     crossFade: true
+                    // }}
                     modules={[Navigation]}
+                    onBeforeInit={(swiper) => {
+                        swiperRef.current = swiper;
+                    }}
                 >
                     <div className="button-overlay prev-button-overlay">
                         <GrFormPrevious />
@@ -163,8 +176,12 @@ const HomeProductSlide = ({ product }) => {
                     </div>
                 </div>
                 <div className="item-images">
-                    {suggestionsImages.map((image, imgIndex) => (
-                        <div key={imgIndex} style={{ aspectRatio: '4/5', position: 'relative', width: '100%', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#eeecec', borderRadius: '10px' }}>
+                    {images && images.map((image, imgIndex) => (
+                        <div
+                            key={imgIndex}
+                            style={{ aspectRatio: '4/5', position: 'relative', maxWidth: '52px', overflow: 'hidden', display: 'flex', justifyContent: 'center', alignItems: 'center', backgroundColor: '#eeecec', borderRadius: '10px', border: `2px solid ${selectedImageIndex === imgIndex ? '#bdbbbb' : 'transparent'}` }}
+                            onClick={() => handleSelectImage(imgIndex)}
+                        >
                             <Image src={image} alt="image" layout='responsive' width={4} height={5} />
                         </div>
                     ))}

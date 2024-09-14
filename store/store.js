@@ -9,7 +9,8 @@ import categoryReducer from '@/store/slices/categorySlice';
 import {
   localStorageMiddleware,
   rehydrateState,
-} from './localStorageMiddleware';
+} from './middlewares/localStorageMiddleware.js';
+import { authMiddleware } from './middlewares/authMiddleware.js';
 
 const preloadedState = {
   itemsFn: {
@@ -31,5 +32,8 @@ export const store = configureStore({
   },
   preloadedState: typeof window !== 'undefined' ? preloadedState : undefined,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(localStorageMiddleware),
+    getDefaultMiddleware().concat(localStorageMiddleware, authMiddleware),
 });
+
+//render auth middleware on store initialization
+store.dispatch({ type: 'auth/verifyToken' });

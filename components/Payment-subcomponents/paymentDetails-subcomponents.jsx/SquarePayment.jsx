@@ -56,7 +56,7 @@ const SquarePayment = ({ loading, setLoading }) => {
     return (
         <div className='w-full'>
             <PaymentForm
-                applicationId="sandbox-sq0idb-RdKESyUVCOAr3cuddt0AKw"
+                applicationId="sandbox-sq0idb-zczqtW5LpSc8wvEKTYVLNg"
                 cardTokenizeResponseReceived={(token, verifiedBuyer) => {
                     if (token.token) {
                         handlePayment(token); // Call function to handle payment

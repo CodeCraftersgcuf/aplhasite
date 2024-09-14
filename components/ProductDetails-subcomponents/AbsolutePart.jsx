@@ -49,7 +49,7 @@ const AbsolutePart = ({ product, centerSlide }) => {
                         {/* <span className='text-xs text-gray-400'>{product.qualities[0]}</span> */}
                         <span className='text-xs text-gray-500 font-normal p-[0.15rem] border-[1px] border-gray-400 w-12 rounded-md text-center shadow-md'>NEW</span>
                     </div>
-                    <span className='text-xs text-gray-400'>{`${inventory?.quantity} ${inventory?.state}`}</span>
+                    <span className='text-xs text-gray-400'>{`${inventory?.quantity} ${inventory?.state.replace(/_/g, ' ')}`}</span>
                     <div className='flex gap-1 p-1 border border-gray-400 rounded-lg'>
                         {images && images.map((image, index) => (
                             <div

@@ -19,6 +19,7 @@ import notify from '@/helpers/notify';
 import TopImage from '@/components/shop-subcomponents/TopImage';
 import usePost from '@/hooks/usePost';
 import { categoryToId } from '@/helpers/categoryToId';
+import categoryDataToDisplay from '@/helpers/categoryDataToDisplay';
 
 const slides = Array.from({ length: 15 }, (_, index) => index + 1);
 const ShopPage = ({ data }) => {
@@ -33,7 +34,8 @@ const ShopPage = ({ data }) => {
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const dispatch = useDispatch();
 
-  const dataArray = Object.values(data);
+  const dataArray = Object.values(data.data);
+  // console.log(data.categories);
   // const reversedDataArray = dataArray.reverse();
   const splicedDataArray = dataArray;
   // const splicedDataArray = reversedDataArray.splice(0, 30);
@@ -56,17 +58,15 @@ const ShopPage = ({ data }) => {
     };
   }, [searchTerm]);
 
+  console.log(selectedCategory);
+
   useEffect(() => {
-    console.log(selectedCategory, categoryToId(selectedCategory));
-    if (
-      (selectedCategory && categoryToId(selectedCategory)) ||
-      debouncedSearchTerm.trim() !== ''
-    ) {
+    if (selectedCategory || debouncedSearchTerm.trim() !== '') {
       // console.log(selectedCategory);
       postData({
-        url: 'http://localhost:3000/api/search-items',
+        url: '/api/search-items',
         data: {
-          categoryId: categoryToId(selectedCategory),
+          categoryId: selectedCategory,
           searchTerm: debouncedSearchTerm,
         },
       });
@@ -79,7 +79,12 @@ const ShopPage = ({ data }) => {
       <div className="w-full bg-white">
         <TopImage />
         <div className={`flex bg-white px-8 w-full`}>
-          <ShopSidebar isStyles={isStyles} setStyles={setStyles} />
+          <ShopSidebar
+            categoryData={data && categoryDataToDisplay(data.categories)}
+            itemsData={data.data}
+            isStyles={isStyles}
+            setStyles={setStyles}
+          />
           {/* {isLoading ? (
             <div className="fixed h-screen w-screen top-0 inset-0 z-50 flex items-center justify-center bg-black gap-16 bg-opacity-90 text-white">
               <div class="loader"></div>
@@ -111,6 +116,7 @@ const ShopPage = ({ data }) => {
               setShowPopUp={setShowPopUp}
               setStyles={setStyles}
               isStyles={isStyles}
+              categoryData={data && categoryDataToDisplay(data.categories)}
             />
           )}
         </div>

@@ -24,8 +24,10 @@ export async function POST(req) {
   const reqBody = await req.json();
   const { items, sourceId, customerCredentials } = reqBody;
 
-  // Your existing validation code...
-  // (unchanged)
+  //adding validation for required fields
+  // if (!items || !sourceId || !customerCredentials) {
+  //   return NextResponse.json('All fields are required', { status: 400 });
+  // }
 
   // Generate a unique idempotency key
   const idempotency_key = uuidv4();
@@ -33,16 +35,16 @@ export async function POST(req) {
   const orderRequest = {
     idempotency_key,
     order: {
-      location_id: 'LC9KSAAPWHWE2',
+      location_id: process.env.NEXT_SQUARE_LOCATION_ID_DEV,
       line_items: [
         {
           quantity: '1',
           base_price_money: {
-            amount: 9900,
+            amount: 2000,
             currency: 'USD',
           },
-          name: 'This is a custom item.',
-          uid: 'hghhgh7676gfgftftfgfvv',
+          name: 'Test Item',
+          uid: 'hghhgh7676gfgftburrfvv',
         },
       ],
       state: 'OPEN',
@@ -79,8 +81,7 @@ export async function POST(req) {
       {
         headers: {
           'Square-Version': '2024-08-21',
-          Authorization:
-            'Bearer EAAAl1LNQl5Goarm04j3AoKhyvNETQNC2QGiIYb_yEO8kveKktSkzRGTKA-z7vDe',
+          Authorization: `Bearer ${process.env.NEXT_SQUARE_ACCESS_TOKEN_DEV}`,
           'Content-Type': 'application/json',
         },
       }
@@ -90,7 +91,7 @@ export async function POST(req) {
     console.log(order);
 
     // Calculate total amount (ensure consistency with frontend)
-    const totalAmount = 9900;
+    const totalAmount = 2000;
 
     // Prepare the payment request
     console.log('payment Reached');

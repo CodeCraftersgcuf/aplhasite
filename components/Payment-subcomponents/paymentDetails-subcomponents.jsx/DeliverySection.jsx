@@ -5,6 +5,7 @@ import { isEmail, isNotEmpty, isPasswordValid, hasMinLength, optionalInput } fro
 import InputElement from './InputElement'
 import CheckBox from './CheckBox'
 const DeliverySection = ({ childType }) => {
+
     return (
         <div className="">
             {/* Country/Region Section */}

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import { PASCAL_CATEGORIES } from '@/utils';
 
 
-const ShopSidebar = ({ isStyles, setStyles }) => {
+const ShopSidebar = ({ isStyles, setStyles, categoryData, itemsData }) => {
     const dispatch = useDispatch()
     return (
         <div className='sticky top-[52px] h-[92vh] w-1/5 left-side-product-page bg-white py-[29px] pr-4 overflow-hidden hidden lg:block'>
@@ -15,7 +15,7 @@ const ShopSidebar = ({ isStyles, setStyles }) => {
                 <div className='flex flex-col'>
                     <p className='text-[12px] text-gray-700'>Trending</p>
                     <h1 className='text-[20px] text-gray-700'>ALL PRODUCTS</h1>
-                    <p className='text-[12px] text-gray-700'>230 Products</p>
+                    <p className='text-[12px] text-gray-700'>{itemsData?.length} Products</p>
                     <div className="border border-gray-500 rounded-full w-fit mt-2 p-1 flex justify-between items-center">
                         <span
                             className={`inline-block text-gray-800 text-[10px] rounded-full px-3 py-1 hover:cursor-pointer ${isStyles ? 'bg-gray-300' : ''}`}
@@ -40,11 +40,11 @@ const ShopSidebar = ({ isStyles, setStyles }) => {
                     <div className='w-full h-[1px] bg-gray-300 mb-[8px]'></div>
                 </div>
                 <div className='flex flex-col'>
-                    {PASCAL_CATEGORIES.map((ele, index) => (
+                    {categoryData.map((ele, index) => (
                         <AnimeButtons
                             key={index}
-                            name={ele.category}
-                            options={ele.subCategories}
+                            category={ele.category}
+                            subCategories={ele.subCategories}
                         />
                     ))}
                 </div>

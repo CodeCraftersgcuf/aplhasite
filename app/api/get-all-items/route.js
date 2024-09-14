@@ -6,10 +6,6 @@ import { promises as fs } from 'fs';
 import path from 'path';
 
 export const GET = async (request) => {
-  // Check if the token is available
-  const token = request.headers.get('Authorization')?.split(' ')[1];
-  if (token) {
-  }
   let items = [];
   let cursor = null;
   console.log('came to get-all-items route');
@@ -32,8 +28,8 @@ export const GET = async (request) => {
         }
       );
 
-      items = items.concat(response.data.objects);
-      cursor = response.data.cursor;
+      items = items.concat(response?.data?.objects);
+      cursor = response?.data?.cursor;
     } while (cursor);
     // const filePath = path.join(process.cwd(), 'data', 'output.json'); // Ensure the 'data' folder exists
     // const dirPath = path.dirname(filePath);
@@ -43,7 +39,7 @@ export const GET = async (request) => {
     // await fs.writeFile(filePath, JSON.stringify(items, null, 2), 'utf8');
 
     // console.log(Object.values(items).slice(0, 6));
-    return NextResponse.json(items); // Return the items;
+    return NextResponse.json(items, { status: 200 }); // Return the items;
   } catch (error) {
     console.log(error);
     return error.message;

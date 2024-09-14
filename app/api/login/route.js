@@ -27,14 +27,19 @@ export const POST = async (request) => {
     }
 
     // Generate JWT token
-    const token = jwt.sign({ id: isUser._id }, process.env.NEXT_TOKEN_KEY, {
-      expiresIn: '1d',
-    });
+    const token = jwt.sign(
+      { id: isUser._id, email: isUser.email },
+      process.env.NEXT_TOKEN_KEY,
+      {
+        expiresIn: '1d',
+      }
+    );
 
     // Set the token in a cookie and return success response
     const response = NextResponse.json({
       message: 'Login Successful',
       success: true,
+      email: isUser.email,
     });
     response.cookies.set('token', token, {
       httpOnly: true,

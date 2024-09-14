@@ -79,7 +79,7 @@ const HomePage = ({ data }) => {
   // const reversedDataArray = dataArray.reverse();
   const splicedDataArray = dataArray;
   // const splicedDataArray = dataArray.splice(0, 30);
-  console.log(splicedDataArray);
+  // console.log(splicedDataArray);
 
   const handleNavigateDetails = (product) => {
     return router.push('/product-details/' + product.id);

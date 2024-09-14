@@ -15,7 +15,7 @@ import '@/app/styles/spinner.scss'
 
 const SignInPage = () => {
     const dispatch = useDispatch()
-    const { isLoading, isError, isSuccess, postData } = usePost()
+    const { isLoading, isError, isSuccess, resData, postData } = usePost()
     const [showPassword, setShowPassword] = useState(false)
     const router = useRouter()
     const data = useSelector((state) => state.authInputFn.signIn)
@@ -28,12 +28,12 @@ const SignInPage = () => {
         if (data.email.trim() === '' || data.password.trim() === '') {
             return
         }
-        postData({ url: 'http://localhost:3000/api/login', data: data })
+        postData({ url: 'https://pang3a-lilac.vercel.app/api/login', data: data })
     }
 
     useEffect(() => {
         if (isSuccess) {
-            dispatch(stateActions.userLogin())
+            dispatch(stateActions.userLogin(resData.email))
             router.push('/')
         }
     }, [isSuccess])

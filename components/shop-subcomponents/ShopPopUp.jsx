@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import PopUpAnimeButtons from './PopUpAnimeButtons';
 import { motion, easeInOut, AnimatePresence } from 'framer-motion';
-import { PASCAL_CATEGORIES } from '@/utils';
+import AnimeButtons from './SideBarAnimatedButtons';
+import { categoryActions } from '@/store/slices/categorySlice';
+import { useDispatch } from 'react-redux';
 
 
-const ShopPopUp = ({ setStyles, isStyles, showPopUp, setShowPopUp }) => {
+const ShopPopUp = ({ showPopUp, setShowPopUp, categoryData }) => {
+
+    const dispatch = useDispatch()
 
     const handleDragEnd = (e, info) => {
         if (info.offset.y > 70) { // If dragged down more than 50px
@@ -42,17 +46,25 @@ const ShopPopUp = ({ setStyles, isStyles, showPopUp, setShowPopUp }) => {
                                         type="text"
                                         placeholder='Search for categories'
                                         className='w-full font-semibold h-12 bg-white text-black focus:outline-none placeholder:text-gray-400'
+                                        onChange={(e) => dispatch(categoryActions.setSearchTerm(e.target.value))}
                                     />
-                                    <div className='w-full h-[1px] bg-gray-200 my-[16px]'></div>
+                                    <div className='w-full h-[1px] bg-gray-200 my-[8px]'></div>
                                 </div>
                                 <div className='flex flex-col overflow-scroll scrollbar-hide'>
-                                    {PASCAL_CATEGORIES.map((product, index) => (
+                                    {categoryData.map((category, index) => (
+                                        <AnimeButtons
+                                            key={index}
+                                            subCategories={category.subCategories}
+                                            category={category.category}
+                                        />
+                                    ))}
+                                    {/* {PASCAL_CATEGORIES.map((product, index) => (
                                         <PopUpAnimeButtons
                                             key={index}
                                             name={product.category}
                                             options={product.subCategories}
                                         />
-                                    ))}
+                                    ))} */}
                                 </div>
                             </div>
                         </motion.div>

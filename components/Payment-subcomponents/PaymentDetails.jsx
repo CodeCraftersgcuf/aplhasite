@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import PaymentTypeButtons from "./paymentDetails-subcomponents.jsx/PaymentTypeButtons";
 import Link from "next/link";
@@ -14,9 +14,27 @@ import CreditCardInput from "./payment-radios/CreditCardInput";
 import PaypalInput from "./payment-radios/PaypalInput";
 import CheckBox from "./paymentDetails-subcomponents.jsx/CheckBox";
 import FooterLinks from "./paymentDetails-subcomponents.jsx/FooterLinks";
+import { useSelector, useDispatch } from 'react-redux'
+import { paymentActions } from '@/store/slices/paymentInputs'
 import { RadioProvider } from "@/store/paymentTypeContext";
 
 const PaymentDetails = ({ onReviewOrder }) => {
+  const dispatch = useDispatch();
+  const [isLogin, setIsLogin] = useState(false)
+  const state = useSelector((state) => state.stateFn);
+
+  useEffect(() => {
+    if (state.currentState === 'userLogin') {
+      console.log(state)
+      setIsLogin(true);
+      dispatch(paymentActions.setValueInContact('email', state.userEmail))
+    } else {
+      if (state.currentState === 'loggedOut') {
+        setIsLogin(false)
+      }
+    }
+
+  }, [state])
   return (
     // <div className="w-full lg:w-1/2">
     <div className="max-w-[710px] extrasmall:w-screen flex flex-wrap justify-center lg:justify-end ">
@@ -45,12 +63,20 @@ const PaymentDetails = ({ onReviewOrder }) => {
         <div className="flex justify-between  items-center mt-5">
           <Heading>CONTACT</Heading>
           <div>
-            <Link
-              href="/sign-in"
-              className="underline text-[13px] text-[#707070]"
-            >
-              Log in
-            </Link>
+            {isLogin ?
+              <p
+                className="underline text-[13px] text-[#707070]"
+              >
+                Logged in
+              </p> :
+              <Link
+                href="/sign-in"
+                className="underline text-[13px] text-[#707070]"
+              >
+                Log in
+              </Link>
+            }
+
           </div>
         </div>
 
@@ -59,7 +85,7 @@ const PaymentDetails = ({ onReviewOrder }) => {
           className="flex flex-col sm:max-w-[650px] md:max-w-[700px] lg:max-w-[800px] "
         // className="flex flex-col  max-w-[500px] sm:max-w-[650px] md:max-w-[700px] lg:max-w-[800px] "
         >
-          <EmailSection />
+          <EmailSection isLogin={isLogin} email={state.userEmail} />
           <Heading>DELIVERY</Heading>
 
           <DeliverySection

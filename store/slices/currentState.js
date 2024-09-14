@@ -6,7 +6,7 @@ export const CURRENT_STATES = {
   USER_LOGIN: 'userLogin',
 };
 
-const initialState = { currentState: 'loggedOut' };
+const initialState = { currentState: null, userEmail: null };
 
 const currentStateSlice = createSlice({
   name: 'currentState',
@@ -14,9 +14,11 @@ const currentStateSlice = createSlice({
   reducers: {
     logout(state) {
       state.currentState = CURRENT_STATES.LOGOUT;
+      state.userEmail = null;
     },
-    userLogin(state) {
+    userLogin(state, action) {
       state.currentState = CURRENT_STATES.USER_LOGIN;
+      state.userEmail = action.payload;
     },
     adminLogin(state) {
       state.currentState = CURRENT_STATES.ADMIN_LOGIN;

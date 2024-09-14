@@ -27,7 +27,7 @@ const SignUpPage = () => {
         if (data.email.trim() === '' || data.password.trim() === '') {
             return
         }
-        postData({ url: 'http://localhost:3000/api/signup', data: data })
+        postData({ url: 'https://pang3a-lilac.vercel.app/api/signup', data: data })
     }
 
     useEffect(() => {
