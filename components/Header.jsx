@@ -20,7 +20,8 @@ import _ from "lodash";
 import DropDown from "@/components/Header-subcomponents/DropDown";
 
 
-const Header = () => {
+
+const Header = ({ white, categories }) => {
   const [showPopUp, setShowPopUp] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
   const [cartItemsNo, setCartItemsNo] = useState(0);
@@ -92,7 +93,7 @@ const Header = () => {
   return (
     <>
       <header
-        className={`header-nav z-50 ${isScrolled ? "scrolled" : "transparent"}`}
+        className={`${white ? 'header-nav-white' : 'header-nav-black'} z-50 ${isScrolled ? "scrolled" : "transparent"}`}
         style={{ zIndex: 59 }} // Using a number instead of a string
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -130,7 +131,9 @@ const Header = () => {
           <div className="flex h-full items-center gap-5">
             <Image
               onClick={() => (router.push("/"))}
-              src={isHovered || isScrolled ? pang3aBlack : pang3aWhite}
+              src={(isHovered || isScrolled) ? pang3aBlack :
+                !white ? pang3aBlack :
+                  pang3aWhite}
               alt="Logo Here"
               className="h-[22px] object-contain w-auto hover:cursor-pointer"
               title="Go to Home Page"
@@ -139,7 +142,7 @@ const Header = () => {
             <div className="example05 flex items-center">
               <div
                 style={{ cursor: "pointer" }}
-                // onClick={() => (router.push(''))}
+                onClick={() => (router.push('/shop'))}
                 className=" dropdown-trigger text-[11px] "
                 onMouseOver={() => setShowDropdown(true)}
                 onMouseOut={() => setShowDropdown(false)}
@@ -179,6 +182,7 @@ const Header = () => {
         <DropDown
           showDropdown={showDropdown}
           setShowDropdown={setShowDropdown}
+          categories={categories}
         />
         <PopUp
           showPopUp={showPopUp}

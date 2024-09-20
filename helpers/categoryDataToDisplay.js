@@ -30,4 +30,5 @@ export default function categoryDataToDisplay(data) {
     });
   }
   return CATEGORIES;
+  // console.log(CATEGORIES);
 }

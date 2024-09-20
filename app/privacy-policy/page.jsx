@@ -1,6 +1,5 @@
 import axios from "axios";
-import SignUpPage from "./SignUpPage";
-
+import PrivacyPolicy from "./PrivacyPage";
 export default async function Page() {
     try {
         const response = await axios.get(
@@ -11,7 +10,7 @@ export default async function Page() {
         );
 
 
-        return <SignUpPage responseData={response?.data} />;
+        return <PrivacyPolicy responseData={response?.data} />;
     } catch (error) {
         console.log(error);
         return <div>Error: {error.message}</div>;

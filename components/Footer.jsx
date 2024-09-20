@@ -11,9 +11,11 @@ import pang3aBlack from "@assets/Footer.png"
 import AuthInputButton from "./auth-input-subcomponents/AuthInputButton";
 import CustomAuthInput from "./auth-input-subcomponents/CustomAuthInput";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 
 const Footer = () => {
+  const router = useRouter()
   return (
     <>
       <div className="flex-wrap xl:flex-nowrap flex justify-center mt-8  w-full border border-[#3b3b3b]">
@@ -23,28 +25,29 @@ const Footer = () => {
               <h4 className="mb-3 text-black font-semibold text-[13px]">
                 Help
               </h4>
-              <Link href="#">Contact</Link>
-              <Link href="#">Returns & Exchanges</Link>
-              <Link href="#">Help Center</Link>
-              <Link href="#">Brexit Info</Link>
+              <Link href="/contact-us">Contact us</Link>
+              <Link href="/terms-and-conditions">Terms & Conditions</Link>
+              <Link href="/privacy-policy">Privacy Policy</Link>
+              <Link href="/returns-and-shipping">Returns & Shipping Policy</Link>
             </div>
             <div className="flex flex-wrap flex-col">
               <h4 className="mb-3 footer-div-h4 text-black font-semibold text-[13px]">
                 More
               </h4>
-              <Link href="#">Share The Look</Link>
-              <Link href="#">About US</Link>
-              <Link href="#">Careers</Link>
+              <Link href="/sign-up">Sign Up</Link>
+              <Link href="/sign-in">Sign In</Link>
+              {/* <Link href="#">Share The Look</Link>
+              <Link href="#">About US</Link> */}
+              {/* <Link href="#">Careers</Link>
               <Link href="#">Alphaland</Link>
-              <Link href="#">Summer Shredding</Link>
+              <Link href="#">Summer Shredding</Link> */}
             </div>
             <div className="flex flex-wrap flex-col">
               <h4 className="mb-3 footer-div-h4 text-black font-semibold text-[13px]">
                 Address
               </h4>
               <Link href="#">
-                13927 South Gessner Road, Missouri City Texas 77489, United
-                States
+                1685 Babcock Street Ste A, Costa Mesa, CA 92627
               </Link>
             </div>
           </div>
@@ -53,8 +56,8 @@ const Footer = () => {
               <aside className="copyRight">
                 <span class="footer-last">
                   <ul className="flex flex-wrap lg:flex-nowrap">
-                    <li>PRIVACY POLICY</li>
-                    <li>TERMS OF SERVICE</li>
+                    <li onClick={() => router.push("/privacy-policy")} className="hover:cursor-pointer">PRIVACY POLICY</li>
+                    <li onClick={() => router.push("/terms-and-conditions")} className="hover:cursor-pointer">TERMS OF SERVICE</li>
                     <li>SITEMAP</li>
                     <li style={{ marginLeft: 0 }}>
                       DO NOT SELL OR SHARE MY PERSONAL INFORMATION
@@ -65,18 +68,17 @@ const Footer = () => {
             <p>DO NOT SELL OR SHARE MY PERSONAL INFORMATION</p> */}
                 </span>
                 <h6 className="text-[10px] text-[#131212]">
-                  © 2024 &#x2022; Alphalete Athletics LLC | All Rights Reserved
+                  © 2024 • PANG3A LLC™ | ALL RIGHTS RESERVED
+
                 </h6>
               </aside>
             </div>
             <div className="style-text flex flex-col justify-center  text-center lg:text-start lg:max-w-[968px]  max-w-full p-5 ">
               <p className="text-[13px] text-[#131212] font-semibold ">
-                Premium Workout Clothes & Athleisure
+                Precision Products, delivered with care
               </p>
               <span className="text-[10px] pt-2">
-                Experience the next level of comfort, style, and functionality
-                with our premium athleisure collections designed for those who
-                demand the best. Shop now!
+                Discover top-quality, expertly crafted products tailored for your shelves. Elevate your store’s offerings with our curated collections, designed to meet your customers' needs. Shop now!
               </span>
             </div>
           </div>
@@ -144,14 +146,14 @@ const Footer = () => {
                   purchase. Reply STOP to unsubscribe. HELP for help. Msg
                   frequency varies. Msg &amp; Data rates may apply. View
                   <Link
-                    href="#"
+                    href="/privacy-policy"
                     class="relative pb-[2px] whitespace-nowrap snakify-out"
                   >
                     <ins> Privacy Policy</ins>{" "}
                   </Link>{" "}
                   &amp;&nbsp;
                   <Link
-                    href="#"
+                    href="/terms-and-conditions"
                     class="relative pb-[2px] whitespace-nowrap snakify-out"
                   >
                     <ins>Terms of Service</ins>
@@ -164,7 +166,10 @@ const Footer = () => {
             {" "}
             <div className="icons flex justify-center">
               <BsFacebook className="footerIcon" />
-              <BsInstagram className="footerIcon" />
+              <BsInstagram
+                className="footerIcon"
+                onClick={() => router.push('https://www.instagram.com/pang3a.shop')}
+              />
               <BsTiktok className="footerIcon" />
               <BsTwitter className="footerIcon" />
               <BsYoutube className="footerIcon" />

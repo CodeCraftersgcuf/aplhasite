@@ -61,7 +61,7 @@ const ShopPage = ({ data }) => {
   console.log(selectedCategory);
 
   useEffect(() => {
-    if (selectedCategory || debouncedSearchTerm.trim() !== '') {
+    if (selectedCategory !== '' || debouncedSearchTerm.trim() !== '') {
       // console.log(selectedCategory);
       postData({
         url: '/api/search-items',
@@ -73,9 +73,9 @@ const ShopPage = ({ data }) => {
     }
   }, [selectedCategory, debouncedSearchTerm]);
 
-  // console.log(resData);
+  console.log(data.categories);
   return (
-    <WithHeaderWrapper>
+    <WithHeaderWrapper categories={data?.categories}>
       <div className="w-full bg-white">
         <TopImage />
         <div className={`flex bg-white px-8 w-full`}>

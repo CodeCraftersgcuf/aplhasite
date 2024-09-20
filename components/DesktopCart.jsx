@@ -57,7 +57,7 @@ const DesktopCart = ({ isOpen }) => {
         isOpen && fetchData(`/api/get-all-items`)
     }, [isOpen])
 
-    console.log(isLoading)
+    // console.log(isLoading)
 
     return (
         <motion.div

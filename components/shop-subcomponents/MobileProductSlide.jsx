@@ -147,7 +147,10 @@ const MobileProductSlide = ({ product, vertical, bgClicked, setBgClicked }) => {
                     {productType} <span> 4 colors</span>
                 </p> */}
                     <p className="text-[10px] text-gray-700">${productPrice && (productPrice / 100).toFixed(2)}</p>
-                    {inventoryAlert && <p className="text-[8px] w-fit text-white bg-gradient-to-r from-[#3dbfff] to-[#a649ff] rounded-full p-1">{inventoryAlert.replace('_', ' ')}</p>}
+                    {inventoryAlert && <p className="text-[8px] w-fit text-white bg-gradient-to-r from-[#3dbfff] to-[#a649ff] rounded-full p-1">
+                        <span className='mb-[-1px]'>
+                            {(inventoryAlert.replace('_', ' ')).replace('QUANTITY', 'STOCK')}
+                        </span></p>}
                     {/* padding: 2px 5px;
           background: linear-gradient(90deg, #3dbfff, #a649ff);
           border-radius: 5px;

@@ -7,7 +7,7 @@
 @font-face {
   font-family: "GT America Extended Bold";
   src: url("../public/fonts/GT-America-Extended-Bold-Trial.woff2") format("woff2");
-  font-weight: bold;
+  /* font-weight: bold; */
   /* Adjust based on your font’s weight if needed */
   font-style: normal;
   /* Adjust if the font style is italic or oblique */
@@ -46,7 +46,7 @@ body.no-scroll {
   -webkit-overflow-scrolling: touch;
 }
 
-.header-nav {
+.header-nav-white {
   transition: background-color 0.3s ease;
   position: fixed;
   top: 0;
@@ -57,12 +57,33 @@ body.no-scroll {
   }
 
   &.scrolled {
-    background-color: #fcf9f9;
+    background-color: white;
     color: black
   }
 
   &:hover {
-    background-color: #fcf9f9;
+    background-color: white;
+    color: black
+  }
+}
+
+.header-nav-black {
+  transition: background-color 0.3s ease;
+  position: fixed;
+  top: 0;
+  color: black;
+
+  &.transparent {
+    background-color: transparent;
+  }
+
+  &.scrolled {
+    background-color: white;
+    color: black
+  }
+
+  &:hover {
+    background-color: white;
     color: black
   }
 }
@@ -383,7 +404,7 @@ body.no-scroll {
   }
 
   .swiper-button-prev {
-    left: 20px;
+    left: 26px;
     transition: all 0.5s;
   }
 }
@@ -393,7 +414,7 @@ body.no-scroll {
   transition: all 0.5s;
   height: 30px;
   width: 30px;
-  top: 75.5%;
+  top: 76.1%;
 }
 
 .imageSwiper .swiper-button-next {
@@ -466,7 +487,7 @@ body.no-scroll {
     position: absolute;
     top: 13px;
     left: 13px;
-    height: 2px;
+    height: 1px;
     width: 0px;
     background-color: rgb(0, 0, 0);
     z-index: 100;
@@ -759,7 +780,8 @@ body.no-scroll {
   cursor: pointer;
 
   &:hover {
-    background-color: #707070;
+    /* background-color: #f4f2f2; */
+    scale: 1.2;
   }
 }
 

@@ -1,19 +1,19 @@
 import React from 'react'
 
-const SliderButtons = ({ women, setWomen }) => {
+const SliderButtons = ({ toggle, setToggle }) => {
     return (
         <div className="slider-buttons">
             <span
-                onClick={() => setWomen(true)}
-                className={women ? 'bg-[#d8d7d7]' : ''}
+                onClick={() => setToggle(true)}
+                className={toggle ? 'bg-[#d8d7d7]' : ''}
             >
-                {`Now`}
+                {`THCA`}
             </span>
             <span
-                onClick={() => setWomen(false)}
-                className={!women ? 'bg-[#d8d7d7]' : ''}
+                onClick={() => setToggle(false)}
+                className={!toggle ? 'bg-[#d8d7d7]' : ''}
             >
-                {`Trending`}
+                {`Delta 8`}
             </span>
         </div>
     )

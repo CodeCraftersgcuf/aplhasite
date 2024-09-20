@@ -1,7 +1,5 @@
 import axios from 'axios';
 import { NextResponse, NextRequest } from 'next/server';
-import { stateActions } from '@/store/slices/currentState';
-import { useDispatch } from 'react-redux';
 import { promises as fs } from 'fs';
 import path from 'path';
 
@@ -39,7 +37,8 @@ export const GET = async (request) => {
     // await fs.writeFile(filePath, JSON.stringify(items, null, 2), 'utf8');
 
     // console.log(Object.values(items).slice(0, 6));
-    return NextResponse.json(items, { status: 200 }); // Return the items;
+    // console.log('crossed');
+    return NextResponse.json(items, { status: 200 });
   } catch (error) {
     console.log(error);
     return error.message;

@@ -1,9 +1,9 @@
 @mixin hover-underline($type: fade, $dir: null, $weight: 2px, $color: #ffffff) {
   @if $dir == null {
     @if $type == fade {
-      $dir: "top";
+      $dir: 'top';
     } @else if $type == slide {
-      $dir: "center";
+      $dir: 'center';
     }
   }
 
@@ -13,7 +13,7 @@
   &::after {
     position: absolute;
     left: 0;
-    content: "";
+    content: '';
     width: 100%;
     height: $weight;
     background: $color;
@@ -59,7 +59,6 @@
 }
 
 header {
-
   width: 100%;
   margin: auto;
   // border-bottom: 1px solid rgb(77, 77, 77);
@@ -68,7 +67,6 @@ header {
   z-index: 60;
   // background-color: #02020200;
   background-color: transparent;
-  
 
   .header {
     display: flex;
@@ -89,15 +87,14 @@ header {
       align-items: center;
       margin-right: 0.4%;
       height: 50px;
-      
+
       p {
         color: #f2f2f2;
         line-height: 12px;
       }
-      div.dropdown-trigger{
+      div.dropdown-trigger {
         line-height: 12px;
-        
-        }
+      }
       svg {
         font-size: 40px;
         margin: 0 0px;
@@ -107,7 +104,6 @@ header {
         border-radius: 15px;
         &:hover {
           background-color: rgba($color: #9e9e9e, $alpha: 0.5);
-          
         }
       }
       .burger {
@@ -117,106 +113,108 @@ header {
   }
 }
 
-        .dropdown-container {
-          display: flex;
-          background-color: rgba(2, 2, 2, 1);
-          width: 100%; /* Full screen width */
-          height: 55%; /* Full screen height if needed */
-          // border: 1px solid #f2f2f2;
-          // box-sizing: border-box; 
-        }
-        .header-links {
-          font-weight: 400 !important;
-          font-size: 12px;
-          display: block;
-          line-height: 24px;
-          text-decoration: none;
-          color: hsl(0deg 0% 96% / 80%);
-          position: relative;
-          max-width: fit-content;
-          padding-bottom: 5px;
-          &:hover {
-            cursor: pointer;
-          }
-          /* Ensure positioning context for ::after */
-        }
-        
-        .header-links::after {
-          content: "";
-          /* Creates an empty pseudo-element */
-          position: absolute;
-          left: 0;
-          bottom: 0;
-          /* Position the line at the bottom of the <a> tag */
-          width: 0;
-          /* Initial width is 0, so it's hidden */
-          height: 2px;
-          /* Thickness of the underline */
-          background-color: white;
-          /* Color of the underline */
-          transition: width 0.3s ease;
-          /* Animation duration and easing */
-        } 
-        .header-links:hover::after {
-          color: white;
-          margin-top: 20px;
-          width: 100%;
-        }  
-        .left, .right {
-          display: flex;
-          flex: 1; /* Each child covers equal space */
-        }
-        
-        .left {
-          background-color: rgba(2, 2, 2, 1);
-          .grid {
-            font-weight: 200;
-            display: flex;
-            width: 100%;
-            height: 100%;
-            padding: 30px 30px 30px 55px;
-            .row {
-              display: flex;
-              flex-grow: inherit;
-              flex: 1;
-              row-gap: 15px;
-              flex-direction: column;
-              p {
-                line-height: 12px;
-                color: #f2f2f2c5;                
-              }
-              p.first {
-                padding-bottom: 5px;
-                color: #f2f2f2;                
-              }
-              // p:hover {
-              //   cursor: pointer;
-              //   color: #f2f2f2;   
-              //   transform: translateX(5px);      
-              //   transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+.dropdown-container {
+  display: flex;
+  background-color: white;
+  width: 100%; /* Full screen width */
+  height: 55%; /* Full screen height if needed */
+  border-top: 1.5px solid #3f3f3f;
+  // box-sizing: border-box;
+}
+.header-links {
+  font-weight: 400 !important;
+  font-size: 12px;
+  display: block;
+  line-height: 24px;
+  text-decoration: none;
+  color: hsl(0deg 0% 96% / 80%);
+  position: relative;
+  max-width: fit-content;
+  padding-bottom: 5px;
+  &:hover {
+    cursor: pointer;
+    color: #000 !important;
+  }
+  /* Ensure positioning context for ::after */
+}
 
-              // }
-            }
-          }
-        }
-        
-        .right {
-          background-color: rgba(2, 2, 2, 1);
-          .image-container {
-            display: flex;
-            justify-content: space-between; /* Space between images */
-            height: 100%;
-            width: 33%;
-            img {
-              width: 100%;
-              height: auto;
-              // aspect-ratio: 2 / 1;
-              border: 1px solid #000; /* Border around images */
-              box-sizing: border-box; /* Ensure border is included in width/height */
-            }
-          }
-        }
-        
+.header-links::after {
+  content: '';
+  /* Creates an empty pseudo-element */
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  /* Position the line at the bottom of the <a> tag */
+  width: 0;
+  /* Initial width is 0, so it's hidden */
+  height: 2px;
+  /* Thickness of the underline */
+  background-color: black;
+  /* Color of the underline */
+  transition: width 0.3s ease;
+  /* Animation duration and easing */
+}
+.header-links:hover::after {
+  color: black;
+  margin-top: 20px;
+  width: 100%;
+}
+.left,
+.right {
+  display: flex;
+  flex: 1; /* Each child covers equal space */
+}
+
+.left {
+  // background-color: rgba(2, 2, 2, 1);
+  .grid {
+    font-weight: 200;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 30px 30px 30px 55px;
+    .row {
+      display: flex;
+      flex-grow: inherit;
+      flex: 1;
+      row-gap: 15px;
+      flex-direction: column;
+      p {
+        line-height: 12px;
+        color: #515151c5;
+      }
+      p.first {
+        padding-bottom: 5px;
+        color: black;
+      }
+      // p:hover {
+      //   cursor: pointer;
+      //   color: #f2f2f2;
+      //   transform: translateX(5px);
+      //   transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
+
+      // }
+    }
+  }
+}
+
+.right {
+  // background-color: rgba(2, 2, 2, 1);
+  .image-container {
+    display: flex;
+    justify-content: space-between; /* Space between images */
+    height: 100%;
+    width: 33.33%;
+    img {
+      width: 100%;
+      height: auto;
+      // aspect-ratio: 2 / 1;
+      // border: 1px solid #000; /* Border around images */
+      box-sizing: border-box; /* Ensure border is included in width/height */
+    }
+  }
+}
+
 .preheader {
   width: 100%;
   padding: 10px 0 5px 0;
@@ -240,7 +238,7 @@ header {
   }
 }
 .example05 a span {
-  @include hover-underline("slide", "left-in-right");
+  @include hover-underline('slide', 'left-in-right');
 }
 .p {
   position: absolute;
@@ -286,7 +284,6 @@ header {
   z-index: 1000;
 }
 
-
 .sub-container {
   display: flex;
   justify-content: space-between;
@@ -308,7 +305,7 @@ header {
 
 .popUp-first {
   padding-bottom: 5px;
-  color: #f2f2f2;   
+  color: #f2f2f2;
   font-size: 16px;
 }
 
@@ -337,8 +334,6 @@ header {
   cursor: pointer;
 }
 
-
-
 @media screen and (max-width: 1100px) {
   .preheader a {
     display: none;
@@ -365,11 +360,11 @@ header {
     right: 19%;
   }
   .example05 {
-    display: none!important;
+    display: none !important;
   }
 }
 @media (max-width: 420px) {
   .example05 {
-    display: none!important;
+    display: none !important;
   }
 }

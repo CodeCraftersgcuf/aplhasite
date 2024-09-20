@@ -1,18 +1,23 @@
-import ShopPage from "./ShopPage";
+import ShopPage from "../ShopPage";
 import axios from "axios";
 // import { cookies } from "next/headers";
 
-export default async function Page() {
+export default async function Page({ params }) {
+    const { categoryId } = params
+    console.log(categoryId)
     // const cookieStore = cookies(); // Get cookies from the request
     // const token = cookieStore.get('token'); // Fetch the 'token' cookie
     try {
-        const dataResponse = await axios.get(
-            `${process.env.NEXT_VERCEL_DOMAIN_URL}/api/get-all-items`,
+        const dataResponse = await axios.post(
+            `${process.env.NEXT_VERCEL_DOMAIN_URL}/api/search-items`,
+            {
+                categoryId,
+                searchTerm: '',
+            },
             {
                 withCredentials: true,
             }
         );
-
 
         const categoryResponse = await axios.get(
             `${process.env.NEXT_VERCEL_DOMAIN_URL}/api/get-all-categories`,
@@ -25,7 +30,7 @@ export default async function Page() {
         // console.log(response)
         // const dataArray = Object.values(response?.data);
         // const reversedDataArray = dataArray.reverse();
-        console.log(categoryResponse);
+
         return <ShopPage data={response} />;
     } catch (error) {
         console.log(error);

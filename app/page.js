@@ -1,23 +1,32 @@
 import HomePage from '@/app/HomePage';
 import axios from 'axios';
-import { cookies } from 'next/headers';
+// import { cookies } from 'next/headers';
 
 export default async function Page() {
-  const cookieStore = cookies(); // Get cookies from the request
-  const token = cookieStore.get('token'); // Fetch the 'token' cookie
+  // const cookieStore = cookies(); // Get cookies from the request
+  // const token = cookieStore.get('token'); // Fetch the 'token' cookie
   try {
-    const response = await axios.get(
+    const itemsResponse = await axios.get(
       `${process.env.NEXT_VERCEL_DOMAIN_URL}/api/get-all-items`,
       {
         withCredentials: true,
-        headers: {
-          Authorization: `Bearer ${token || ''}`,
-        },
       }
     );
+
+    const categoryResponse = await axios.get(
+      `${process.env.NEXT_VERCEL_DOMAIN_URL}/api/get-all-categories`,
+      {
+        withCredentials: true,
+      }
+    );
+
+    const response = {
+      items: itemsResponse?.data,
+      categories: categoryResponse?.data,
+    };
     // const dataArray = Object.values(response?.data);
     // const reversedDataArray = dataArray.reverse();
-    return <HomePage data={response?.data} />;
+    return <HomePage data={response} />;
   } catch (error) {
     // console.log(error);
     return <div>Error: {error.message}</div>;

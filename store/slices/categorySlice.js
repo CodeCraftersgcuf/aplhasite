@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const categorySlice = createSlice({
   name: 'authInput',
   initialState: {
-    selectedCategory: 'null',
+    selectedCategory: '',
     searchTerm: '',
   },
   reducers: {

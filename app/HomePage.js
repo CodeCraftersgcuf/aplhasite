@@ -3,15 +3,16 @@ import Hero from '@assets/Top-banner.png';
 import '@/app/styles/main.scss';
 import { useRouter } from 'next/navigation';
 import React, { useRef, useState, useEffect } from 'react';
+import firstImg from '@assets/Nuro-1ml-Hybrid-GOAT-with deivce-min.png';
+import secondImg from '@assets/Candy 5ml pack open-Jolly dub-broad spec 01-min.png';
+import thirdImg from '@assets/Nuro 3ml-black-with device-Sativa-Berryland-min.png';
 import SubscribeModal from '@/components/SubscribeModal';
+import { setDeviceType } from '@/store/slices/currentDevice';
 import AgeVerificationModal from '@/components/AgeVerificationModal';
 import { useSelector } from 'react-redux';
-import { CURRENT_STATES } from '@/store/slices/currentState';
 import WithHeaderWrapper from '@/components/WithHeaderWrapper';
 import { itemsActions } from '@/store/slices/cartItems';
 import { useDispatch } from 'react-redux';
-// import pang3aWhite from '../assets/pang3a.png';
-import notify from '@/helpers/notify';
 import PreFooter from '@/components/HomePage-subcomponents/PreFooter';
 import TopContainer from '@/components/HomePage-subcomponents/TopContainer';
 import SliderHeading from '@/components/HomePage-subcomponents/SliderHeading';
@@ -22,62 +23,72 @@ import DesktopSmallSwiper from '@/components/HomePage-subcomponents/DesktopSmall
 import MobileSwiper from '@/components/HomePage-subcomponents/MobileSwiper';
 import MobileSmallSwiper from '@/components/HomePage-subcomponents/MobileSmallSwiper';
 import Image from 'next/image';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import MobileCart from '@/components/MobileCart';
+import DesktopCart from '@/components/DesktopCart';
+import { Toaster } from 'react-hot-toast';
 import axios from 'axios';
-import { motion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 
 const topSmallBanners = [
   {
-    url: 'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p7_i3_w3000.png',
+    url: firstImg,
+    // url: 'https://www.nuro.la/uploads/1/4/3/6/143644655/s864328628968731809_p7_i3_w3000.png',
     name: '1ML DISPOSABLES',
     subtitle: 'NURO',
     btn1: 'Essential Blend',
     btn2: 'Broad Spec',
   },
   {
-    url: 'https://517992454425628599.square.site/uploads/1/4/6/0/146082605/s650997120377647197_p138_i1_w3000.png',
-    name: '3ML DISPOSABLES',
-    subtitle: 'NURO',
-    btn1: 'Essential Blend',
-    btn2: 'Broad Spec',
+    url: secondImg,
+    // url: 'https://517992454425628599.square.site/uploads/1/4/6/0/146082605/s650997120377647197_p138_i1_w3000.png',
+    name: '5ML DISPOSABLES',
+    subtitle: 'CANDY',
+    btn1: 'Broad Spec  ',
+    btn2: 'Shop All',
   },
   {
-    url: 'https://517992454425628599.square.site/uploads/1/4/6/0/146082605/s650997120377647197_p14_i4_w1920.png',
-    name: 'Nuro 1ml',
-    subtitle: 'CARTRIDGE',
-    btn1: 'Classic',
-    btn2: 'Limited Edition',
+    url: thirdImg,
+    // url: 'https://517992454425628599.square.site/uploads/1/4/6/0/146082605/s650997120377647197_p14_i4_w1920.png',
+    name: '3ML DISPOSABLES ',
+    subtitle: 'NURO',
+    btn1: 'Broad Spec',
+    btn2: 'Shop All',
   },
   ,
-];
-const topImages = [
-  'https://alphalete.uk/cdn/shop/files/web_2mensshorts-graphic.jpg?crop=center&v=1714233659&width=1400',
-  'https://alphalete.uk/cdn/shop/files/4U8A0538.jpg?crop=center&v=1714233619&width=1400',
-  'https://alphalete.uk/cdn/shop/files/DSC06397.jpg?crop=center&v=1714233714&width=1400',
-];
-
-const videos = [
-  'https://cdn.shopify.com/videos/c/o/v/9d4812a2c25248fbbff2509f4093f0ad.mp4',
-];
-
-const bottomImages = [
-  'https://alphalete.uk/cdn/shop/files/aa24-apr27-34.jpg?crop=center&v=1714233984&width=1400',
-  'https://alphalete.uk/cdn/shop/files/aa24-apr27-36.jpg?crop=center&v=1714233923&width=1400',
 ];
 
 const HomePage = ({ data }) => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [women, setWomen] = useState(true);
+  const [toggle1, setToggle1] = useState(true);
+  const [toggle2, setToggle2] = useState(true);
   const [ageVerification, setageVerification] = useState(false);
+  const [products, setProducts] = useState([]);
 
-  // console.log(data);
+  useEffect(() => {
+    const handleResize = () => {
+      dispatch(setDeviceType());
+    };
+
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Set device type on initial load
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [dispatch]);
+  const isOpen = useSelector((state) => state.modalFn);
+  const device = useSelector((state) => state.deviceFn.deviceType);
   const state = useSelector((state) => state.stateFn.currentState);
+  // console.log(data);
 
   const innerSwiperRef = useRef();
 
-  const dataArray = Object.values(data);
+  // const dataArray = Object.values(data.items);
   // const reversedDataArray = dataArray.reverse();
-  const splicedDataArray = dataArray;
+  const splicedDataArray = data.items;
   // const splicedDataArray = dataArray.splice(0, 30);
   // console.log(splicedDataArray);
 
@@ -88,61 +99,82 @@ const HomePage = ({ data }) => {
     dispatch(itemsActions.addItem({ product, quantity }));
   };
 
-  // useEffect(() => {
-  //   setageVerification(true);
-  //   return () => {
-  //     setageVerification(false);
-  //   };
-  // }, []);
+  useEffect(() => {
+    setageVerification(true);
+    return () => {
+      setageVerification(false);
+    };
+  }, []);
   console.log(state);
   return (
-    <WithHeaderWrapper>
-      <main className="home">
-        {/* <Toaster position="bottom-center" /> */}
-        {ageVerification && <AgeVerificationModal />}
-        {/* {state === CURRENT_STATES.LOGOUT && <SubscribeModal />} */}
-        <div className="relative max-w-[100%] h-dvh">
-          <motion.div
-            initial={{ scale: 1.05, opacity: 0.5 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{
-              duration: 2,
-              ease: [0.87, 0, 0.13, 1],
-            }}
-            className="absolute w-full h-full"
-          >
-            <Image
-              src={Hero}
-              alt="Hero"
-              layout="fill" // Ensures the image takes the full container size
-              objectFit="cover" // Makes sure the image covers the container
-              priority={true} // Optional: Prioritize loading of this image
-            />
-          </motion.div>
+    // <WithHeaderWrapper>
+    <>
+      <Header fixed={true} white={true} categories={data.categories} />
+      <Toaster position="bottom-center" />
+      <div id="smooth-wrapper scrollbar-hide">
+        <div id="smooth-content scrollbar-hide">
+          <AnimatePresence>
+            {isOpen &&
+              (device === 'mobile' || device === 'tablet' ? (
+                <MobileCart isOpen={isOpen} products={products} />
+              ) : (
+                <DesktopCart isOpen={isOpen} products={products} />
+              ))}
+          </AnimatePresence>
+          <main className="home">
+            {/* <Toaster position="bottom-center" /> */}
+            <AnimatePresence>
+              {ageVerification && <AgeVerificationModal />}
+            </AnimatePresence>
+            {/* {state === CURRENT_STATES.LOGOUT && <SubscribeModal />} */}
+            <div className="relative max-w-[100%] h-dvh">
+              <motion.div
+                initial={{ scale: 1.05, opacity: 0.5 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{
+                  duration: 2,
+                  ease: [0.87, 0, 0.13, 1],
+                }}
+                className="absolute w-full h-full"
+              >
+                <Image
+                  src={Hero}
+                  alt="Hero"
+                  layout="fill" // Ensures the image takes the full container size
+                  objectFit="cover" // Makes sure the image covers the container
+                  priority={true} // Optional: Prioritize loading of this image
+                />
+              </motion.div>
 
-          <TopContainer women={women} />
+              <TopContainer />
+            </div>
+            {/* Upper new arrivals */}
+            <SliderHeading />
+            <div className="sliders overflow-x-hidden">
+              <SliderButtons toggle={toggle1} setToggle={setToggle1} />
+              <MobileSwiper data={splicedDataArray} />
+              <DesktopLargeSwiper
+                handleNavigateDetails={handleNavigateDetails}
+                onAddItem={onAddItem}
+                data={splicedDataArray}
+              />
+              <LowerContainer data={topSmallBanners} />
+              <SliderHeading toggle={toggle2} />{' '}
+              {/* Lower new arrivals || !mt-14 */}
+              <SliderButtons toggle={toggle2} setToggle={setToggle2} />
+              <DesktopSmallSwiper data={splicedDataArray} />
+              <MobileSmallSwiper data={splicedDataArray} />
+              {/* <BottomContainer /> */}
+              {/* <LowerContainer data={topSmallBanners} videos={''} /> */}
+              <PreFooter />
+            </div>
+          </main>
         </div>
-        {/* Upper new arrivals */}
-        <SliderHeading />
-        <div className="sliders overflow-x-hidden">
-          <SliderButtons women={women} setWomen={setWomen} />
-          <MobileSwiper data={splicedDataArray} />
-          <DesktopLargeSwiper
-            handleNavigateDetails={handleNavigateDetails}
-            onAddItem={onAddItem}
-            data={splicedDataArray}
-          />
-          <LowerContainer data={topSmallBanners} />
-          <SliderHeading women={women} /> {/* Lower new arrivals || !mt-14 */}
-          <SliderButtons women={women} setWomen={setWomen} />
-          <DesktopSmallSwiper data={splicedDataArray} />
-          <MobileSmallSwiper data={splicedDataArray} />
-          {/* <BottomContainer /> */}
-          <LowerContainer data={topSmallBanners} videos={''} />
-          <PreFooter />
-        </div>
-      </main>
-    </WithHeaderWrapper>
+      </div>
+      <Footer />
+    </>
+
+    // </WithHeaderWrapper>
   );
 };
 
